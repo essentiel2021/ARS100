@@ -23,6 +23,9 @@ use App\Models\TravauxDangereux;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\CategorieQuestionnaire;
+use App\Models\DelegationRegional;
+use App\Models\Region;
+use App\Models\SousPrefecture;
 
 class SettingController extends Controller
 {
@@ -83,6 +86,84 @@ class SettingController extends Controller
         $campagne->prix_achat   = $request->prix_achat;
         $campagne->save();
         $notify[] = ['success', isset($message) ? $message  : 'Campagne a été ajouté avec succès.'];
+        return back()->withNotify($notify);
+    }
+
+    public function delegationIndex(){
+        $pageTitle = "Manage Délégation régionale";
+        $delegations = DelegationRegional::orderBy('id','desc')->paginate(getPaginate());
+        return view('admin.config.delegation',compact('pageTitle','delegations'));
+    }
+
+    public function delegationStore(Request $request){
+
+        $request->validate([
+            'libelle'  => 'required',
+        ]);
+
+        if ($request->id) {
+            $delegation    = DelegationRegional::findOrFail($request->id);
+            $message = "La délégation régionale a été mise à jour avec succès.";
+        } else {
+            $delegation = new DelegationRegional();
+        }
+        $delegation->libelle    = $request->libelle ;
+        $delegation->save();
+        $notify[] = ['success', isset($message) ? $message  : 'La délégation régionale a été ajouté avec succès.'];
+        return back()->withNotify($notify);
+    }
+
+    public function regionIndex(){
+        $pageTitle = "Manage Région";
+        $regions = Region::orderBy('id','desc')->paginate(getPaginate());
+        $delegations = DelegationRegional::orderBy('id','desc')->get();
+        return view('admin.config.region',compact('pageTitle','regions','delegations'));
+    }
+
+    public function regionStore(Request $request){
+
+        $request->validate([
+            'libelle'  => 'required',
+            'delegation' => 'required'
+        ]);
+
+        if ($request->id) {
+            $region    = Region::findOrFail($request->id);
+            $message = "La région a été mise à jour avec succès.";
+        } else {
+            $region = new Region();
+        }
+        $region->libelle    = $request->libelle ;
+        $region->delegationRegionale_id = $request->delegation;
+        $region->save();
+        $notify[] = ['success', isset($message) ? $message  : 'La région a été ajouté avec succès.'];
+        return back()->withNotify($notify);
+    }
+
+    public function sousprefectureIndex(){
+        $pageTitle = "Manage Sous Préfecture";
+        $sousprefectures = SousPrefecture::orderBy('id','desc')->paginate(getPaginate());
+        $regions = Region::orderBy('id','desc')->get();
+        return view('admin.config.sousprefecture',compact('pageTitle','regions','sousprefectures'));
+    }
+
+    public function sousprefectureStore(Request $request){
+
+        $request->validate([
+            'libelle'  => 'required',
+            'region' => 'required'
+        ]);
+
+        if ($request->id) {
+            $sousprefecture    = SousPrefecture::findOrFail($request->id);
+            $message = "La sous préfecture a été mise à jour avec succès.";
+        } else {
+            $sousprefecture = new Region();
+        }
+        $sousprefecture->libelle    = $request->libelle ;
+        $sousprefecture->region_id = $request->region;
+        $sousprefecture->save();
+        $notify[] = ['success', isset($message) ? $message  : 'La sous préfecture a été ajouté avec succès.'];
         return back()->withNotify($notify);
     }
 
@@ -383,6 +464,16 @@ class SettingController extends Controller
     public function campagneStatus($id)
     {
         return Campagne::changeStatus($id);
+    }
+    public function delagationStatus($id){
+        return DelegationRegional::changeStatus($id);
+    }
+
+    public function sousprefectureStatus($id){
+        return SousPrefecture::changeStatus($id);
+    }
+    public function regionStatus($id){
+        return Region::changeStatus($id);
     }
     public function periodeStatus($id)
     {

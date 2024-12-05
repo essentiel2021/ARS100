@@ -50,17 +50,17 @@
                                         </td>
 
                                         <td>
-                                        <a href="{{ route('admin.config.campagne.periodeIndex', ['idcamp'=>$campagne->id]) }}"
+                                            <a href="{{ route('admin.config.campagne.periodeIndex', ['idcamp' => $campagne->id]) }}"
                                                 class="btn btn-sm btn-outline--warning"><i
                                                     class="las la-calendar"></i>@lang('Periodes de Campagne')</a>
                                             <button type="button" class="btn btn-sm btn-outline--primary  updateCampagne"
-                                                data-id="{{ $campagne->id }}" 
+                                                data-id="{{ $campagne->id }}"
                                                 data-cooperative="{{ $campagne->cooperative_id }}"
-                                                data-nom="{{ $campagne->nom }}" 
+                                                data-nom="{{ $campagne->nom }}"
                                                 data-debut="{{ $campagne->periode_debut }}"
                                                 data-fin="{{ $campagne->periode_fin }}"
                                                 data-prix="{{ $campagne->prix_achat }}"><i
-                                                 class="las la-pen"></i>@lang('Edit')</button>
+                                                    class="las la-pen"></i>@lang('Edit')</button>
 
                                             @if ($campagne->status == Status::DISABLE)
                                                 <button type="button"
@@ -108,45 +108,45 @@
                 <form action="{{ route('admin.config.campagne.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                            <label>@lang('Coopérative')</label>
-                            <select class="form-control" name="cooperative" required>
-                                <option value="">@lang('Selectionner une option')</option> 
-                                @foreach($cooperatives as $data)
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label>@lang('Coopérative')</label>
+                                <select class="form-control" name="cooperative" required>
+                                    <option value="">@lang('Selectionner une option')</option>
+                                    @foreach ($cooperatives as $data)
                                         <option value="{{ $data->id }}" @selected(old('cooperative'))>
                                             {{ __($data->name) }}</option>
                                     @endforeach
-                                 
-                            </select>
-                        </div>
+
+                                </select>
+                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            {{ Form::label(__('Nom de la campagne'), null, ['class' => 'control-label required']) }}
-            {!! Form::text('nom', null, array('placeholder' => __('Campagne 2021-2022'),'class' => 'form-control','required')) !!}
-        </div>
-    </div>
+                            <div class="form-group">
+                                {{ Form::label(__('Nom de la campagne'), null, ['class' => 'control-label required']) }}
+                                {!! Form::text('nom', null, ['placeholder' => __('Campagne 2021-2022'), 'class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
 
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            {{ Form::label(__('Date de début'), null, ['class' => 'control-label required']) }}
-            {!! Form::date('periode_debut', null, array('class' => 'form-control','required')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            {{ Form::label(__('Date de fin'), null, ['class' => 'control-label required']) }}
-            {!! Form::date('periode_fin', null, array('class' => 'form-control','required')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            {{ Form::label(__("Prix d'achat"), null, ['class' => 'control-label']) }}
-            {!! Form::number('prix_achat', null, array('class' => 'form-control','required')) !!}
-        </div>
-    </div> 
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                {{ Form::label(__('Date de début'), null, ['class' => 'control-label required']) }}
+                                {!! Form::date('periode_debut', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                {{ Form::label(__('Date de fin'), null, ['class' => 'control-label required']) }}
+                                {!! Form::date('periode_fin', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                {{ Form::label(__("Prix d'achat"), null, ['class' => 'control-label']) }}
+                                {!! Form::number('prix_achat', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -171,45 +171,45 @@
                     @csrf
                     <input type="hidden" name="id">
                     <div class="modal-body">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                    <label>@lang('Coopérative')</label>
-                            <select class="form-control" name="cooperative" required>
-                                <option value="">@lang('Selectionner une option')</option> 
-                                @foreach($cooperatives as $data)
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label>@lang('Coopérative')</label>
+                                <select class="form-control" name="cooperative" required>
+                                    <option value="">@lang('Selectionner une option')</option>
+                                    @foreach ($cooperatives as $data)
                                         <option value="{{ $data->id }}" @selected(old('cooperative'))>
                                             {{ __($data->name) }}</option>
                                     @endforeach
-                            </select>
-                        </div>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            {{ Form::label(__('Nom de la campagne'), null, ['class' => 'control-label required']) }}
-            {!! Form::text('nom', null, array('placeholder' => __('Campagne 2021-2022'),'class' => 'form-control','required')) !!}
-        </div>
-    </div>
+                            <div class="form-group">
+                                {{ Form::label(__('Nom de la campagne'), null, ['class' => 'control-label required']) }}
+                                {!! Form::text('nom', null, ['placeholder' => __('Campagne 2021-2022'), 'class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
 
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            {{ Form::label(__('Date de début'), null, ['class' => 'control-label required']) }}
-            {!! Form::date('periode_debut', null, array('class' => 'form-control','required')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            {{ Form::label(__('Date de fin'), null, ['class' => 'control-label required']) }}
-            {!! Form::date('periode_fin', null, array('class' => 'form-control','required')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            {{ Form::label(__("Prix d'achat"), null, ['class' => 'control-label']) }}
-            {!! Form::number('prix_achat', null, array('class' => 'form-control','required')) !!}
-        </div>
-    </div>  
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                {{ Form::label(__('Date de début'), null, ['class' => 'control-label required']) }}
+                                {!! Form::date('periode_debut', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                {{ Form::label(__('Date de fin'), null, ['class' => 'control-label required']) }}
+                                {!! Form::date('periode_fin', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                {{ Form::label(__("Prix d'achat"), null, ['class' => 'control-label']) }}
+                                {!! Form::number('prix_achat', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -224,7 +224,7 @@
 @endsection
 
 @push('breadcrumb-plugins')
-    <button class="btn btn-sm btn-outline--primary addCampagne"><i class="las la-plus"></i>@lang("Ajouter nouveau")</button>
+    <button class="btn btn-sm btn-outline--primary addCampagne"><i class="las la-plus"></i>@lang('Ajouter nouveau')</button>
 @endpush
 
 
@@ -238,7 +238,7 @@
 
             $('.updateCampagne').on('click', function() {
                 var modal = $('#updateCampagneModel');
-                 
+
                 modal.find('input[name=id]').val($(this).data('id'));
                 modal.find('select[name=cooperative]').val($(this).data('cooperative'));
                 modal.find('input[name=nom]').val($(this).data('nom'));

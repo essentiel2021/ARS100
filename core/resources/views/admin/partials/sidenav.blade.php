@@ -55,6 +55,28 @@
                         <span class="menu-title">@lang('Gestion des Campagnes')</span>
                     </a>
                 </li>
+
+                <li class="sidebar-menu-item  {{ menuActive(['admin.config.delegation*']) }}">
+                    <a href="{{ route('admin.config.delegation.index') }}" class="nav-link">
+                        <i class="menu-icon las la-fax"></i>
+                        <span class="menu-title">@lang('Gestion Délégations régionales')</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-menu-item  {{ menuActive(['admin.config.region*']) }}">
+                    <a href="{{ route('admin.config.region.index') }}" class="nav-link">
+                        <i class="menu-icon las la-fax"></i>
+                        <span class="menu-title">@lang('Gestion Région')</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-menu-item  {{ menuActive(['admin.config.sousprefecture*']) }}">
+                    <a href="{{ route('admin.config.sousprefecture.index') }}" class="nav-link">
+                        <i class="menu-icon las la-fax"></i>
+                        <span class="menu-title">@lang('Gestion Sous préfecture')</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-menu-item  {{ menuActive(['admin.config.programme*']) }}">
                     <a href="{{ route('admin.config.programme.index') }}" class="nav-link">
                         <i class="menu-icon las la-fax"></i>
@@ -67,7 +89,7 @@
                         <span class="menu-title">@lang('Gestion des Certifications')</span>
                     </a>
                 </li>
-                <li class="sidebar-menu-item sidebar-dropdown">
+                {{-- <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)"
                         class="{{ menuActive(['admin.foretclassee*', 'admin.agro.deforestation*','admin.traca.parcelle.mapping','admin.traca.parcelle.mapping.polygone'], 3) }}">
                         <i class="menu-icon las la-code-branch"></i>
@@ -103,14 +125,14 @@
 
                         </ul>
                     </div>
-                </li>
+                </li> --}}
                
-                <li class="sidebar-menu-item  {{ menuActive(['admin.livraison.info*', 'admin.livraison.invoice']) }}">
+                {{-- <li class="sidebar-menu-item  {{ menuActive(['admin.livraison.info*', 'admin.livraison.invoice']) }}">
                     <a href="{{ route('admin.livraison.info.index') }}" class="nav-link">
                         <i class="menu-icon las la-fax"></i>
                         <span class="menu-title">@lang('Gestion des Livraisons')</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-menu-item  {{ menuActive(['admin.staff.index']) }}">
                     <a href="{{ route('admin.staff.index') }}" class="nav-link">

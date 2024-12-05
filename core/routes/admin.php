@@ -119,6 +119,20 @@ Route::middleware('admin')->group(function () {
             Route::get('campagne/', 'campagneIndex')->name('campagne.index');
             Route::post('campagne/store', 'campagneStore')->name('campagne.store');
             Route::post('campagne/status/{id}', 'campagneStatus')->name('campagne.status'); 
+            //delegation regionale 
+            Route::get('delegationregional','delegationIndex')->name('delegation.index');
+            Route::post('delegationregional/store', 'delegationStore')->name('delegation.store');
+            Route::post('delegationregional/status/{id}', 'delagationStatus')->name('delegation.status'); 
+
+            //région 
+            Route::get('region','regionIndex')->name('region.index');
+            Route::post('region/store', 'regionStore')->name('region.store');
+            Route::post('region/status/{id}', 'regionStatus')->name('region.status'); 
+
+            //sous préfecture  
+            Route::get('sousprefecture','sousprefectureIndex')->name('sousprefecture.index');
+            Route::post('sousprefecture/store', 'sousprefectureStore')->name('sousprefecture.store');
+            Route::post('sousprefecture/status/{id}', 'sousprefectureStatus')->name('sousprefecture.status');
 
             Route::get('campagne/periode', 'periodeIndex')->name('campagne.periodeIndex');
             Route::post('campagne/periode/store', 'periodeStore')->name('campagne.periodeStore');
