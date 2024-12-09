@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Manager;
+
 use App\Models\Section;
 use App\Models\Localite;
 use App\Constants\Status;
@@ -18,26 +19,27 @@ class SectionSettingController extends Controller
 {
     public function index()
     {
-        $pageTitle = "Gestion des sections"; 
+        $pageTitle = "Gestion des villages";
         $manager   = auth()->user();
-        $cooperatives = Cooperative::where('status', Status::YES)->where('id',$manager->cooperative_id)->orderBy('name')->get();
+        $cooperatives = Cooperative::where('status', Status::YES)->where('id', $manager->cooperative_id)->orderBy('name')->get();
         // $sections = Section::orderBy('created_at','desc')->with('cooperative')->paginate(getPaginate());
         $activeSettingMenu = 'section_settings';
-        $sections = Section::latest('id')->joinRelationship('cooperative')->where('cooperative_id',$manager->cooperative_id)->with('cooperative')->paginate(getPaginate());
-        
-        return view('manager.section-settings.index',compact('pageTitle','cooperatives','sections','activeSettingMenu'));
+        $sections = Section::latest('id')->joinRelationship('cooperative')->where('cooperative_id', $manager->cooperative_id)->with('cooperative')->paginate(getPaginate());
+
+        return view('manager.section-settings.index', compact('pageTitle', 'cooperatives', 'sections', 'activeSettingMenu'));
     }
 
     public function create()
     {
-        $pageTitle = "Ajouter une section";
+        $pageTitle = "Ajouter un village";
         $manager   = auth()->user();
         $activeSettingMenu = 'section_settings';
-        $cooperatives = Cooperative::where('status', Status::YES)->where('id',$manager->cooperative_id)->orderBy('name')->get();
-        return view('manager.section-settings.create', compact('pageTitle','cooperatives','activeSettingMenu'));
+        $cooperatives = Cooperative::where('status', Status::YES)->where('id', $manager->cooperative_id)->orderBy('name')->get();
+        return view('manager.section-settings.create', compact('pageTitle', 'cooperatives', 'activeSettingMenu'));
     }
 
-    public function store(StoreSectionRequest $request){
+    public function store(StoreSectionRequest $request)
+    {
         $valitedData = $request->validated();
 
         Section::create($valitedData);
@@ -46,19 +48,18 @@ class SectionSettingController extends Controller
     }
     public function edit($id)
     {
-        $pageTitle = "Modifier une section";
+        $pageTitle = "Modifier un village";
         $activeSettingMenu = 'section_settings';
         try {
             $section = Section::findOrFail($id);
             $manager   = auth()->user();
-            $cooperatives  = Cooperative::where('id',$manager->cooperative_id)->orderBy('name')->get();
-            
-            return view('manager.section-settings.edit', compact('pageTitle','section','cooperatives','activeSettingMenu'));
+            $cooperatives  = Cooperative::where('id', $manager->cooperative_id)->orderBy('name')->get();
+
+            return view('manager.section-settings.edit', compact('pageTitle', 'section', 'cooperatives', 'activeSettingMenu'));
         } catch (ModelNotFoundException $e) {
             // L'enregistrement n'a pas été trouvé, vous pouvez rediriger ou afficher un message d'erreur
-            return redirect()->route('manager.settings.section-settings.index')->with('error', 'La section demandée n\'existe pas.','activeSettingMenu');
+            return redirect()->route('manager.settings.section-settings.index')->with('error', 'Le village demandée n\'existe pas.', 'activeSettingMenu');
         }
-      
     }
 
     public function update(UpdateSectionRequest $request, $id)
@@ -66,29 +67,23 @@ class SectionSettingController extends Controller
         $valitedData = $request->validated();
         $section = Section::findOrFail($id);
         $section->update($valitedData);
-        
+
         return Reply::successWithData(__('messages.updateSuccess'), ['redirectUrl' => route('manager.settings.section-settings.index')]);
     }
     //lister les localités d'une section
     public function localiteSection($id)
     {
-        $pageTitle = "Gestion des localités de la section ". Section::find($id)->libelle;
-        $cooperativeLocalites = Localite::active()->where('section_id',$id)->with('section.cooperative')->paginate(getPaginate());
-        return view('manager.localite.index',compact('cooperativeLocalites','pageTitle'));
+        $pageTitle = "Gestion des localités de la section " . Section::find($id)->libelle;
+        $cooperativeLocalites = Localite::active()->where('section_id', $id)->with('section.cooperative')->paginate(getPaginate());
+        return view('manager.localite.index', compact('cooperativeLocalites', 'pageTitle'));
     }
     //traitement pour enregistrer une localité d'une section
-    public function storelocalitesection(){
-
-    }
+    public function storelocalitesection() {}
 
     //traitement pour modifier une localité d'une section
-    public function updatelocalitesection($id){
-
-    }
+    public function updatelocalitesection($id) {}
     //affichant le formulaire de modification d'une localité d'une section
-    public function localitesectionedit($id){
-
-    }
+    public function localitesectionedit($id) {}
     public function  uploadContent(Request $request)
     {
         Excel::import(new SectionImport, $request->file('uploaded_file'));
@@ -99,5 +94,4 @@ class SectionSettingController extends Controller
         Section::destroy($id);
         return Reply::success(__('messages.deleteSuccess'));
     }
-
 }

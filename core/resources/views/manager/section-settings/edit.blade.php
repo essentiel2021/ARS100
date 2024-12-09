@@ -38,7 +38,7 @@
                             <?php echo Form::text('libelle', null, ['placeholder' => __('Nom de la section'), 'class' => 'form-control', 'required']); ?>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Région'), null, ['class' => 'control-label col-xs-12 col-sm-4']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('region', null, ['placeholder' => __('Région'), 'class' => 'form-control']); ?>
@@ -49,7 +49,7 @@
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('sousPrefecture', null, ['placeholder' => __('Sous préfecture'), 'class' => 'form-control']); ?>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <button type="submit" id="save-form"
                             class="btn btn--primary btn-block h-45 w-100">@lang('Envoyer')</button>

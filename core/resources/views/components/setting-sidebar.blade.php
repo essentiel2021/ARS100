@@ -20,9 +20,9 @@
     <!-- SETTINGS MENU START -->
     <ul class="settings-menu" id="settingsMenu">
     <x-setting-menu-item :active="$activeMenu" menu="cooperative_settings" :href="route('manager.settings.cooperative-settings.index')" :text="__('Coopérative')"/>
-    <x-setting-menu-item :active="$activeMenu" menu="section_settings" :href="route('manager.settings.section-settings.index')" :text="__('Section')"/>
-    <x-setting-menu-item :active="$activeMenu" menu="localite_settings" :href="route('manager.settings.localite-settings.index')" :text="__('Localite')"/>
-    <x-setting-menu-item :active="$activeMenu" menu="departement_settings" :href="route('manager.settings.departements.index')" :text="__('Départements')"/> 
+    <x-setting-menu-item :active="$activeMenu" menu="section_settings" :href="route('manager.settings.section-settings.index')" :text="__('Village')"/>
+    <x-setting-menu-item :active="$activeMenu" menu="localite_settings" :href="route('manager.settings.localite-settings.index')" :text="__('Campement')"/>
+    {{-- <x-setting-menu-item :active="$activeMenu" menu="departement_settings" :href="route('manager.settings.departements.index')" :text="__('Départements')"/> 
     <x-setting-menu-item :active="$activeMenu" menu="designation_settings" :href="route('manager.settings.designations.index')" :text="__('Désignations')"/> 
     <x-setting-menu-item :active="$activeMenu" menu="entreprise_settings" :href="route('manager.settings.entreprise.index')" :text="__('Entreprise')"/> 
     <x-setting-menu-item :active="$activeMenu" menu="formateur_settings" :href="route('manager.settings.formateurStaff.list')" :text="__('Formateur')"/>
@@ -46,7 +46,7 @@
     <x-setting-menu-item :active="$activeMenu" menu="categorieQuestionnaire_settings" :href="route('manager.settings.categorieQuestionnaire.index')" :text="__('Categorie Questionnaire')"/>
     <x-setting-menu-item :active="$activeMenu" menu="questionnaire_settings" :href="route('manager.settings.questionnaire.index')" :text="__('Questionnaire')"/>
     <x-setting-menu-item :active="$activeMenu" menu="especeArbre_settings" :href="route('manager.settings.especeArbre.index')" :text="__('Espèces Arbres')"/>
-    <x-setting-menu-item :active="$activeMenu" menu="typeArchive_settings" :href="route('manager.settings.typeArchive.index')" :text="__('Type Archives')"/> 
+    <x-setting-menu-item :active="$activeMenu" menu="typeArchive_settings" :href="route('manager.settings.typeArchive.index')" :text="__('Type Archives')"/>  --}}
 
     </ul>
     <!-- SETTINGS MENU END -->

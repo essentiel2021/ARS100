@@ -16,8 +16,7 @@
                             <thead>
                                 <tr>
                                     <th>@lang('Cooperative')</th>
-                                    <th>@lang('Section')</th>
-                                    <th>@lang('Sous-prefecture')</th>
+                                    <th>@lang('Village')</th>
                                     <th>@lang('Ajoutée le')</th>
                                     <th>@lang('Action')</th>
                                 </tr>
@@ -25,9 +24,9 @@
                             <tbody>
                                 @forelse($sections as $section)
                                     <tr>
-                                        <td>
+                                        {{-- <td>
                                             <span class="fw-bold">{{ __($section->cooperative->codeCoop) }}</span>
-                                        </td>
+                                        </td> --}}
                                         <td> 
                                             <span class="small">
                                                 <a href="{{ route('manager.settings.section-settings.edit', $section->id) }}">
@@ -35,9 +34,9 @@
                                                 </a>
                                             </span>
                                         </td>
-                                        <td> 
+                                        {{-- <td> 
                                         <span class="fw-bold">{{ __($section->sousPrefecture) }}</span>
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <span class="d-block">{{ showDateTime($section->created_at) }}</span>
                                             <span>{{ diffForHumans($section->created_at) }}</span>

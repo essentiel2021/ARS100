@@ -25,24 +25,24 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <?php echo Form::label(__('Nom de la section'), null, ['class' => 'control-label col-xs-12 col-sm-4']); ?>
+                        <?php echo Form::label(__('Nom du village'), null, ['class' => 'control-label col-xs-12 col-sm-4']); ?>
                         <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::text('libelle', null, ['placeholder' => __('Nom de la section'), 'class' => 'form-control', 'required']); ?>
+                            <?php echo Form::text('libelle', null, ['placeholder' => __('Nom du village'), 'class' => 'form-control', 'required']); ?>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Région'), null, ['class' => 'control-label col-xs-12 col-sm-4']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('region', null, ['placeholder' => __('Région'), 'class' => 'form-control']); ?>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Sous Préfecture'), null, ['class' => 'control-label col-xs-12 col-sm-4']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('sousPrefecture', null, ['placeholder' => __('Sous préfecture'), 'class' => 'form-control']); ?>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group">
                         <button type="submit" id="save-form" class="btn btn--primary w-100 h-45">

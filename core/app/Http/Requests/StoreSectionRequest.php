@@ -26,8 +26,8 @@ class StoreSectionRequest extends FormRequest
         return [
             'cooperative_id' => 'required|exists:cooperatives,id',
             'libelle' => 'required|max:255',
-            'sousPrefecture' => 'required|max:255',
-            'region' => 'required|max:255',
+            // 'sousPrefecture' => 'required|max:255',
+            // 'region' => 'required|max:255',
         ];
     }
 
@@ -38,10 +38,10 @@ class StoreSectionRequest extends FormRequest
             'cooperative_id.exists' => 'La coopérative n\'existe pas',
             'libelle.required' => 'Le nom de la section est obligatoire',
             'libelle.max' => 'Le nom de la section ne doit pas dépasser 255 caractères',
-            'sousPrefecture.required' => 'La sous-préfecture est obligatoire',
-            'sousPrefecture.max' => 'La sous-préfecture ne doit pas dépasser 255 caractères',
-            'region.required' => 'La région est obligatoire',
-            'region.max' => 'La région ne doit pas dépasser 255 caractères',
+            // 'sousPrefecture.required' => 'La sous-préfecture est obligatoire',
+            // 'sousPrefecture.max' => 'La sous-préfecture ne doit pas dépasser 255 caractères',
+            // 'region.required' => 'La région est obligatoire',
+            // 'region.max' => 'La région ne doit pas dépasser 255 caractères',
         ];
     }
     public function attributes()
@@ -49,8 +49,8 @@ class StoreSectionRequest extends FormRequest
         return [
             'cooperative_id' => 'coopérative',
             'libelle' => 'Nom de la section',
-            'sousPrefecture' => 'Sous-préfecture',
-            'region' => 'Région',
+            // 'sousPrefecture' => 'Sous-préfecture',
+            // 'region' => 'Région',
         ];
     }
 }
