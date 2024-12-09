@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\Searchable;
 use App\Traits\GlobalStatus;
 use App\Traits\HasCooperative;
-use App\Traits\Searchable;
+use Kirschbaum\PowerJoins\PowerJoins;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SousPrefecture extends Model
 {
-    use HasFactory;
+    use HasFactory,Searchable, GlobalStatus, PowerJoins;
     protected $table = 'sousprefectures';
 
     public function region(){

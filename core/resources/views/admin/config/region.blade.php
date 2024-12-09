@@ -40,6 +40,7 @@
                                         <td>
                                             <button type="button" class="btn btn-sm btn-outline--primary updateRegion"
                                                 data-id="{{ $region->id }}" data-libelle="{{ $region->libelle }}"
+                                                data-delegation="{{ $region->delegationRegionale_id }}"
                                                 class="las la-pen"></>@lang('Edit')</button>
 
                                             @if ($region->status == Status::DISABLE)
@@ -184,6 +185,7 @@
             $('.updateRegion').on('click', function() {
                 var modal = $('#updateRegionModel');
                 modal.find('input[name=id]').val($(this).data('id'));
+                modal.find('select[name=delegation]').val($(this).data('delegation'));
                 modal.find('input[name=libelle]').val($(this).data('libelle'));
                 modal.modal('show');
             });

@@ -158,7 +158,7 @@ class SettingController extends Controller
             $sousprefecture    = SousPrefecture::findOrFail($request->id);
             $message = "La sous préfecture a été mise à jour avec succès.";
         } else {
-            $sousprefecture = new Region();
+            $sousprefecture = new SousPrefecture();
         }
         $sousprefecture->libelle    = $request->libelle ;
         $sousprefecture->region_id = $request->region;

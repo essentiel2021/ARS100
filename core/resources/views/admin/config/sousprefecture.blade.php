@@ -37,12 +37,13 @@
                                         </td>
 
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-outline--primary updateDelegation"
+                                            <button type="button" class="btn btn-sm btn-outline--primary updateSousprefecture"
                                                 data-id="{{ $sousprefecture->id }}"
-                                                data-libelle="{{ $sousprefecture->libelle }}" class="las la-pen"></>
+                                                data-libelle="{{ $sousprefecture->libelle }}"
+                                                data-region="{{ $sousprefecture->region_id }}" class="las la-pen"></>
                                                 @lang('Edit')</button>
 
-                                            @if ($delegation->status == Status::DISABLE)
+                                            @if ($sousprefecture->status == Status::DISABLE)
                                                 <button type="button"
                                                     class="btn btn-sm btn-outline--success confirmationBtn"
                                                     data-action="{{ route('admin.config.sousprefecture.status', $sousprefecture->id) }}"
@@ -90,11 +91,11 @@
                     <div class="modal-body">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <label>@lang('Sous préfecture')</label>
-                                <select class="form-control" name="sousprefecture" required>
+                                <label>@lang('Région')</label>
+                                <select class="form-control" name="region" required>
                                     <option value="">@lang('Selectionner une option')</option>
-                                    @foreach ($sousprefecture as $data)
-                                        <option value="{{ $data->id }}" @selected(old('sousprefecture'))>
+                                    @foreach ($regions as $data)
+                                        <option value="{{ $data->id }}" @selected(old('region'))>
                                             {{ __($data->libelle) }}</option>
                                     @endforeach
                                 </select>
@@ -118,24 +119,37 @@
             </div>
         </div>
     </div>
-    <div id="updateDelegationModel" class="modal fade" tabindex="-1" role="dialog">
+    <div id="updateSousprefectureModel" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@lang('Mise à jour de la délégation régionale')</h5>
+                    <h5 class="modal-title">@lang('Mise à jour de la Sous préfecture')</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i class="las la-times"></i>
                     </button>
                 </div>
-                <form action="{{ route('admin.config.delegation.store') }}" method="POST">
+                <form action="{{ route('admin.config.sousprefecture.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id">
                     <div class="modal-body">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                {{ Form::label(__('Nom de la délégation régionale'), null, ['class' => 'control-label required']) }}
+                                <label>@lang('Région')</label>
+                                <select class="form-control" name="region" required>
+                                    <option value="">@lang('Selectionner une option')</option>
+                                    @foreach ($regions as $data)
+                                        <option value="{{ $data->id }}" @selected(old('region',$data->id))>
+                                            {{ __($data->libelle) }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                {{ Form::label(__('Nom de la sous préfecture'), null, ['class' => 'control-label required']) }}
                                 {!! Form::text('libelle', null, [
-                                    'placeholder' => __('Saissisez le nom de la délégation régionale'),
+                                    'placeholder' => __('Saissisez le nom de la sous préfecture'),
                                     'class' => 'form-control',
                                     'required',
                                 ]) !!}
@@ -167,9 +181,10 @@
                 $('#unitModel').modal('show');
             });
 
-            $('.updateDelegation').on('click', function() {
-                var modal = $('#updateDelegationModel');
+            $('.updateSousprefecture').on('click', function() {
+                var modal = $('#updateSousprefectureModel');
                 modal.find('input[name=id]').val($(this).data('id'));
+                modal.find('select[name=region]').val($(this).data('region'));
                 modal.find('input[name=libelle]').val($(this).data('libelle'));
                 modal.modal('show');
             });
