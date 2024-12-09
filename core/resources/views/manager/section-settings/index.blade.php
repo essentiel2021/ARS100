@@ -24,9 +24,9 @@
                             <tbody>
                                 @forelse($sections as $section)
                                     <tr>
-                                        {{-- <td>
+                                        <td>
                                             <span class="fw-bold">{{ __($section->cooperative->codeCoop) }}</span>
-                                        </td> --}}
+                                        </td>
                                         <td> 
                                             <span class="small">
                                                 <a href="{{ route('manager.settings.section-settings.edit', $section->id) }}">

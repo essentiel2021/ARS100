@@ -15,10 +15,10 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>@lang('Section')</th>
-                                    <th>@lang('Localite')</th>
-                                    <th>@lang('Code Localite')</th>
-                                    <th>@lang('Type de localites')</th>
+                                    <th>@lang('Village')</th>
+                                    <th>@lang('Campement')</th>
+                                    {{-- <th>@lang('Code Localite')</th>
+                                    <th>@lang('Type de localites')</th> --}}
                                     <th>@lang('Ajoutée le')</th>
                                     <th>@lang('Status')</th>
                                     <th>@lang('Action')</th>
@@ -38,12 +38,12 @@
                                                 </a>
                                             </span>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <span>{{ $localite->codeLocal }}</span>
                                         </td>
                                         <td>
                                             <span>{{ $localite->type_localites }}<br>{{ $localite->sousprefecture }}</span>
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <span class="d-block">{{ showDateTime($localite->created_at) }}</span>
                                             <span>{{ diffForHumans($localite->created_at) }}</span>

@@ -25,10 +25,10 @@ class LocaliteSettingController extends Controller
 
     public function index()
     {
-        $pageTitle = "Gestion des localités";
+        $pageTitle = "Gestion des campements";
         $manager = auth()->user();
 
-        $cooperativeLocalites = Localite::searchable(['localites.nom', 'localites.codeLocal', 'localites.type_localites', 'localites.sousprefecture', 'sections.libelle'])
+        $cooperativeLocalites = Localite::searchable(['localites.nom', 'sections.libelle'])
             ->latest('id')
             ->joinRelationship('section')
             ->with('section.cooperative') // Préchargez la relation "cooperative" ici
@@ -44,7 +44,7 @@ class LocaliteSettingController extends Controller
 
     public function create()
     {
-        $pageTitle = "Ajouter une localité";
+        $pageTitle = "Ajouter un Campement";
         $manager   = auth()->user();
         $activeSettingMenu = 'localite_settings';
         $sections = Section::where('cooperative_id', $manager->cooperative_id)->get();
@@ -66,17 +66,6 @@ class LocaliteSettingController extends Controller
         $validationRule = [
             'section_id'    => 'required|exists:sections,id',
             'nom' => 'required|max:255',
-            'type_localites'  => 'required|max:255',
-            'sousprefecture'  => 'required|max:255',
-            'centresante'  => 'required|max:255',
-            'ecole'  => 'required|max:255',
-            'electricite'  => 'required|max:255',
-            'marche'  => 'required|max:255',
-            'deversementDechets'  => 'required|max:255',
-            'kmEcoleproche' => 'required_if:ecole,==,non',
-            'nomEcoleproche' => 'required_if:ecole,==,non',
-            'kmCentresante' => 'required_if:centresante,==,non',
-            'nomCentresante' => 'required_if:centresante,==,non',
         ];
         $messages = [
             'section_id.required' => 'Le champ section est obligatoire',
@@ -117,80 +106,80 @@ class LocaliteSettingController extends Controller
         $localite->section_id = $request->section_id;
         $localite->userid = $manager->id;
         $localite->nom = $request->nom;
-        $localite->type_localites  = $request->type_localites;
-        $localite->sousprefecture  = $request->sousprefecture;
-        $localite->population     = $request->population;
-        $localite->centresante    = $request->centresante;
-        $localite->kmCentresante    = $request->kmCentresante;
-        $localite->typecentre    = $request->typecentre;
-        $localite->nomCentresante    = $request->nomCentresante;
-        $localite->ecole    = $request->ecole;
-        $localite->kmEcoleproche    = $request->kmEcoleproche;
-        $localite->nomEcoleproche    = $request->nomEcoleproche;
-        $localite->nombrecole    = $request->nombrecole;
-        $localite->etatpompehydrau    = $request->etatpompehydrau;
-        $localite->marche    = $request->marche;
-        $localite->kmmarcheproche    = $request->kmmarcheproche;
-        $localite->deversementDechets    = $request->deversementDechets;
-        $localite->comiteMainOeuvre    = $request->comiteMainOeuvre;
-        $localite->associationFemmes    = $request->associationFemmes;
-        $localite->associationJeunes    = $request->associationJeunes;
-        $localite->localongitude    = $request->localongitude;
-        $localite->localatitude    = $request->localatitude;
+        // $localite->type_localites  = $request->type_localites;
+        // $localite->sousprefecture  = $request->sousprefecture;
+        // $localite->population     = $request->population;
+        // $localite->centresante    = $request->centresante;
+        // $localite->kmCentresante    = $request->kmCentresante;
+        // $localite->typecentre    = $request->typecentre;
+        // $localite->nomCentresante    = $request->nomCentresante;
+        // $localite->ecole    = $request->ecole;
+        // $localite->kmEcoleproche    = $request->kmEcoleproche;
+        // $localite->nomEcoleproche    = $request->nomEcoleproche;
+        // $localite->nombrecole    = $request->nombrecole;
+        // $localite->etatpompehydrau    = $request->etatpompehydrau;
+        // $localite->marche    = $request->marche;
+        // $localite->kmmarcheproche    = $request->kmmarcheproche;
+        // $localite->deversementDechets    = $request->deversementDechets;
+        // $localite->comiteMainOeuvre    = $request->comiteMainOeuvre;
+        // $localite->associationFemmes    = $request->associationFemmes;
+        // $localite->associationJeunes    = $request->associationJeunes;
+        // $localite->localongitude    = $request->localongitude;
+        // $localite->localatitude    = $request->localatitude;
 
-        $localite->codeLocal    = isset($request->codeLocal) ? $request->codeLocal : $this->generelocalitecode($request->nom);
+        // $localite->codeLocal    = isset($request->codeLocal) ? $request->codeLocal : $this->generelocalitecode($request->nom);
         $localite->save();
 
-        if ($localite != null) {
-            $id = $localite->id;
-            $datas = [];
-            if ($request->nomecolesprimaires != null && $request->latitude != null && $request->longitude != null) {
-                $verification   = Localite_ecoleprimaire::where('localite_id', $id)->get();
-                if ($verification->count()) {
-                    DB::table('localite_ecoleprimaires')->where('localite_id', $id)->delete();
-                }
-                $i = 0;
-                foreach ($request->nomecolesprimaires as $datas) {
-                    DB::table('localite_ecoleprimaires')->insert(['localite_id' => $id, 'nomecole' =>$datas, 'latitude' => $request->latitude[$i], 'longitude' => $request->longitude[$i]]); 
-                    $i++;
-                }
-            }
+        // if ($localite != null) {
+        //     $id = $localite->id;
+        //     $datas = [];
+        //     if ($request->nomecolesprimaires != null && $request->latitude != null && $request->longitude != null) {
+        //         $verification   = Localite_ecoleprimaire::where('localite_id', $id)->get();
+        //         if ($verification->count()) {
+        //             DB::table('localite_ecoleprimaires')->where('localite_id', $id)->delete();
+        //         }
+        //         $i = 0;
+        //         foreach ($request->nomecolesprimaires as $datas) {
+        //             DB::table('localite_ecoleprimaires')->insert(['localite_id' => $id, 'nomecole' =>$datas, 'latitude' => $request->latitude[$i], 'longitude' => $request->longitude[$i]]); 
+        //             $i++;
+        //         }
+        //     }
 
-            if ($request->nomcentresantes != null && $request->latitude != null && $request->longitude != null) {
-                $verification   = Localite_centre_sante::where('localite_id', $id)->get();
-                if ($verification->count()) {
-                    DB::table('localite_centre_santes')->where('localite_id', $id)->delete();
-                }
-                $i = 0;
-                foreach ($request->nomcentresantes as $datas) {
-                    DB::table('localite_centre_santes')->insert(['localite_id' => $id, 'centre_sante' =>$datas, 'latitude' => $request->latitude[$i], 'longitude' => $request->longitude[$i]]); 
-                    $i++;
-                }
-            }
-            if($request->jourmarche != null){
-                $verification   = Localite_jour_marche::where('localite_id', $id)->get();
-                if ($verification->count()) {
-                    DB::table('localite_jour_marches')->where('localite_id', $id)->delete();
-                }
-                $i = 0;
-                foreach ($request->jourmarche as $data) {
-                    DB::table('localite_jour_marches')->insert(['localite_id' => $id, 'jour_marche' =>$data]); 
-                    $i++;
-                }
-            }
-            if($request->eauPotables != null){
-                $verification   = Localite_source_eau::where('localite_id', $id)->get();
-                if ($verification->count()) {
-                    DB::table('localite_source_eaux')->where('localite_id', $id)->delete();
-                }
-                $i = 0;
-                foreach ($request->eauPotables as $data) {
-                    DB::table('localite_source_eaux')->insert(['localite_id' => $id, 'souces_deaux' =>$data]); 
-                    $i++;
-                }
-            }
+        //     if ($request->nomcentresantes != null && $request->latitude != null && $request->longitude != null) {
+        //         $verification   = Localite_centre_sante::where('localite_id', $id)->get();
+        //         if ($verification->count()) {
+        //             DB::table('localite_centre_santes')->where('localite_id', $id)->delete();
+        //         }
+        //         $i = 0;
+        //         foreach ($request->nomcentresantes as $datas) {
+        //             DB::table('localite_centre_santes')->insert(['localite_id' => $id, 'centre_sante' =>$datas, 'latitude' => $request->latitude[$i], 'longitude' => $request->longitude[$i]]); 
+        //             $i++;
+        //         }
+        //     }
+        //     if($request->jourmarche != null){
+        //         $verification   = Localite_jour_marche::where('localite_id', $id)->get();
+        //         if ($verification->count()) {
+        //             DB::table('localite_jour_marches')->where('localite_id', $id)->delete();
+        //         }
+        //         $i = 0;
+        //         foreach ($request->jourmarche as $data) {
+        //             DB::table('localite_jour_marches')->insert(['localite_id' => $id, 'jour_marche' =>$data]); 
+        //             $i++;
+        //         }
+        //     }
+        //     if($request->eauPotables != null){
+        //         $verification   = Localite_source_eau::where('localite_id', $id)->get();
+        //         if ($verification->count()) {
+        //             DB::table('localite_source_eaux')->where('localite_id', $id)->delete();
+        //         }
+        //         $i = 0;
+        //         foreach ($request->eauPotables as $data) {
+        //             DB::table('localite_source_eaux')->insert(['localite_id' => $id, 'souces_deaux' =>$data]); 
+        //             $i++;
+        //         }
+        //     }
             
-        }
+        // }
         return Reply::successWithData(__('messages.recordSaved'), ['redirectUrl' => route('manager.settings.localite-settings.index')]);
     }
 
@@ -277,15 +266,15 @@ class LocaliteSettingController extends Controller
 
     public function edit($id)
     {
-        $pageTitle = "Mise à jour de la localité";
+        $pageTitle = "Mise à jour du campement";
         $manager   = auth()->user();
         $localite   = Localite::findOrFail($id);
         $activeSettingMenu = 'localite_settings';
         $sections = Section::where('cooperative_id', $manager->cooperative_id)->get();
-        $jours = $localite->marches->pluck('jour_marche')->toArray();
-        $eaux = $localite->eaux->pluck('souces_deaux')->toArray();
+        // $jours = $localite->marches->pluck('jour_marche')->toArray();
+        // $eaux = $localite->eaux->pluck('souces_deaux')->toArray();
         // $energies = $menage->menage_sourceEnergie->pluck('source_energie')->toArray();
-        return view('manager.localite-settings.edit', compact('pageTitle', 'sections', 'localite', 'manager', 'activeSettingMenu', 'jours', 'eaux'));
+        return view('manager.localite-settings.edit', compact('pageTitle', 'sections', 'localite', 'manager', 'activeSettingMenu'));
     }
 
     public function status($id)
