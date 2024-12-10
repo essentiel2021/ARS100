@@ -40,7 +40,7 @@
                                 <input type="text" class="form-control" name="codeCoop"
                                     value="{{ $cooperative->codeCoop }}" required>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>@lang('N°RSC')</label>
                                 <input type="text" class="form-control" name="numRSC" value="{{ $cooperative->numRSC }}"
                                     required>
@@ -100,9 +100,9 @@
                                 <label>@lang('Adresse de la coopérative')</label>
                                 <input type="text" class="form-control" name="address"
                                     value="{{ $cooperative->address }}" required>
-                            </div>
+                            </div> --}}
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>@lang('Région')</label>
                                 <input type="text" class="form-control" name="region"
                                     value="{{ $cooperative->region }}" required>
@@ -170,7 +170,7 @@
                                 <label>@lang('Latitude')</label>
                                 <input type="text" class="form-control" name="latitude"
                                     value="{{ $cooperative->latitude }}" required>
-                            </div>
+                            </div> --}}
                             <hr class="panel-wide">
                             <div class="form-group">
                                 <label>@lang('Utilisateurs Mobile')</label>

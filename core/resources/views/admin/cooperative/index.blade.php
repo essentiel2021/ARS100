@@ -9,10 +9,11 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>@lang('Nom-Adresse')</th>
-                                    <th>@lang('Code Coop')</th>
-                                    <th>@lang('Code Coop App')</th>
-                                    <th>@lang('Email-Contact')</th>
+                                    <th>@lang('Nom de la Coopérative')</th>
+                                    <th>@lang('Nom Entité Reconnue')</th>
+                                    <th>@lang('Code CCC')</th>
+                                    {{-- <th>@lang('Code Coop App')</th>
+                                    <th>@lang('Email-Contact')</th> --}}
                                     <th>@lang('Utilisateurs Mobile')</th>
                                     <th>@lang('Utilisateurs Web')</th>
                                     <th>@lang('Couleur')</th>
@@ -26,45 +27,46 @@
                                     <tr>
                                         <td>
                                             <span class="fw-bold d-block">{{ __($cooperative->name) }}</span>
-                                            <small class="text-muted"> <i>{{ __($cooperative->address) }}</i></span>
                                         </td>
                                         <td>
-                                            <span class="fw-bold d-block">{{ __($cooperative->codeCoop) }}</span> 
+                                            <span class="fw-bold d-block">{{ __($cooperative->nomreconnu) }}</span>
                                         </td>
                                         <td>
+                                            <span class="fw-bold d-block">{{ __($cooperative->code_ccc) }}</span>
+                                        </td>
+                                        {{-- <td>
                                             <span class="fw-bold d-block">{{ __($cooperative->codeApp) }}</span> 
                                         </td>
                                         <td>
                                             <span class="d-block">{{ $cooperative->email }}</span>
                                             <span>{{ $cooperative->phone }}</span>
-                                        </td>
+                                        </td> --}}
                                         <td> 
                                             <span>{{ $cooperative->mobile }}</span>
                                         </td>
                                         <td>
-                                            <span class="d-block">{{ $cooperative->web }}</span> 
+                                            <span class="d-block">{{ $cooperative->web }}</span>
                                         </td>
                                         <td>
-                                            <span class="badge " style="background:{{ $cooperative->color }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                                            <span class="badge "
+                                                style="background:{{ $cooperative->color }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         </td>
-                                        <td>  @php echo $cooperative->statusBadge; @endphp </td>
+                                        <td> @php echo $cooperative->statusBadge; @endphp </td>
                                         <td>
                                             <span class="d-block">{{ showDateTime($cooperative->created_at) }}</span>
                                             <span>{{ diffForHumans($cooperative->created_at) }}</span>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-outline--primary editCooperative"
-                                                data-id="{{ $cooperative->id }}"
-                                                data-codeapp="{{ $cooperative->codeApp }}"
-                                                data-codecoop="{{ $cooperative->codeCoop }}"
+                                                data-id="{{ $cooperative->id }}" data-code_ccc="{{ $cooperative->code_ccc }}"
+                                                data-nomreconnu="{{ $cooperative->nomreconnu }}"
                                                 data-name="{{ $cooperative->name }}"
-                                                data-email="{{ $cooperative->email }}" 
+                                                 {{--data-email="{{ $cooperative->email }}"
                                                 data-phone="{{ $cooperative->phone }}"
-                                                data-address="{{ $cooperative->address }}"
+                                                data-address="{{ $cooperative->address }}" --}}
                                                 data-mobile="{{ $cooperative->mobile }}"
                                                 data-web="{{ $cooperative->web }}"
-                                                data-color="{{ Str::replace('#','',$cooperative->color) }}"
-                                                 ><i
+                                                data-color="{{ Str::replace('#', '', $cooperative->color) }}"><i
                                                     class="las la-pen"></i>@lang('Edit')</button>
 
                                             @if ($cooperative->status == Status::DISABLE)
@@ -123,11 +125,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label>@lang('Code de la cooperative')</label>
-                            <input type="text" class="form-control" name="codeCoop" required>
+                            <label>@lang('Nom entité reconnu')</label>
+                            <input type="text" class="form-control" name="nomreconnu" required>
                         </div>
 
                         <div class="form-group">
+                            <label>@lang('Code CCC')</label>
+                            <input type="text" class="form-control" name="code_ccc" required>
+                        </div>
+
+                        {{-- <div class="form-group">
                             <label>@lang('Adresse Email de la coopérative')</label>
                             <input type="email" class="form-control" name="email" required>
                         </div>
@@ -141,7 +148,7 @@
                         <div class="form-group">
                             <label>@lang('Adresse de la coopérative')</label>
                             <input type="text" class="form-control" name="address" required>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label>@lang('Utilisateurs Mobile')</label>
                             <input type="number" class="form-control" name="mobile" required>
@@ -151,16 +158,15 @@
                             <input type="number" class="form-control" name="web" required>
                         </div>
                         <div class="form-group">
-                                <label> @lang('Couleur')</label>
-                                <div class="input-group">
-                                    <span class="input-group-text p-0 border-0">
-                                        <input type='text' class="form-control colorPicker"
-                                            value="" />
-                                    </span>
-                                    <input type="text" class="form-control colorCode" name="color"
-                                        value="" required/>
-                                </div>
+                            <label> @lang('Couleur')</label>
+                            <div class="input-group">
+                                <span class="input-group-text p-0 border-0">
+                                    <input type='text' class="form-control colorPicker" value="" />
+                                </span>
+                                <input type="text" class="form-control colorCode" name="color" value=""
+                                    required />
                             </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn--primary w-100 h-45">@lang('Envoyer')</button>
@@ -174,7 +180,7 @@
 
 @push('breadcrumb-plugins')
     <x-search-form placeholder="Search here..." />
-    <button class="btn  btn-outline--primary h-45 addNewCooperative"><i class="las la-plus"></i>@lang("Ajouter nouveau")</button>
+    <button class="btn  btn-outline--primary h-45 addNewCooperative"><i class="las la-plus"></i>@lang('Ajouter nouveau')</button>
 @endpush
 
 
@@ -191,25 +197,31 @@
                 var modal = $('#cooperativeModel');
                 let id = $(this).data('id');
                 let name = $(this).data('name');
-                let codeapp = $(this).data('codeapp');
-                let codecoop = $(this).data('codecoop');
-                let email = $(this).data('email');
-                let phone = $(this).data('phone');
-                let address = $(this).data('address');
                 let web = $(this).data('web');
                 let mobile = $(this).data('mobile');
                 let color = $(this).data('color');
+                let code_ccc = $(this).data('code_ccc');
+                let nomreconnu = $(this).data('nomreconnu');
+                
                 modal.find('.modal-title').text(title)
-                modal.find('input[name=codeCoop]').val(codecoop);
-                modal.find('input[name=codeApp]').val(codeapp);
                 modal.find('input[name=id]').val(id);
                 modal.find('input[name=name]').val(name);
-                modal.find('input[name=email]').val(email);
-                modal.find('input[name=phone]').val(phone);
-                modal.find('input[name=address]').val(address);
                 modal.find('input[name=web]').val(web);
                 modal.find('input[name=mobile]').val(mobile);
                 modal.find('input[name=color]').val(color);
+                modal.find('input[name=code_ccc]').val(code_ccc);
+                modal.find('input[name=nomreconnu]').val(nomreconnu);
+
+                  /*let codeapp = $(this).data('codeapp');
+                let codecoop = $(this).data('codecoop');
+                let email = $(this).data('email');
+                let phone = $(this).data('phone');
+                let address = $(this).data('address');*/
+                /*modal.find('input[name=codeCoop]').val(codecoop);*/
+                /*modal.find('input[name=codeApp]').val(codeapp);*/
+                /*modal.find('input[name=email]').val(email);
+                modal.find('input[name=phone]').val(phone);
+                modal.find('input[name=address]').val(address);*/
                 modal.modal('show');
             });
 
@@ -230,7 +242,7 @@
         (function($) {
             "use strict";
             $('.colorPicker').spectrum({
-                color: $(this).data('color'),  
+                color: $(this).data('color'),
                 showButtons: false,
                 move: function(color) {
                     $(this).parent().siblings('.colorCode').val(color.toHexString().replace(/^#?/, ''));
@@ -238,12 +250,12 @@
             });
 
             $('.colorCode').on('input', function() {
-                var clr = $(this).val(); 
+                var clr = $(this).val();
                 $(this).parents('.input-group').find('.colorPicker').spectrum({
                     color: clr,
                 });
             });
- 
+
         })(jQuery);
     </script>
 @endpush

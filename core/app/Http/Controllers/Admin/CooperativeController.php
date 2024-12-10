@@ -18,7 +18,7 @@ class CooperativeController extends Controller
     public function index()
     {
         $pageTitle = "Gestion des coopératives";
-        $cooperatives  = Cooperative::searchable(['codeCoop','codeApp','name', 'email', 'phone', 'address'])->orderBy('name', 'DESC')->paginate(getPaginate());
+        $cooperatives  = Cooperative::searchable(['codeCoop','code_ccc','name', 'nomreconnu'])->orderBy('name', 'DESC')->paginate(getPaginate());
         return view('admin.cooperative.index', compact('pageTitle', 'cooperatives'));
     }
 
@@ -26,9 +26,9 @@ class CooperativeController extends Controller
     {
         $request->validate([
             'name'    => 'required|max:255',
-            'email'   => 'required|email|max:255',
-            'phone'   => 'required|max:255',
-            'address' => 'required|max:255',
+            'nomreconnu'    => 'required|max:255',
+            'code_ccc'    => 'required|max:255',
+            // 'email'   => 'required|email|max:255',
             'web' => 'required|max:255',
             'mobile' => 'required|max:255',
             'color' => 'required|max:255',
@@ -42,11 +42,13 @@ class CooperativeController extends Controller
             $message = "La coopérative a été ajoutée avec succès";
         }
  
-        $cooperative->codeCoop    = $request->codeCoop;
+        // $cooperative->codeCoop    = $request->codeCoop;
         $cooperative->name    = $request->name;
-        $cooperative->email   = $request->email;
-        $cooperative->phone   = $request->phone;
-        $cooperative->address = $request->address;
+        $cooperative->nomreconnu    = $request->nomreconnu;
+        $cooperative->code_ccc    = $request->code_ccc;
+        // $cooperative->email   = $request->email;
+        // $cooperative->phone   = $request->phone;
+        // $cooperative->address = $request->address;
         $cooperative->web = $request->web;
         $cooperative->mobile = $request->mobile;
         $cooperative->color = '#'.$request->color;
