@@ -141,8 +141,6 @@
                         </div>
                     </div> --}}
 
-
-
                     {{-- saisie où le producteur habite --}}
 
                     <div class="form-group row">
@@ -169,7 +167,13 @@
                     <div class="form-group row">
                         <?php echo Form::label(__('Famille(Lien de parenté)'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::select('statutMatrimonial', ['Chef de menage' => 'Chef de ménage', 'Conjoint' => 'Conjoint', 'Enfant ' => 'Enfant', 'Autre' => 'Autre'], null, ['class' => 'form-control', 'required']); ?>
+                            <?php echo Form::select('statutMatrimonial', ['Chef de menage' => 'Chef de ménage', 'Conjoint' => 'Conjoint', 'Enfant ' => 'Enfant', 'Autre' => 'Autre'], null, ['class' => 'form-control statutMatrimonial', 'required']); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row" id= "autre_famille">
+                        <?php echo Form::label(__('Préciser'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <div class="col-xs-12 col-sm-8">
+                            <?php echo Form::text('autre_lien_parente', null, ['id' => 'autre_lien_parente', 'placeholder' => __('Autre lien de parenté'), 'class' => 'form-control autre_lien_parente']); ?>
                         </div>
                     </div>
 
@@ -244,6 +248,12 @@
                         <?php echo Form::label(__("Niveau d'instruction"), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('niveau_etude', ['Préscolaire' => 'Préscolaire', 'Primaire' => 'Primaire', 'Secondaire' => 'Secondaire', 'Supérieur' => 'Supérieur', 'Aucun' => 'Aucun', 'Autre' => 'Autre'], null, ['placeholder' => __('Selectionner une option'), 'class' => 'form-control', 'required']); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <?php echo Form::label(__('Statut Scolaire'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <div class="col-xs-12 col-sm-8">
+                            <?php echo Form::select('statut_scolaire', ['Scolarise' => 'Scolarisé', 'Déscolarise' => 'Déscolarisé'], null, ['placeholder' => __('Selectionner une option'), 'class' => 'form-control', 'required']); ?>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -329,7 +339,7 @@
 
 @push('script')
     <script type="text/javascript">
-        $('#listecultures,#gardePapiersChamps,#numeroCompteMM,#typeCarteSecuriteSociales,#garantie,#autrePhones,#autreCertificat,#plantePartager,#statutCertifie,#pieceCMU,#carteCMUDispos')
+        $('#listecultures,#gardePapiersChamps,#numeroCompteMM,#typeCarteSecuriteSociales,#garantie,#autrePhones,#autreCertificat,#plantePartager,#statutCertifie,#pieceCMU,#carteCMUDispos,#autre_famille')
             .hide();
         //afficher le champ de saisie du numero de la piece de sécurité sociale
         $('.typeCarteSecuriteSociale').change(function() {
@@ -343,6 +353,20 @@
                 $('#typeCarteSecuriteSociales').show('slow');
                 $('.numSecuriteSociale').show('slow');
                 $("#numSecuriteSociale").prop("required", true);
+            }
+        });
+
+        $('.statutMatrimonial').change(function() {
+            var typeCarteSecuriteSociale = $('.statutMatrimonial').val();
+            if (typeCarteSecuriteSociale == 'AUCUN') {
+
+                $('#autre_famille').hide('slow');
+                $('.autre_lien_parente').val('');
+                $("#autre_lien_parente").prop("required", false);
+            } else {
+                $('#autre_famille').show('slow');
+                $('.autre_lien_parente').show('slow');
+                $("#autre_lien_parente").prop("required", true);
             }
         });
 
