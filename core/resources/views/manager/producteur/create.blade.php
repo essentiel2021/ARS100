@@ -12,22 +12,15 @@
                         'enctype' => 'multipart/form-data',
                     ]) !!}
 
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Accord de consentement du producteur'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('consentement', ['non' => 'Non', 'oui' => 'Oui'], null, ['class' => 'form-control']); ?>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- proprietaire --}}
 
-                    <div class="form-group row">
-                        <?php echo Form::label(__('Comment vous vous definissez ?'), null, ['class' => 'col-sm-4 control-label']); ?>
-                        <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::select('proprietaires', ['Proprietaire' => 'Proprietaire', 'Exploitant' => 'Exploitant', 'Metayer(aboussan)' => 'Metayer(aboussan)', 'Planté-partager' => 'Planté-partager', 'Garantie' => 'Garantie'], null, ['class' => 'form-control proprietaires', 'required']); ?>
-                        </div>
-                    </div>
-
-                    <div class="form-group row" id="plantePartager">
+                    {{-- <div class="form-group row" id="plantePartager">
                         <?php echo Form::label(__('Quel est votre associé'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('plantePartage', null, ['id' => 'plantePartage', 'placeholder' => __('Saisissez le nom de votre associé'), 'class' => 'form-control mb-3 plantePartage']); ?>
@@ -36,8 +29,8 @@
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('numeroAssocie', null, ['id' => 'numeroAssocie', 'placeholder' => __('Saisissez le numero de téléphone votre associé'), 'class' => 'form-control numeroAssocie']); ?>
                         </div>
-                    </div>
-                    <div id="garantie">
+                    </div> --}}
+                    {{-- <div id="garantie">
                         <div class="form-group row">
                             <?php echo Form::label(__('Année de démarrage'), null, ['class' => 'col-sm-4 control-label']); ?>
                             <div class="col-xs-12 col-sm-8">
@@ -50,24 +43,24 @@
                                 <?php echo Form::text('anneeFin', null, ['placeholder' => 'Ex. 2024', 'pattern' => '[0-9]{4}', 'class' => 'form-control anneeFin', 'id' => 'anneeFin', 'pattern' => '[0-9]{4}']); ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
+                    </div> --}}
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Statut'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('statut', ['' => 'Selectionner une option', 'Candidat' => 'Candidat', 'Certifie' => 'Certifie'], null, ['class' => 'form-control statut', 'required']); ?>
                         </div>
-                    </div>
+                    </div> --}}
                     <div id="statutCertifie">
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <?php echo Form::label(__('Année de certification'), null, ['class' => 'col-sm-4 control-label']); ?>
                             <div class="col-xs-12 col-sm-8">
                                 <?php echo Form::number('certificat', null, ['id' => 'certificat', 'class' => 'form-control certificat', 'min' => '1990']); ?>
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- Selectionner le Certificat --}}
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <?php echo Form::label(__('Certificat'), null, ['class' => 'col-sm-4 control-label']); ?>
                             <div class="col-xs-12 col-sm-8">
                                 <select class="form-control select2-multi-select certificats" id="certificats"
@@ -83,31 +76,31 @@
                                         Autre</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div id="autreCertificat">
+                    {{-- <div id="autreCertificat">
                         <div class="form-group row">
                             <?php echo Form::label(__('Autre Certificat'), null, ['class' => 'col-sm-4 control-label']); ?>
                             <div class="col-xs-12 col-sm-8">
                                 <?php echo Form::text('autreCertificats', null, ['id' => 'autreCertificats', 'placeholder' => __('Autre certificat'), 'class' => 'form-control autreCertificats']); ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
+                    </div> --}}
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Code producteur'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('codeProd', null, ['id' => 'codeProd', 'placeholder' => __('Code producteur'), 'class' => 'form-control codeProd']); ?>
                         </div>
-                    </div>
-                    <div class="form-group row">
+                    </div> --}}
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Habitez-vous dans un campement ou village ?'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('habitationProducteur', ['Village' => 'Village', 'Campement' => 'Campement'], null, ['class' => 'form-control habitationProducteur', 'id' => 'habitationProducteur', 'required']); ?>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- selection sections --}}
                     <div class="form-group row">
-                        <label class="col-sm-4 control-label">@lang('Section')</label>
+                        <label class="col-sm-4 control-label">@lang('Village')</label>
                         <div class="col-xs-12 col-sm-8">
                             <select class="form-control" name="section" id="section" required>
                                 <option value="">@lang('Selectionner une option')</option>
@@ -120,7 +113,7 @@
                     </div>
                     {{-- selection localite --}}
                     <div class="form-group row">
-                        <label class="col-sm-4 control-label">@lang('Localite')</label>
+                        <label class="col-sm-4 control-label">@lang('Campement')</label>
                         <div class="col-xs-12 col-sm-8">
                             <select class="form-control" name="localite_id" id="localite_id" required>
                                 <option value="">@lang('Selectionner une option')</option>
@@ -135,7 +128,7 @@
                     </div>
                     {{-- programme de durabilité --}}
 
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label class="col-sm-4 control-label">@lang('Programme')</label>
                         <div class="col-xs-12 col-sm-8">
                             <select class="form-control programme_id" name="programme_id" id="programme_id" required>
@@ -146,7 +139,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
 
 
 
@@ -167,20 +160,41 @@
                     </div>
 
                     <div class="form-group row">
-                        <?php echo Form::label(__('Genre'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <?php echo Form::label(__('Sexe'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::select('sexe', ['Homme' => 'Homme', 'Femme' => 'Femme'], null, ['class' => 'form-control', 'required']); ?>
+                            <?php echo Form::select('sexe', ['H' => 'H', 'F' => 'F'], null, ['class' => 'form-control', 'required']); ?>
                         </div>
                     </div>
                     {{-- situation matrimoniale  --}}
                     <div class="form-group row">
-                        <?php echo Form::label(__('Statut matrimonial'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <?php echo Form::label(__('Famille(Lien de parenté)'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::select('statutMatrimonial', ['Célibataire' => 'Célibataire', 'Concubinage' => 'Concubinage', 'Marié(mariage civil)' => 'Marié(mariage civil)', 'Mariage réligieux' => 'Mariage réligieux', 'Mariage traditionnel' => 'Mariage traditionnel', 'Divorcé' => 'Divorcé', 'Veuf(ve)' => 'Veuf(ve)'], null, ['class' => 'form-control', 'required']); ?>
+                            <?php echo Form::select('statutMatrimonial', ['Chef de menage' => 'Chef de ménage', 'Conjoint' => 'Conjoint', 'Enfant ' => 'Enfant', 'Autre' => 'Autre'], null, ['class' => 'form-control', 'required']); ?>
                         </div>
                     </div>
 
                     <div class="form-group row">
+                        <?php echo Form::label(__('Statut/Plantation'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <div class="col-xs-12 col-sm-8">
+                            <?php echo Form::select('proprietaires', ['Proprietaire' => 'Proprietaire', 'Gérant' => 'Gerant', 'Mo permanent' => 'Mo permanent', 'Mo Temporaire' => 'Mo Temporaire', 'Aucun' => 'Aucun'], null, ['class' => 'form-control proprietaires', 'required']); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <?php echo Form::label(__('N° de la pièce'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <div class="col-xs-12 col-sm-8">
+                            <?php echo Form::text('numPiece', null, ['placeholder' => __('N° de la pièce'), 'class' => 'form-control']); ?>
+                        </div>
+                    </div>
+                    {{-- Numero de carte ccc --}}
+
+                    <div class="form-group row">
+                        <?php echo Form::label(__('N° de carte CCC'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <div class="col-xs-12 col-sm-8">
+                            <?php echo Form::text('num_ccc', null, ['placeholder' => __('N° de carte CCC'), 'class' => 'form-control text11']); ?>
+                        </div>
+                    </div>
+
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Nationalité'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <select class="form-control select2-basic" name="nationalite" id="nationalite" required>
@@ -191,7 +205,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group row">
                         <?php echo Form::label(__('Date de naissance'), null, ['class' => 'col-sm-4 control-label']); ?>
@@ -206,13 +220,13 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Avez-vous un proche à contacter pour vous joindre ?'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('autreMembre', ['non' => 'Non', 'oui' => 'Oui'], null, ['class' => 'form-control autreMembre']); ?>
                         </div>
-                    </div>
-                    <div id="autrePhones">
+                    </div> --}}
+                    {{-- <div id="autrePhones">
                         <div class="form-group row">
                             <?php echo Form::label(__(''), null, ['class' => 'col-sm-4 control-label']); ?>
                             <div class="col-xs-12 col-sm-8">
@@ -225,62 +239,55 @@
                                 <?php echo Form::text('phone2', null, ['id' => 'phone2', 'placeholder' => __('Numéro de téléphone'), 'class' => 'form-control phone2']); ?>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
-                        <?php echo Form::label(__("Niveau d'étude"), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <?php echo Form::label(__("Niveau d'instruction"), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::select('niveau_etude', ['Primaire' => 'Primaire', 'Collège (6e à 3ème)' => 'Collège (6e à 3ème)', 'Lycée (2nde à Tle)' => 'Lycée (2nde à Tle)', 'Superieur (BAC et Plus)' => 'Superieur (BAC et Plus)', 'Aucun' => 'Aucun'], null, ['placeholder' => __('Selectionner une option'), 'class' => 'form-control', 'required']); ?>
+                            <?php echo Form::select('niveau_etude', ['Préscolaire' => 'Préscolaire', 'Primaire' => 'Primaire', 'Secondaire' => 'Secondaire', 'Supérieur' => 'Supérieur', 'Aucun' => 'Aucun', 'Autre' => 'Autre'], null, ['placeholder' => __('Selectionner une option'), 'class' => 'form-control', 'required']); ?>
                         </div>
                     </div>
                     <div class="form-group row">
+                        <?php echo Form::label(__('Catégorie ethnique'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <div class="col-xs-12 col-sm-8">
+                            <?php echo Form::select('categorie_ethnique', ['Autochtone' => 'Autochtone', 'Allochtone' => 'Allochtone', 'Allogène' => 'Allogène'], null, ['placeholder' => __('Selectionner une option'), 'class' => 'form-control', 'required']); ?>
+                        </div>
+                    </div>
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Type de pièces'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('type_piece', ['CNI' => 'CNI', 'Carte Consulaire' => 'Carte Consulaire', 'Passeport' => 'Passeport', 'Attestation' => 'Attestation', 'Extrait de naissance' => 'Extrait de naissance', 'Permis de conduire' => 'Permis de conduire', 'CMU' => 'CMU', 'Pas Disponible' => 'Pas Disponible'], null, ['placeholder' => __('Selectionner une option'), 'class' => 'form-control', 'required']); ?>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="form-group row">
-                        <?php echo Form::label(__('N° de la pièce'), null, ['class' => 'col-sm-4 control-label']); ?>
-                        <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::text('numPiece', null, ['placeholder' => __('N° de la pièce'), 'class' => 'form-control', 'required']); ?>
-                        </div>
-                    </div>
-                    {{-- Numero de carte ccc --}}
 
-                    <div class="form-group row">
-                        <?php echo Form::label(__('N° de carte CCC'), null, ['class' => 'col-sm-4 control-label']); ?>
-                        <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::text('num_ccc', null, ['placeholder' => __('N° de carte CCC'), 'class' => 'form-control text11']); ?>
-                        </div>
-                    </div>
                     {{-- Avez-vous une carte CMU ? --}}
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Avez-vous une carte CMU ?'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('carteCMU', ['non' => 'Non', 'oui' => 'Oui'], null, ['class' => 'form-control carteCMU']); ?>
                         </div>
-                    </div>
-                    <div id="pieceCMU">
+                    </div> --}}
+                    {{-- <div id="pieceCMU">
                         <div class="form-group row">
                             <?php echo Form::label(__('Est elle disponible ?'), null, ['class' => 'col-sm-4 control-label']); ?>
                             <div class="col-xs-12 col-sm-8">
                                 <?php echo Form::select('carteCMUDispo', ['Null' => 'Selectionner un option', 'non' => 'Non', 'oui' => 'Oui'], null, ['class' => 'form-control carteCMUDispo']); ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row" id="carteCMUDispos">
+                    </div> --}}
+                    {{-- <div class="form-group row" id="carteCMUDispos">
                         <?php echo Form::label(__('N° de la pièce CMU'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('numCMU', null, ['id' => 'numCMU', 'placeholder' => __('N° de la pièce CMU'), 'class' => 'form-control numCMU']); ?>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- quel est votre carte d'assurance  --}}
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Votre type de carte de sécurité social'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('typeCarteSecuriteSociale', ['AUCUN' => 'AUCUN', 'CNPS' => 'CNPS', 'CMU' => 'CMU'], null, ['class' => 'form-control typeCarteSecuriteSociale', 'required']); ?>
                         </div>
-                    </div>
+                    </div> --}}
                     <div id="typeCarteSecuriteSociales">
                         <div class="form-group row">
                             <?php echo Form::label(__('N° de carte de sécurité sociale'), null, ['class' => 'col-sm-4 control-label']); ?>
@@ -292,9 +299,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <?php echo Form::label(__('Photo du producteur'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <?php echo Form::label(__('Photo de la Pièce d\'identité'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
-                            <input type="file" name="picture" accept="image/*" class="form-control dropify-fr"
+                            <input type="file" name="copiecarterecto" accept="image/*" class="form-control dropify-fr"
                                 placeholder="Choisir une image" id="image">
                         </div>
                     </div>
