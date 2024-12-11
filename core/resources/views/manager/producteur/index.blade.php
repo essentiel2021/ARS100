@@ -12,7 +12,7 @@
                                 <input type="text" name="search" value="{{ request()->search }}" class="form-control">
                             </div>
                             <div class="flex-grow-1">
-                                <label>@lang('Localite')</label>
+                                <label>@lang('Village')</label>
                                 <select name="localite" class="form-control">
                                     <option value="">@lang('Toutes')</option>
                                     @foreach ($localites as $local)
@@ -22,7 +22,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="flex-grow-1">
+                            {{-- <div class="flex-grow-1">
                                 <label>@lang('Programme')</label>
                                 <select name="programme" class="form-control">
                                     <option value="">@lang('Tous')</option>
@@ -32,8 +32,8 @@
                                         </option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="flex-grow-1">
+                            </div> --}}
+                            {{-- <div class="flex-grow-1">
                                 <label>@lang('Etat certification')</label>
                                 <select name="etat" class="form-control">
                                     <option value="">@lang('Tous')</option>
@@ -42,7 +42,7 @@
                                     <option value="Certifie" {{ request()->etat == 'Certifie' ? 'selected' : '' }}>
                                         @lang('Certifie')</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="flex-grow-1">
                                 <label>@lang('Statut')</label>
                                 <select name="status" class="form-control">
@@ -114,9 +114,9 @@
                                     <th>@lang('Localite')</th> 
                                     <th>@lang('Nom')</th>
                                     <th>@lang('Prenoms')</th>
-                                    <th>@lang('Code Producteur')</th> 
+                                    <th>@lang('Code CCC')</th> 
                                     <th>@lang('Sexe')</th>
-                                    <th>@lang('Nationalite')</th>
+                                    <th>@lang('Catégorie ethnique')</th>
                                     <th>@lang('Telephone')</th>
                                     <th>@lang('Ajoutée le')</th>
                                     <th>@lang('Status')</th>
@@ -159,13 +159,13 @@
                                             <span>{{ stripslashes($producteur->prenoms) }}</span>
                                         </td>
                                         <td>
-                                            <span>{{ $producteur->codeProd }}</span>
+                                            <span>{{ $producteur->num_ccc }}</span>
                                         </td>
                                         <td>
                                             <span>{{ $producteur->sexe }}</span>
                                         </td>
                                         <td>
-                                            <span>{{ @$producteur->country->nationalite }}</span>
+                                            <span>{{ @$producteur->categorie_ethnique }}</span>
                                         </td>
                                         <td>
                                             <span>{{ $producteur->phone1 }}</span>

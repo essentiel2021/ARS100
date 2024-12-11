@@ -247,7 +247,13 @@
                     <div class="form-group row">
                         <?php echo Form::label(__("Niveau d'instruction"), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::select('niveau_etude', ['Préscolaire' => 'Préscolaire', 'Primaire' => 'Primaire', 'Secondaire' => 'Secondaire', 'Supérieur' => 'Supérieur', 'Aucun' => 'Aucun', 'Autre' => 'Autre'], null, ['placeholder' => __('Selectionner une option'), 'class' => 'form-control', 'required']); ?>
+                            <?php echo Form::select('niveau_etude', ['Préscolaire' => 'Préscolaire', 'Primaire' => 'Primaire', 'Secondaire' => 'Secondaire', 'Supérieur' => 'Supérieur', 'Aucun' => 'Aucun', 'Autre' => 'Autre'], null, ['placeholder' => __('Selectionner une option'), 'class' => 'form-control niveau_etude', 'required']); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="autre_niveau_etude">
+                        <?php echo Form::label(__('Autre Niveau d\'instruction'), null, ['class' => 'col-sm-4 control-label']); ?>
+                        <div class="col-xs-12 col-sm-8">
+                            <?php echo Form::text('autre_instruction', null, ['id' => 'autre_instruction', 'placeholder' => __('Autre niveau d\'instruction'), 'class' => 'form-control autre_instruction']); ?>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -339,7 +345,7 @@
 
 @push('script')
     <script type="text/javascript">
-        $('#listecultures,#gardePapiersChamps,#numeroCompteMM,#typeCarteSecuriteSociales,#garantie,#autrePhones,#autreCertificat,#plantePartager,#statutCertifie,#pieceCMU,#carteCMUDispos,#autre_famille')
+        $('#listecultures,#gardePapiersChamps,#numeroCompteMM,#typeCarteSecuriteSociales,#garantie,#autrePhones,#autreCertificat,#plantePartager,#statutCertifie,#pieceCMU,#carteCMUDispos,#autre_famille,#autre_niveau_etude')
             .hide();
         //afficher le champ de saisie du numero de la piece de sécurité sociale
         $('.typeCarteSecuriteSociale').change(function() {
@@ -358,15 +364,29 @@
 
         $('.statutMatrimonial').change(function() {
             var typeCarteSecuriteSociale = $('.statutMatrimonial').val();
-            if (typeCarteSecuriteSociale == 'AUCUN') {
+            if (typeCarteSecuriteSociale == 'Autre') {
+                $('#autre_famille').show('slow');
+                $('.autre_lien_parente').show('slow');
+                $("#autre_lien_parente").prop("required", true);
+            } else {
 
                 $('#autre_famille').hide('slow');
                 $('.autre_lien_parente').val('');
                 $("#autre_lien_parente").prop("required", false);
+            }
+        });
+
+        $('.niveau_etude').change(function() {
+            var typeCarteSecuriteSociale = $('.niveau_etude').val();
+            
+            if (typeCarteSecuriteSociale == 'Autre') {
+                $('#autre_niveau_etude').show('slow');
+                $('.autre_instruction').show('slow');
+                $("#autre_instruction").prop("required", true);
             } else {
-                $('#autre_famille').show('slow');
-                $('.autre_lien_parente').show('slow');
-                $("#autre_lien_parente").prop("required", true);
+                $('#autre_niveau_etude').hide('slow');
+                $('.autre_instruction').val('');
+                $("#autre_instruction").prop("required", false);
             }
         });
 

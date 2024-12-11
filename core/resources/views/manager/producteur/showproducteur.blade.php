@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <table class="table table-striped table-bordered">
-                        @if ($producteur->consentement)
+                        {{-- @if ($producteur->consentement)
                             <tr>
                                 <td>Accord de consentement du producteur
                                 </td>
@@ -14,10 +14,10 @@
 
                                 </td>
                             </tr>
-                        @endif
+                        @endif --}}
                         @if ($producteur->proprietaires)
                             <tr>
-                                <td>Comment vous vous definissez ?
+                                <td>Statut plantation
                                 </td>
                                 <td>
                                     {{ @$producteur->proprietaires }}
@@ -105,7 +105,7 @@
                         @if ($producteur->localite_id)
                             <tr>
                                 <td>
-                                    Section
+                                    Village
                                 </td>
 
                                 <td>
@@ -115,7 +115,7 @@
 
                             <tr>
                                 <td>
-                                    Localite
+                                    Campement
                                 </td>
                                 <td>
                                     {{ @$producteur->localite->nom }}
@@ -171,7 +171,7 @@
                             </tr>
 
                             <tr>
-                                <td>Statut matrimonial
+                                <td>Famille(Lien de parenté)
                                 </td>
                                 <td>
                                     {{ @$producteur->statutMatrimonial }}

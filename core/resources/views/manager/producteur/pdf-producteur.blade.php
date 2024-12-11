@@ -48,7 +48,7 @@ tr:nth-child(odd) {
 @endif
 @if($producteur->proprietaires)
 <tr>
-    <td>Comment vous vous definissez ?
+    <td>Statut Plantation
     </td>
 <td>
         {{ @$producteur->proprietaires }}
@@ -133,7 +133,7 @@ Aucune
 @if($producteur->localite_id)              
 <tr>
 <td>
-    Section
+    Village
     </td>
  
 <td>
@@ -143,7 +143,7 @@ Aucune
  
 <tr>
 <td>
-    Localite
+    Campement
     </td>
 <td>
 {{ @$producteur->localite->nom }}
@@ -187,6 +187,17 @@ Aucune
     </td>
 </tr>
 @endif
+
+@if($producteur->categorie_ethnique)
+<tr>
+    <td>Catégorie ethnique
+    </td>
+<td>
+        {{ @stripslashes($producteur->categorie_ethnique) }}
+    </td>
+</tr>
+@endif
+
 @if($producteur->sexe)
 <tr>
     <td>Genre
@@ -199,7 +210,7 @@ Aucune
 </tr>
                   
 <tr>
-    <td>Statut matrimonial
+    <td>Famille(Lien de parenté)
     </td>
 <td>
         {{ @$producteur->statutMatrimonial }} 

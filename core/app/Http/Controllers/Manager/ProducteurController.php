@@ -44,37 +44,37 @@ class ProducteurController extends Controller
     public function index()
     {
         $pageTitle      = "Gestion des producteurs";
-        $manager   = auth()->user(); 
+        $manager   = auth()->user();
         $localites = Localite::joinRelationship('section')->where([['cooperative_id', $manager->cooperative_id]])->get();
-        
+
         $programmes = Programme::all();
 
         $producteurs = Producteur::dateFilter()
             ->searchable(["nationalite", "type_piece", "codeProd", "codeProdapp", "producteurs.nom", "prenoms", "sexe", "dateNaiss", "phone1", "niveau_etude", "numPiece", "consentement", "statut", "certificat"])
             ->latest('id')
-            ->joinRelationship('localite.section') 
+            ->joinRelationship('localite.section')
             ->when(request()->localite, function ($query, $localite) {
                 $query->where('producteurs.localite_id', $localite);
             })
-            ->when(request()->status, function ($query, $status){
-                if($status==2) $status = 0;
+            ->when(request()->status, function ($query, $status) {
+                if ($status == 2) $status = 0;
                 $query->where('producteurs.status', $status);
-            }) 
-            ->when(request()->etat, function ($query, $etat){
+            })
+            ->when(request()->etat, function ($query, $etat) {
                 $query->where('producteurs.statut', $etat);
-            }) 
-            ->when(request()->programme, function ($query, $programme){
+            })
+            ->when(request()->programme, function ($query, $programme) {
                 $query->where('producteurs.programme_id', $programme);
             })
             ->with('localite.section')
             ->where([['cooperative_id', $manager->cooperative_id]]);
-            $producteursFiltre = $producteurs->get(); 
+        $producteursFiltre = $producteurs->get();
         $producteurs = $producteurs->paginate(getPaginate());
         $total_prod = $producteursFiltre->count();
-        $total_prod_h = $producteursFiltre->where('sexe','Homme')->count(); 
-        $total_prod_f = $producteursFiltre->where('sexe','Femme')->count(); 
-        $total_prod_cert = $producteursFiltre->where('statut','Certifie')->count();  
-        $total_prod_cand = $producteursFiltre->where('statut','Candidat')->count(); 
+        $total_prod_h = $producteursFiltre->where('sexe', 'H')->count();
+        $total_prod_f = $producteursFiltre->where('sexe', 'F')->count();
+        $total_prod_cert = $producteursFiltre->where('statut', 'Certifie')->count();
+        $total_prod_cand = $producteursFiltre->where('statut', 'Candidat')->count();
 
         if (request()->download) {
             $producteur = Producteur::find(decrypt(request()->download));
@@ -89,7 +89,7 @@ class ProducteurController extends Controller
                 ->download($producteurNameFile);
             // ->save(storage_path(). "/app/public/producteurs-pdf/".$producteurNameFile);
         }
-        return view('manager.producteur.index', compact('pageTitle', 'producteurs', 'localites', 'programmes','total_prod','total_prod_h','total_prod_f','total_prod_cert','total_prod_cand'));
+        return view('manager.producteur.index', compact('pageTitle', 'producteurs', 'localites', 'programmes', 'total_prod', 'total_prod_h', 'total_prod_f', 'total_prod_cert', 'total_prod_cand'));
     }
 
     public function infos($id)
@@ -296,6 +296,8 @@ class ProducteurController extends Controller
         $producteur->codeProd = $request->codeProd;
         $producteur->plantePartage = $request->plantePartage;
         $producteur->numeroAssocie = $request->numeroAssocie;
+        $producteur->categorie_ethnique = $request->categorie_ethnique;
+        $producteur->autre_instruction = $request->autre_instruction;
         if ($request->hasFile('picture')) {
             try {
                 $producteur->picture = $request->file('picture')->store('public/producteurs/photos');
@@ -357,7 +359,7 @@ class ProducteurController extends Controller
             'nom' => 'required|max:255',
             'prenoms'  => 'required|max:255',
             'sexe'  => 'required|max:255',
-            'nationalite'  => 'required|max:255',
+            // 'nationalite'  => 'required|max:255',
             'dateNaiss'  => 'required|max:255',
             'phone1'  => 'required',
             'num_ccc' => ['nullable', 'regex:/^\d{11}$/', 'unique:producteurs,num_ccc,' . $request->id],
@@ -450,7 +452,7 @@ class ProducteurController extends Controller
         $producteur->plantePartage = $request->plantePartage;
         $producteur->numeroAssocie = $request->numeroAssocie;
         $producteur->statut_scolaire = $request->statut_scolaire;
-        $producteur->autre_lien_parente = $request->	autre_lien_parente;
+        $producteur->autre_lien_parente = $request->autre_lien_parente;
 
         if ($request->hasFile('copiecarterecto')) {
             try {
@@ -525,7 +527,8 @@ class ProducteurController extends Controller
         $action = 'non';
 
         $data = Producteur::select('codeProdapp')->join('localites as l', 'producteurs.localite_id', '=', 'l.id')->join('sections as s', 'l.section_id', '=', 's.id')->join('cooperatives as c', 's.cooperative_id', '=', 'c.id')->where([
-            ['codeProdapp', '!=', null], ['codeApp', $codeApp]
+            ['codeProdapp', '!=', null],
+            ['codeApp', $codeApp]
         ])->orderby('producteurs.id', 'desc')->first();
 
         if ($data != null) {
@@ -584,17 +587,17 @@ class ProducteurController extends Controller
         return Excel::download(new ExportProducteursAll, $filename);
     }
     public function  uploadContent(Request $request)
-    { 
+    {
         Excel::import(new ProducteurImport, $request->file('uploaded_file'));
         return back();
     }
     public function  updateUploadContent(Request $request)
-    { 
+    {
         Excel::import(new ProducteurUpdateImport, $request->file('uploaded_file_update'));
         return back();
     }
     public function delete($id)
-    { 
+    {
         Producteur::where('id', decrypt($id))->delete();
         $notify[] = ['success', 'Le contenu supprimé avec succès'];
         return back()->withNotify($notify);

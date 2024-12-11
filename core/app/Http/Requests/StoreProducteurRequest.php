@@ -25,36 +25,36 @@ class StoreProducteurRequest extends FormRequest
     public function rules()
     {
         return [
-            'programme_id'=>['required','exists:programmes,id'],
+            // 'programme_id'=>['required','exists:programmes,id'],
             'proprietaires' => 'required',
-            'certificats' => 'required',
-            'habitationProducteur' => 'required',
-            'statut' => 'required',
+            // 'certificats' => 'required',
+            // 'habitationProducteur' => 'required',
+            // 'statut' => 'required',
             'statutMatrimonial' => 'required',
             'localite_id'    => 'required|exists:localites,id',
             'nom' => 'required|max:255',
             'prenoms'  => 'required|max:255',
             'sexe'  => 'required|max:255',
-            'nationalite'  => 'required|max:255',
+            // 'nationalite'  => 'required|max:255',
             'dateNaiss'  => 'required|max:255',
             'niveau_etude'  => 'required|max:255',
-            'type_piece'  => 'required|max:255',
+            // 'type_piece'  => 'required|max:255',
             'num_ccc' => ['nullable', 'regex:/^\d{11}$/', 'unique:producteurs,num_ccc'], // Champ "num_ccc" peut être vide
-            'anneeDemarrage' =>'required_if:proprietaires,==,Garantie',
-            'anneeFin' =>'required_if:proprietaires,==,Garantie',
-            'plantePartage'=>'required_if:proprietaires,==,Planté-partager',
-            'numeroAssocie'=>'required_if:proprietaires,==,Planté-partager',
-            'numeroAssocie' => Rule::when($this->proprietaires == 'Planté-partager', function () {
-                return ['required', 'regex:/^\d{10}$/'];
-            }),
-            'typeCarteSecuriteSociale'=>'required',
-            'autreCertificats'=>'required_if:certificats,==,Autre',
-            'codeProd'=>'required_if:statut,==,Certifie',
-            'certificat'=>'required_if:statut,==,Certifie',
-            'autrePhone'=>'required_if:autreMembre,==,oui',
-            'phone2' => Rule::when($this->autreMembre == 'oui', function () {
-                return ['regex:/^\d{10}$/'];
-            }),
+            // 'anneeDemarrage' =>'required_if:proprietaires,==,Garantie',
+            // 'anneeFin' =>'required_if:proprietaires,==,Garantie',
+            // 'plantePartage'=>'required_if:proprietaires,==,Planté-partager',
+            // 'numeroAssocie'=>'required_if:proprietaires,==,Planté-partager',
+            // 'numeroAssocie' => Rule::when($this->proprietaires == 'Planté-partager', function () {
+            //     return ['required', 'regex:/^\d{10}$/'];
+            // }),
+            // 'typeCarteSecuriteSociale'=>'required',
+            // 'autreCertificats'=>'required_if:certificats,==,Autre',
+            // 'codeProd'=>'required_if:statut,==,Certifie',
+            // 'certificat'=>'required_if:statut,==,Certifie',
+            // 'autrePhone'=>'required_if:autreMembre,==,oui',
+            // 'phone2' => Rule::when($this->autreMembre == 'oui', function () {
+            //     return ['regex:/^\d{10}$/'];
+            // }),
             // 'phone2' => 'required_if:autreMembre,oui|min:10|max:10'
             // 'phone2' => 'required_if:autreMembre,oui|regex:/^\d{10}$/|unique:producteurs,phone2'
 

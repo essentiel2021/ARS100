@@ -14,14 +14,14 @@
                     </a>
                 </li>
 
-                @can('manager.staff.index')
+                {{-- @can('manager.staff.index')
                     <li class="sidebar-menu-item {{ menuActive('manager.staff.index') }}">
                         <a href="{{ route('manager.staff.index') }}" class="nav-link ">
                             <i class="menu-icon las la-user-friends"></i>
                             <span class="menu-title">@lang('Gestion des Staffs')</span>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
                 @if (Auth::user()->can('manager.traca.producteur.index') ||
                         Auth::user()->can('manager.traca.parcelle.index') ||
                         Auth::user()->can('manager.traca.estimation.index'))
@@ -48,19 +48,19 @@
                                         </a>
                                     </li>
                                 @endcan
-                                @can('manager.traca.estimation.index')
+                                {{-- @can('manager.traca.estimation.index')
                                     <li class="sidebar-menu-item {{ menuActive('manager.traca.estimation.index') }}">
                                         <a href="{{ route('manager.traca.estimation.index') }}" class="nav-link">
                                             <i class="menu-icon las la-dot-circle"></i>
                                             <span class="menu-title">@lang('Estimations')</span>
                                         </a>
                                     </li>
-                                @endcan
+                                @endcan --}}
                             </ul>
                         </div>
                     </li>
                 @endif
-                @if (Auth::user()->can('manager.suivi.parcelles.index') ||
+                {{-- @if (Auth::user()->can('manager.suivi.parcelles.index') ||
                         Auth::user()->can('manager.suivi.formation.index') ||
                         Auth::user()->can('manager.suivi.inspection.index') ||
                         Auth::user()->can('manager.suivi.application.index'))
@@ -106,8 +106,8 @@
                             </ul>
                         </div>
                     </li>
-                @endif
-                @if (Auth::user()->can('manager.livraison.stock.section') ||
+                @endif --}}
+                {{-- @if (Auth::user()->can('manager.livraison.stock.section') ||
                         Auth::user()->can('manager.livraison.magcentral.stock') ||
                         Auth::user()->can('manager.livraison.usine.connaissement') ||
                         Auth::user()->can('manager.livraison.prime.producteur'))
@@ -119,7 +119,7 @@
                         </a>
                         <div
                             class="sidebar-submenu {{ menuActive(['manager.livraison.*', 'manager.livraison.magcentral.*'], 2) }} ">
-                            <ul>
+                            <ul> --}}
                                 <!-- <
                                 class="sidebar-menu-item {{ menuActive(['manager.livraison.index']) }}">
                                 <a href="{{ route('manager.livraison.index') }}" class="nav-link">
@@ -128,29 +128,29 @@
                                 </a>
 
                             </> -->
-                                @can('manager.livraison.stock.section')
+                                {{-- @can('manager.livraison.stock.section')
                                     <li class="sidebar-menu-item {{ menuActive(['manager.livraison.stock.*']) }}">
                                         <a href="{{ route('manager.livraison.stock.section') }}" class="nav-link">
                                             <i class="menu-icon las la-server"></i>
                                             <span class="menu-title">@lang('Stock Magasins de Section')</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <!-- <li class="sidebar-menu-item {{ menuActive(['manager.livraison.magcentral.*']) }}">
                                     <a href="{{ route('manager.livraison.magcentral.index') }}" class="nav-link">
                                         <i class="menu-icon las la-server"></i>
                                         <span class="menu-title">@lang('Livraison Magasins Centraux')</span>
                                     </a>
                                 </li> -->
-                                @endcan
-                                @can('manager.livraison.magcentral.stock')
+                                {{-- @endcan --}}
+                                {{-- @can('manager.livraison.magcentral.stock')
                                     <li class="sidebar-menu-item {{ menuActive(['manager.livraison.magcentral*']) }}">
                                         <a href="{{ route('manager.livraison.magcentral.stock') }}" class="nav-link">
                                             <i class="menu-icon las la-server"></i>
                                             <span class="menu-title">@lang('Stock Magasins Centraux')</span>
                                         </a>
                                     </li>
-                                @endcan
-                                @can('manager.livraison.usine.connaissement')
+                                @endcan --}}
+                                {{-- @can('manager.livraison.usine.connaissement')
                                     <li
                                         class="sidebar-menu-item {{ menuActive(['manager.livraison.usine.connaissement']) }}">
                                         <a href="{{ route('manager.livraison.usine.connaissement') }}" class="nav-link">
@@ -172,24 +172,24 @@
                             </ul>
                         </div>
                     </li>
-                @endif
+                @endif --}}
                 @if (Auth::user()->can('manager.suivi.ssrteclmrs.index') || Auth::user()->can('manager.suivi.menage.index'))
                     <li class="sidebar-menu-item sidebar-dropdown">
                         <a href="javascript:void(0)"
                             class="{{ menuActive(['manager.suivi.menage.*', 'manager.suivi.ssrteclmrs.*'], 3) }}">
                             <i class=" menu-icon las la-universal-access"></i>
-                            <span class="menu-title">@lang('SSRTE') </span>
+                            <span class="menu-title">@lang('Menage') </span>
                         </a>
                         <div class="sidebar-submenu {{ menuActive(['manager.suivi.menage.*'], 2) }} ">
                             <ul>
-                                @can('manager.suivi.ssrteclmrs.index')
+                                {{-- @can('manager.suivi.ssrteclmrs.index')
                                     <li class="sidebar-menu-item {{ menuActive('manager.suivi.ssrteclmrs.index') }}">
                                         <a href="{{ route('manager.suivi.ssrteclmrs.index') }}" class="nav-link">
                                             <i class="menu-icon las la-dot-circle"></i>
                                             <span class="menu-title">@lang('SSRTE-CLMRS')</span>
                                         </a>
                                     </li>
-                                @endcan
+                                @endcan --}}
                                 @can('manager.suivi.menage.index')
                                     <li class="sidebar-menu-item {{ menuActive('manager.suivi.menage.index') }}">
                                         <a href="{{ route('manager.suivi.menage.index') }}" class="nav-link">
@@ -202,7 +202,7 @@
                         </div>
                     </li>
                 @endif
-                @if (Auth::user()->can('manager.agro.evaluation.index') ||
+                {{-- @if (Auth::user()->can('manager.agro.evaluation.index') ||
                         Auth::user()->can('manager.agro.approvisionnement.index') ||
                         Auth::user()->can('manager.agro.distribution.index') ||
                         Auth::user()->can('manager.agro.deforestation.index') ||
@@ -259,8 +259,8 @@
                             </ul>
                         </div>
                     </li>
-                @endif
-                @if (Auth::user()->can('manager.presentation-coop.index') ||
+                @endif --}}
+                {{-- @if (Auth::user()->can('manager.presentation-coop.index') ||
                         Auth::user()->can('manager.employees.index') ||
                         Auth::user()->can('manager.hr.attendances.index') ||
                         Auth::user()->can('manager.leaves.index') ||
@@ -360,16 +360,16 @@
                             </ul>
                         </div>
                     </li>
-                @endif
+                @endif --}}
 
-                    @can('manager.ticket.index')
+                    {{-- @can('manager.ticket.index')
                         <li class="sidebar-menu-item  {{ menuActive('ticket*') }}">
                             <a href="{{ route('manager.ticket.index') }}" class="nav-link">
                                 <i class="menu-icon las la-ticket-alt"></i>
                                 <span class="menu-title">@lang('Support Ticket')</span>
                             </a>
                         </li>
-                    @endcan
+                    @endcan --}}
                     @can('manager.settings.cooperative-settings.index')
                         <li class="sidebar-menu-item {{ menuActive(['manager.settings.*', 'manager.holidays.*']) }}">
                             <a href="{{ route('manager.settings.cooperative-settings.index') }}" class="nav-link">
