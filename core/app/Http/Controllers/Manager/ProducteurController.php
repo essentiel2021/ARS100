@@ -298,6 +298,8 @@ class ProducteurController extends Controller
         $producteur->numeroAssocie = $request->numeroAssocie;
         $producteur->categorie_ethnique = $request->categorie_ethnique;
         $producteur->autre_instruction = $request->autre_instruction;
+        $producteur->statut_scolaire = $request->statut_scolaire;
+        $producteur->autre_lien_parente = $request->autre_lien_parente;
         if ($request->hasFile('picture')) {
             try {
                 $producteur->picture = $request->file('picture')->store('public/producteurs/photos');

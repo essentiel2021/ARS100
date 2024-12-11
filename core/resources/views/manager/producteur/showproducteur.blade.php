@@ -178,6 +178,16 @@
                                 </td>
                             </tr>
                         @endif
+                        @if ($producteur->autre_lien_parente)
+                            </tr>
+                            <tr>
+                                <td>Autre lien de Famille(Lien de parenté)
+                                </td>
+                                <td>
+                                    {{ @$producteur->autre_lien_parente }}
+                                </td>
+                            </tr>
+                        @endif
                         @if ($producteur->nationalite)
                             <tr>
                                 <td>Nationalité
@@ -235,10 +245,19 @@
                         @endif
                         @if ($producteur->niveau_etude)
                             <tr>
-                                <td> Niveau d'étude
+                                <td> Niveau d'instruction
                                 </td>
                                 <td>
                                     {{ @$producteur->niveau_etude }}
+                                </td>
+                            </tr>
+                        @endif
+                        @if ($producteur->niveau_etude)
+                            <tr>
+                                <td> Autre niveau d'instruction
+                                </td>
+                                <td>
+                                    {{ @$producteur->autre_instruction }}
                                 </td>
                             </tr>
                         @endif
