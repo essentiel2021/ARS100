@@ -182,6 +182,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('section-settings', SectionSettingController::class);
             Route::resource('localite-settings', LocaliteSettingController::class);
             Route::post('localite-settings/status/{id}', [LocaliteSettingController::class, 'status'])->name('localite-settings.status');
+            Route::post('section-settings/status/{id}', [SectionSettingController::class, 'status'])->name('section-settings.status');
             Route::post('localite-settings/uploadcontent', [LocaliteSettingController::class, 'uploadContent'])->name('localite-settings.uploadcontent');
             Route::post('leaves-settings/change-permission', [LeaveSettingController::class, 'changePermission'])->name('leaves-settings.changePermission');
             Route::get('campagne/', [SettingController::class, 'campagneIndex'])->name('campagne.index');

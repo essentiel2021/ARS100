@@ -61,6 +61,10 @@ class SectionSettingController extends Controller
             return redirect()->route('manager.settings.section-settings.index')->with('error', 'Le village demandée n\'existe pas.', 'activeSettingMenu');
         }
     }
+    public function status($id)
+    {
+        return Section::changeStatus($id);
+    }
 
     public function update(UpdateSectionRequest $request, $id)
     {

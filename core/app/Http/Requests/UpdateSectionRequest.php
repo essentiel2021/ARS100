@@ -26,7 +26,7 @@ class UpdateSectionRequest extends FormRequest
         return [
            'cooperative_id' =>'required|exists:cooperatives,id',
             'libelle' => 'required|max:255',
-            'sousPrefecture' => 'required|max:255',
+            // 'sousPrefecture' => 'required|max:255',
         ];
     }
 

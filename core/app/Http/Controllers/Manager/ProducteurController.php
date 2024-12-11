@@ -28,6 +28,7 @@ use App\Exports\ExportProducteursAll;
 use App\Http\Requests\StoreInfoRequest;
 use App\Imports\ProducteurUpdateImport;
 use App\Models\Producteur_infos_mobile;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Producteur_certification;
 use App\Models\Producteur_infos_typeculture;
 use App\Http\Requests\StoreProducteurRequest;
@@ -346,11 +347,11 @@ class ProducteurController extends Controller
     {
         $producteur = Producteur::findOrFail($id);
         $validationRule = [
-            'programme_id' => ['required', 'exists:programmes,id'],
+            // 'programme_id' => ['required', 'exists:programmes,id'],
+            // 'certificats' => 'required',
+            // 'habitationProducteur' => 'required',
+            // 'statut' => 'required',
             'proprietaires' => 'required',
-            'certificats' => 'required',
-            'habitationProducteur' => 'required',
-            'statut' => 'required',
             'statutMatrimonial' => 'required',
             'localite_id'    => 'required|exists:localites,id',
             'nom' => 'required|max:255',
@@ -359,25 +360,25 @@ class ProducteurController extends Controller
             'nationalite'  => 'required|max:255',
             'dateNaiss'  => 'required|max:255',
             'phone1'  => 'required',
-            // 'phone1'  => ['required', 'regex:/^\d{10}$/', 'unique:producteurs,phone1,' . $request->id],
-            'niveau_etude'  => 'required|max:255',
-            'type_piece'  => 'required|max:255',
             'num_ccc' => ['nullable', 'regex:/^\d{11}$/', 'unique:producteurs,num_ccc,' . $request->id],
-            'anneeDemarrage' => 'required_if:proprietaires,==,Garantie',
-            'anneeFin' => 'required_if:proprietaires,==,Garantie',
-            'plantePartage' => 'required_if:proprietaires,==,Planté-partager',
-            'typeCarteSecuriteSociale' => 'required',
-            'autreCertificats' => 'required_if:certificats,==,Autre',
-            'codeProd' => 'required_if:statut,==,Certifie',
-            'certificat' => 'required_if:statut,==,Certifie',
-            'autrePhone' => 'required_if:autreMembre,==,oui',
-            'phone2' => Rule::when($request->autreMembre == 'oui', function () use ($id) {
-                // return ['required', 'regex:/^\d{10}$/', Rule::unique('producteurs', 'phone2')->ignore($id)];
-                return ['required'];
-            }),
-            'numeroAssocie' => Rule::when($this->proprietaires == 'Planté-partager', function () {
-                return ['required', 'regex:/^\d{10}$/'];
-            }),
+            'niveau_etude'  => 'required|max:255',
+            // 'phone1'  => ['required', 'regex:/^\d{10}$/', 'unique:producteurs,phone1,' . $request->id],
+            // 'type_piece'  => 'required|max:255',
+            // 'anneeDemarrage' => 'required_if:proprietaires,==,Garantie',
+            // 'anneeFin' => 'required_if:proprietaires,==,Garantie',
+            // 'plantePartage' => 'required_if:proprietaires,==,Planté-partager',
+            // 'typeCarteSecuriteSociale' => 'required',
+            // 'autreCertificats' => 'required_if:certificats,==,Autre',
+            // 'codeProd' => 'required_if:statut,==,Certifie',
+            // 'certificat' => 'required_if:statut,==,Certifie',
+            // 'autrePhone' => 'required_if:autreMembre,==,oui',
+            // 'phone2' => Rule::when($request->autreMembre == 'oui', function () use ($id) {
+            //     // return ['required', 'regex:/^\d{10}$/', Rule::unique('producteurs', 'phone2')->ignore($id)];
+            //     return ['required'];
+            // }),
+            // 'numeroAssocie' => Rule::when($this->proprietaires == 'Planté-partager', function () {
+            //     return ['required', 'regex:/^\d{10}$/'];
+            // }),
             //'phone2' => 'required_if:autreMembre,oui|regex:/^\d{10}$/|unique:producteurs,phone2,' . $request->id,
         ];
         $messages = [
@@ -448,9 +449,16 @@ class ProducteurController extends Controller
         $producteur->codeProd = $request->codeProd;
         $producteur->plantePartage = $request->plantePartage;
         $producteur->numeroAssocie = $request->numeroAssocie;
-        if ($request->hasFile('picture')) {
+        $producteur->statut_scolaire = $request->statut_scolaire;
+        $producteur->autre_lien_parente = $request->	autre_lien_parente;
+
+        if ($request->hasFile('copiecarterecto')) {
             try {
-                $producteur->picture = $request->file('picture')->store('public/producteurs/photos');
+                $directory = 'public/producteurs/photos';
+                if (!Storage::exists($directory)) {
+                    Storage::makeDirectory($directory);
+                }
+                $producteur->copiecarterecto = $request->file('copiecarterecto')->store('public/producteurs/photos');
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Impossible de télécharger votre image'];
                 return back()->withNotify($notify);
