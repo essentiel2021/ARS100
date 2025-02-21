@@ -67,11 +67,10 @@
 
                     <div class="fieldset-like">
                         <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Informations sur la campagne précédente
-                            </h5>
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur les dépenses courantes du foyer</h5>
                         </legend>
                         <div class="form-group row">
-                            <?php echo Form::label(__('Quels sont les Pesticides utilisés l\'année dernière'), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
+                            <?php echo Form::label(__('Quels sont les dépenses courantes du foyer ? '), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
                             <div class="col-xs-12 col-sm-12">
                                 <table class="table table-striped table-bordered">
                                     <tbody id="pesticidesAnneDerniere_area">
@@ -81,7 +80,7 @@
                                                     <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Dépenses')
                                                     </badge>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-4">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label class="control-label">Nom</label>
                                                         <select name="pesticidesAnneDerniere[0][nom]"
@@ -99,7 +98,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label class="control-label">Périodicité</label>
                                                         <select class="form-control unite"
@@ -112,7 +111,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label class="control-label">Montant moyen/an</label>
 
@@ -121,7 +120,7 @@
                                                             placeholder="Montant moyen/an">
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Observation'), null, ['class' => '']) }}
                                                         <input type="number" name="pesticidesAnneDerniere[0][frequence]"
@@ -147,7 +146,7 @@
 
                         </div>
                         <div class="form-group row">
-                            <?php echo Form::label(__('Quels sont les Intrants (fertilisant, biofertilisant) utilisés l\'année dernière'), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
+                            <?php echo Form::label(__('Quels sont les autres dépenses courantes'), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
 
                             {{-- NPK   Compost   Biofertilisant/Bio stimulant Engrais organique préfabriqué --}}
                             <div class="col-xs-12 col-sm-12">
@@ -157,71 +156,47 @@
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
                                                     <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
-                                                        @lang('Intrant')
+                                                        @lang('Autres dépenses')
                                                     </badge>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-4">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label class="control-label">Nom</label>
-                                                        <select name="intrantsAnneDerniere[0][nom]"
-                                                            id="intrantsAnneDerniere-1" class="form-control">
-                                                            <option value="">Selectionner une option</option>
-                                                            <option value="Dechets animaux">Dechets animaux
-                                                            </option>
-                                                            <option value="NPK">NPK</option>
-                                                            <option value="Compost">Compost</option>
-                                                            <option value="Biofertilisant/Bio stimulant">
-                                                                Biofertilisant/Bio stimulant</option>
-                                                            <option value="Engrais organique préfabriqué">Engrais
-                                                                organique préfabriqué</option>
-                                                            <option value="Engrais organique préfabriqué">Engrais
-                                                                foliaire</option>
-                                                        </select>
+                                                        
+                                                        <input type="text" name="intrantsAnneDerniere[0][nom]"
+                                                            id="nom-1" class="form-control nom"
+                                                            placeholder="Nom">
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        <label class="control-label">Unité</label>
+                                                        <label class="control-label">Périodicité</label>
                                                         <select class="form-control unite"
                                                             name="intrantsAnneDerniere[0][unite]" id="unite-1">
                                                             <option value="">Selectionner une option</option>
-                                                            <option value="Kg">Kg</option>
-                                                            <option value="L">L</option>
-                                                            <option value="g">g</option>
-                                                            <option value="mL">mL</option>
+                                                            <option value="Année">Année</option>
+                                                            <option value="Mois">Mois</option>
+                                                            <option value="2 Mois">2 Mois</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        <label class="control-label">Quantité</label>
+                                                        <label class="control-label">Montant Moyen/an</label>
 
                                                         <input type="number" name="intrantsAnneDerniere[0][quantite]"
                                                             id="quantite-1" class="form-control quantite"
-                                                            placeholder="Quantité">
+                                                            placeholder="Montant Moyen/an">
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Type de contenant'), null, ['class' => '']) }}
-                                                        <select class="form-control contenant"
-                                                            name="intrantsAnneDerniere[0][contenant]" id="contenant-1">
-                                                            <option value="">Selectionner une option</option>
-                                                            <option value="Sac">Sac</option>
-                                                            <option value="Sachet">Sachet</option>
-                                                            <option value="Boîte">Boîte</option>
-                                                            <option value="Pot">Pot</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-2">
-                                                    <div class="form-group row">
-                                                        {{ Form::label(__('Fréquence'), null, ['class' => '']) }}
-                                                        <input type="number" name="intrantsAnneDerniere[0][frequence]"
+                                                        {{ Form::label(__('Observation'), null, ['class' => '']) }}
+                                                        <input type="text" name="intrantsAnneDerniere[0][frequence]"
                                                             id="frequence-1" class="form-control frequence"
-                                                            placeholder="Fréquence">
+                                                            placeholder="Observation">
                                                     </div>
                                                 </div>
 
@@ -947,24 +922,21 @@
 
                 var html_table = '<tr>';
                 html_table +=
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Intrant ' +
+                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Autres dépenses ' +
                     intrantsCount +
-                    '</badge></div><div class="col-xs-12 col-sm-4 pr-0"><div class="form-group"><label for="" class="">Nom</label><select class="form-control" id="intrantsAnneDerniere-' +
+                    '</badge></div><div class="col-xs-12 col-sm-3 pr-0"><div class="form-group"><label for="" class="">Nom</label><input type="text" placeholder="Nom" class="form-control" id="nom-' +
                     intrantsCount +
                     '" name="intrantsAnneDerniere[' + intrantsCount +
-                    '][nom]"><option value="Dechets animaux">Dechets animaux</option><option value="Fongicides">Fongicides</option><option value="NPK">NPK</option><option value="Compost">Compost</option><option value="Biofertilisant/Bio stimulant">Biofertilisant/Bio stimulant</option><option value="Engrais organique préfabriqué">Engrais organique préfabriqué</option><option value="Engrais foliaire">Engrais foliaire</option></select></div></div><div class="col-xs-12 col-sm-2"><div class="form-group row"><label>Unité</label><select class="form-control unite" name="intrantsAnneDerniere[' +
+                    '][nom]"></div></div><div class="col-xs-12 col-sm-3"><div class="form-group row"><label>Périodicité</label><select class="form-control unite" name="intrantsAnneDerniere[' +
                     intrantsCount + '][unite]" id="unite-' +
                     intrantsCount +
-                    '"><option value="Kg">Kg</option><option value="L">L</option><option value="g">g</option><option value="mL">mL</option></select></div></div> <div class="col-xs-12 col-sm-2"><div class="form-group row"><label for="" class="">Quantité</label><input type="number" name ="intrantsAnneDerniere[' +
+                    '"><option value="Année">Année</option><option value="Mois">Mois</option><option value="2 Mois">2 Mois</option></select></div></div> <div class="col-xs-12 col-sm-3"><div class="form-group row"><label for="" class="">Quantité</label><input type="number" name ="intrantsAnneDerniere[' +
                     intrantsCount + '][quantite]" id="quantite-' +
                     intrantsCount +
-                    '" class="form-control quantite" placeholder="Quantité"></div></div><div class="col-xs-12 col-sm-2"><div class="form-group row"><label>Type contenant</label><select class="form-control contenant" name="intrantsAnneDerniere[' +
-                    intrantsCount + '][contenant]" id="contenant-' +
-                    intrantsCount +
-                    '"><option value="Sac">Sac</option><option value="Sachet">Sachet</option><option value="Boîte">Boîte</option><option value="Pot">Pot</option></select></div></div> <div class="col-xs-12 col-sm-2"><div class="form-group row"><label for="" class="">Fréquence</label><input type="number" name="intrantsAnneDerniere[' +
+                    '" class="form-control quantite" placeholder="Montant moyen/an"></div></div><div class="col-xs-12 col-sm-3"><div class="form-group row"><label for="" class="">Observation</label><input type="text" name="intrantsAnneDerniere[' +
                     intrantsCount + '][frequence]" id="frequence-' +
                     intrantsCount +
-                    '" class="form-control frequence" placeholder="Fréquence"></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
+                    '" class="form-control frequence" placeholder="Observation"></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
                     intrantsCount +
                     '" class="removeRowIntrantsAnneDerniere btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></div></td>';
                 html_table += '</tr>';
