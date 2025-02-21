@@ -58,8 +58,7 @@
                                     @foreach ($producteurs as $producteur)
                                         <option value="{{ $producteur->id }}"
                                             data-chained="{{ $producteur->localite->id }}"@selected(old('producteur'))>
-                                            {{ stripslashes($producteur->nom) }} {{ stripslashes($producteur->prenoms) }}
-                                        </option>
+                                            {{ stripslashes($producteur->nom) }} {{ stripslashes($producteur->prenoms) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -72,62 +71,73 @@
                             </h5>
                         </legend>
                         <div class="form-group row">
-                            <?php echo Form::label(__('Quels sont les dépenses courantes du ménage'), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
+                            <?php echo Form::label(__('Quels sont les Pesticides utilisés l\'année dernière'), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
                             <div class="col-xs-12 col-sm-12">
                                 <table class="table table-striped table-bordered">
                                     <tbody id="pesticidesAnneDerniere_area">
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
-                                                        @lang('Dépenses')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Pesticide')
                                                     </badge>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-3">
+                                                <div class="col-xs-12 col-sm-4">
                                                     <div class="form-group row">
                                                         <label class="control-label">Nom</label>
                                                         <select name="pesticidesAnneDerniere[0][nom]"
                                                             id="pesticidesAnneDerniere-1" class="form-control">
                                                             <option value="">Selectionner une option</option>
-                                                            <option value="Scolarité">Scolarité</option>
-                                                            <option value="Nourriture">Nourriture</option>
-                                                            <option value="Santé">Santé</option>
-                                                            <option value="Electricité">Electricité</option>
-                                                            <option value="Eau courante">Eau courante</option>
-                                                            <option value="Mariage">Mariage</option>
-                                                            <option value="Eau courante">Baptême</option>
+                                                            <option value="Herbicides">Herbicides</option>
+                                                            <option value="Fongicides">Fongicides</option>
+                                                            <option value="Nematicide">Nematicide</option>
+                                                            <option value="Insecticides">Insecticides</option>
+                                                            <option value="Acaricides">Acaricides</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-3">
+                                                <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
-                                                        <label class="control-label">Périodicité</label>
+                                                        <label class="control-label">Unité</label>
                                                         <select class="form-control unite"
                                                             name="pesticidesAnneDerniere[0][unite]" id="unite-1">
                                                             <option value="">Selectionner une option</option>
-                                                            <option value="Année">Année</option>
-                                                            <option value="Mois">Mois</option>
-                                                            <option value="2 Mois">2 Mois</option>
+                                                            <option value="Kg">Kg</option>
+                                                            <option value="L">L</option>
+                                                            <option value="g">g</option>
+                                                            <option value="mL">mL</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-3">
+                                                <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
-                                                        <label class="control-label">Montant moyen/an</label>
+                                                        <label class="control-label">Quantité</label>
 
                                                         <input type="number" name="pesticidesAnneDerniere[0][quantite]"
                                                             id="quantite-1" class="form-control quantite"
                                                             placeholder="Quantité">
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-3">
+                                                <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Observation'), null, ['class' => '']) }}
-                                                        <input type="texte" name="pesticidesAnneDerniere[0][frequence]"
+                                                        {{ Form::label(__('Type de contenant'), null, ['class' => '']) }}
+                                                        <select class="form-control contenant"
+                                                            name="pesticidesAnneDerniere[0][contenant]" id="contenant-1">
+                                                            <option value="">Selectionner une option</option>
+                                                            <option value="Sac">Sac</option>
+                                                            <option value="Sachet">Sachet</option>
+                                                            <option value="Boîte">Boîte</option>
+                                                            <option value="Pot">Pot</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Fréquence'), null, ['class' => '']) }}
+                                                        <input type="number" name="pesticidesAnneDerniere[0][frequence]"
                                                             id="frequence-1" class="form-control frequence"
-                                                            placeholder="Observation">
+                                                            placeholder="Fréquence">
                                                     </div>
                                                 </div>
 
@@ -148,7 +158,7 @@
 
                         </div>
                         <div class="form-group row">
-                            <?php echo Form::label(__('Quels sont les autres dépenses courantes du ménage'), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
+                            <?php echo Form::label(__('Quels sont les Intrants (fertilisant, biofertilisant) utilisés l\'année dernière'), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
 
                             {{-- NPK   Compost   Biofertilisant/Bio stimulant Engrais organique préfabriqué --}}
                             <div class="col-xs-12 col-sm-12">
@@ -324,8 +334,7 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
-                                                        @lang('Insectes parasites ou ravageurs')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Insectes parasites ou ravageurs')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6">
@@ -389,8 +398,7 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
-                                                        @lang('Autres insectes parasites ou ravageurs')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Autres insectes parasites ou ravageurs')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6">
@@ -450,8 +458,7 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
-                                                        @lang('Traitement')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Traitement')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-4">
@@ -591,8 +598,7 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
-                                                        @lang('Insectes amis')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Insectes amis')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6">
@@ -642,8 +648,7 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
-                                                        @lang('Animal')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Animal')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12">
@@ -913,12 +918,12 @@
 
                 var html_table = '<tr>';
                 html_table +=
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Dépense ' +
+                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Pesticide ' +
                     pesticidesCount +
                     '</badge></div><div class="col-xs-12 col-sm-3 pr-0"><div class="form-group"><label for="" class="">Nom</label><select class="form-control" id="pesticidesAnneDerniere-' +
                     pesticidesCount +
                     '" name="pesticidesAnneDerniere[' + pesticidesCount +
-                    '][nom]"><option value="Scolarité">Scolarité</option><option value="Nourriture">Nourriture</option><option value="Santé">Santé</option><option value="Electricité">Electricité</option><option value="Eau courante">Eau courante</option><option value="Funérailles">Funérailles</option><option value="Mariages">Mariages</option><option value="Baptême">Baptême</option></select></div></div><div class="col-xs-12 col-sm-2"><div class="form-group row"><label>Périodicité</label><select class="form-control unite" name="pesticidesAnneDerniere[' +
+                    '][nom]"><option value="Scolarité">Scolarité</option><option value="Nourriture">Nourriture</option><option value="Santé">Santé</option><option value="Electricité">Electricité</option><option value="Eau courante">Eau courante</option><option value="Funérailles">Funérailles</option></select></div></div><div class="col-xs-12 col-sm-2"><div class="form-group row"><label>Périodicité</label><select class="form-control unite" name="pesticidesAnneDerniere[' +
                     pesticidesCount + '][unite]" id="unite-' +
                     pesticidesCount +
                     '"><option value="Année">Année</option><option value="Mois">Mois</option><option value="2 Mois">2 Mois</option></select></div></div> <div class="col-xs-12 col-sm-3"><div class="form-group row"><label for="" class="">Montant moyen/an</label><input type="number" name ="pesticidesAnneDerniere[' +
@@ -1146,7 +1151,7 @@
             <div class="row single-item gy-2">
                 <div class="col-md-3">
                     <select class="form-control selected_type" name="items[${length}][arbre]" required id='arbre-${length}')>
-                        <option disabled selected value="">@extends('manager.layouts.app')</option>
+                        <option disabled selected value="">@lang('Arbres agro-forestiers')</option>
                         @foreach ($arbres as $arbre)
                             <option value="{{ $arbre->id }}"  >{{ __($arbre->nom) }} </option>
                         @endforeach
@@ -1155,7 +1160,7 @@
                 
                 <div class="col-md-3">
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control quantity" placeholder="@lang('Section')"  name="items[${length}][nombre]"  required>
+                        <input type="number" class="form-control quantity" placeholder="@lang('Nombre')"  name="items[${length}][nombre]"  required>
                         <span class="input-group-text unit"><i class="las la-balance-scale"></i></span>
                     </div>
                 </div>
@@ -1179,7 +1184,7 @@
             $('#addedField').on('click', '.removeBtn', function(e) {
                 let length = $("#addedField").find('.single-item').length;
                 if (length <= 1) {
-                    notify('warning', "@lang('Selectionner une option')");
+                    notify('warning', "@lang('Au moins un élément est requis')");
                 } else {
                     $(this).closest('.single-item').remove();
                 }
@@ -1201,7 +1206,7 @@
             <div class="row single-itemPesticide gy-2">
                 <div class="col-md-3">
                     <select class="form-control selected_type" name="items[${length}][arbre]" required id='arbre-${length}')>
-                        <option disabled selected value="">@lang('Localite')</option>
+                        <option disabled selected value="">@lang('Arbres agro-forestiers')</option>
                         @foreach ($arbres as $arbre)
                             <option value="{{ $arbre->id }}"  >{{ __($arbre->nom) }} </option>
                         @endforeach
@@ -1210,7 +1215,7 @@
                 
                 <div class="col-md-3">
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control quantity" placeholder="@lang('Selectionner une option')"  name="items[${length}][nombre]"  required>
+                        <input type="number" class="form-control quantity" placeholder="@lang('Nombre')"  name="items[${length}][nombre]"  required>
                         <span class="input-group-text unit"><i class="las la-balance-scale"></i></span>
                     </div>
                 </div>
@@ -1234,7 +1239,7 @@
             $('#addedField').on('click', '.removeBtn', function(e) {
                 let length = $("#addedField").find('.single-item').length;
                 if (length <= 1) {
-                    notify('warning', "@lang('Producteur')");
+                    notify('warning', "@lang('Au moins un élément est requis')");
                 } else {
                     $(this).closest('.single-item').remove();
                 }
