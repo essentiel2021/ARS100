@@ -12,14 +12,51 @@
                                 <input type="text" name="search" value="{{ request()->search }}" class="form-control">
                             </div>
                             <div class="flex-grow-1">
-                                <label>@lang('Localité')</label>
-                                <select name="localite" class="form-control">
+                                <label>@lang('Section')</label>
+                                <select name="section" class="form-control select2-basic" data-live-search="true"
+                                    id="section">
                                     <option value="">@lang('Toutes')</option>
-                                    @foreach ($localites as $local)
-                                        <option value="{{ $local->id }}">{{ $local->nom }}</option>
+                                    @foreach ($sections as $local)
+                                        <option value="{{ $local->id }}"
+                                            {{ request()->section == $local->id ? 'selected' : '' }}>{{ $local->libelle }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="flex-grow-1">
+                                <label>@lang('Localité')</label>
+                                <select name="localite" class="form-control select2-basic" id="localite">
+                                    <option value="">@lang('Toutes')</option>
+                                    @foreach ($localites as $local)
+                                        <option value="{{ $local->id }}" data-chained="{{ $local->section_id }}"
+                                            {{ request()->localite == $local->id ? 'selected' : '' }}>{{ $local->nom }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="flex-grow-1">
+                                <label>@lang('Producteur')</label>
+                                <select name="producteur" class="form-control select2-basic" id="producteur">
+                                    <option value="">@lang('Tous')</option>
+                                    @foreach ($producteurs as $local)
+                                        <option value="{{ $local->id }}" data-chained="{{ $local->localite_id }}"
+                                            {{ request()->producteur == $local->id ? 'selected' : '' }}>
+                                            {{ stripslashes($local->nom) }} {{ stripslashes($local->prenoms) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            {{-- <div class="flex-grow-1">
+                                <label>@lang('Statut declaration')</label>
+                                <select name="typedeclaration" class="form-control">
+                                    <option value="">@lang('Tous')</option>
+                                    <option value="GPS" {{ request()->typedeclaration == 'GPS' ? 'selected' : '' }}>
+                                        @lang('GPS')</option>
+                                    <option value="Verbale"
+                                        {{ request()->typedeclaration == 'Verbale' ? 'selected' : '' }}>
+                                        @lang('Verbale')</option>
+                                </select>
+                            </div> --}}
                             <div class="flex-grow-1">
                                 <label>@lang('Date')</label>
                                 <input name="date" type="text" class="dates form-control"
@@ -41,18 +78,21 @@
                                 <tr>
                                     <th>@lang('Section')</th>
                                     <th>@lang('Localite')</th>
-                                    <th>@lang('Producteur')</th>
-                                    <th>@lang('Quartier')</th>
-                                    <th>@lang('Ajoutée le')</th>
-                                    <th>@lang('Status')</th>
-                                    <th>@lang('Action')</th>
+                                    <th>@lang('Parent')</th>
+                                    <th>@lang('Nom')</th>
+                                    <th>@lang('Genre')</th>
+                                    <th>@lang('Age')</th>
+                                    <th>@lang('Lien de Parenté')</th>
+                                    <th>@lang('Status Scolaire')</th>
+                                    <th>@lang('Niveau Instruction')</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($menages as $menage)
                                     <tr>
                                         <td>
-                                            <span class="fw-bold">{{ $menage->producteur->localite->section->libelle }}</span>
+                                            <span
+                                                class="fw-bold">{{ $menage->producteur->localite->section->libelle }}</span>
                                         </td>
                                         <td>
                                             <span class="fw-bold">{{ $menage->producteur->localite->nom }}</span>
@@ -62,42 +102,29 @@
                                                 {{ $menage->producteur->nom }} {{ $menage->producteur->prenoms }}
                                             </span>
                                         </td>
+
                                         <td>
-                                            <span>{{ $menage->quartier }}</span>
+                                            <span class="small">
+                                                {{ $menage->nom }} {{ $menage->prenoms }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>{{ $menage->sexe }}</span>
+                                        </td>
+                                        <td>
+                                            {{ $menage->age }} Ans
+                                        </td>
+                                        <td>
+                                            <span>{{ $menage->statutMatrimonial }}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{ $menage->statut_scolaire }}</span>
                                         </td>
 
                                         <td>
-                                            <span class="d-block">{{ showDateTime($menage->created_at) }}</span>
-                                            <span>{{ diffForHumans($menage->created_at) }}</span>
+                                            <span>{{ $menage->niveau_etude }}</span>
                                         </td>
-                                        <td> @php echo $menage->statusBadge; @endphp </td>
-                                        <td>
 
-                                            <button type="button" class="btn btn-sm btn-outline--primary"
-                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                    class="las la-ellipsis-v"></i>@lang('Action')
-                                            </button>
-                                            <div class="dropdown-menu p-0">
-                                                <a href="{{ route('manager.suivi.menage.edit', $menage->id) }}"
-                                                    class="dropdown-item"><i class="la la-pen"></i>@lang('Editer')</a>
-                                                <a href="{{ route('manager.suivi.menage.show', $menage->id) }}"
-                                                    class="dropdown-item"><i class="las la-file-invoice"></i>@lang('Détail')</a>
-                                                @if ($menage->status == Status::DISABLE)
-                                                    <button type="button" class="confirmationBtn  dropdown-item"
-                                                        data-action="{{ route('manager.suivi.menage.status', $menage->id) }}"
-                                                        data-question="@lang('Are you sure to enable this menage?')">
-                                                        <i class="la la-eye"></i> @lang('Active')
-                                                    </button>
-                                                @else
-                                                    <button type="button" class="confirmationBtn dropdown-item"
-                                                        data-action="{{ route('manager.suivi.menage.status', $menage->id) }}"
-                                                        data-question="@lang('Are you sure to disable this menage?')">
-                                                        <i class="la la-eye-slash"></i> @lang('Désactive')
-                                                    </button>
-                                                @endif
-
-                                            </div>
-                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -140,10 +167,12 @@
 @push('script')
     <script src="{{ asset('assets/fcadmin/js/vendor/datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/fcadmin/js/vendor/datepicker.fr.js') }}"></script>
-<script src="{{ asset('assets/fcadmin/js/vendor/datepicker.en.js') }}"></script>
+    <script src="{{ asset('assets/fcadmin/js/vendor/datepicker.en.js') }}"></script>
 @endpush
 @push('script')
     <script>
+        $("#localite").chained("#section");
+        $("#producteur").chained("#localite");
         (function($) {
             "use strict";
 
@@ -165,8 +194,8 @@
 
         })(jQuery)
 
-        $('form select').on('change', function(){
-    $(this).closest('form').submit();
-});
+        $('form select').on('change', function() {
+            $(this).closest('form').submit();
+        });
     </script>
 @endpush

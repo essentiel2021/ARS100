@@ -263,7 +263,7 @@ class ProducteurController extends Controller
         }
         $producteur = new Producteur();
         $producteur->proprietaires = $request->proprietaires;
-        $producteur->statutMatrimonial = $request->statutMatrimonial;
+        // $producteur->statutMatrimonial = $request->statutMatrimonial;
         $producteur->programme_id = $request->programme_id;
         $producteur->localite_id = $request->localite_id;
         $producteur->habitationProducteur = $request->habitationProducteur;
@@ -300,6 +300,7 @@ class ProducteurController extends Controller
         $producteur->autre_instruction = $request->autre_instruction;
         $producteur->statut_scolaire = $request->statut_scolaire;
         $producteur->autre_lien_parente = $request->autre_lien_parente;
+
         if ($request->hasFile('picture')) {
             try {
                 $producteur->picture = $request->file('picture')->store('public/producteurs/photos');

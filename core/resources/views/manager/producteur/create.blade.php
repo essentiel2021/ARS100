@@ -164,18 +164,18 @@
                         </div>
                     </div>
                     {{-- situation matrimoniale  --}}
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <?php echo Form::label(__('Famille(Lien de parenté)'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::select('statutMatrimonial', ['Chef de menage' => 'Chef de ménage', 'Conjoint' => 'Conjoint', 'Enfant ' => 'Enfant', 'Autre' => 'Autre'], null, ['class' => 'form-control statutMatrimonial', 'required']); ?>
                         </div>
-                    </div>
-                    <div class="form-group row" id= "autre_famille">
+                    </div> --}}
+                    {{-- <div class="form-group row" id= "autre_famille">
                         <?php echo Form::label(__('Préciser'), null, ['class' => 'col-sm-4 control-label']); ?>
                         <div class="col-xs-12 col-sm-8">
                             <?php echo Form::text('autre_lien_parente', null, ['id' => 'autre_lien_parente', 'placeholder' => __('Autre lien de parenté'), 'class' => 'form-control autre_lien_parente']); ?>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group row">
                         <?php echo Form::label(__('Statut/Plantation'), null, ['class' => 'col-sm-4 control-label']); ?>

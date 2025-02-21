@@ -54,8 +54,8 @@ use App\Http\Controllers\Manager\LivraisonCentraleController;
 use App\Http\Controllers\Manager\CooperativeSettingController;
 use App\Http\Controllers\Manager\ActiviteCommunautaireController;
 use App\Http\Controllers\Manager\AgroapprovisionnementController;
-
-
+use App\Http\Controllers\Manager\EquipementController;
+use App\Http\Controllers\Manager\SociauxEconomiqueController;
 
 Route::namespace('Manager\Auth')->group(function () {
 
@@ -361,6 +361,14 @@ Route::middleware('auth')->group(function () {
         Route::name('traca.producteur.')->prefix('producteur')->group(function () {
             Route::get('list', [ProducteurController::class,'index'])->name('index');
             Route::get('infos/{id}', [ProducteurController::class,'infos'])->name('infos');
+            Route::get('equipements/{id}', [EquipementController::class,'index'])->name('equipements');
+            Route::get('equipementcreate/{id}', [EquipementController::class,'create'])->name('equipementcreate');
+            Route::post('equipementstore',[EquipementController::class,'store'])->name('equipementstore');
+
+            Route::get('profile-socio-economique/{id}', [SociauxEconomiqueController::class,'index'])->name('economiques');
+            Route::get('socio-economiquecreate/{id}', [SociauxEconomiqueController::class,'create'])->name('economiquecreate');
+            Route::post('socio-economiquestore',[SociauxEconomiqueController::class,'store'])->name('economiquestore');
+
             Route::get('show/{id}', [ProducteurController::class,'showinfosproducteur'])->name('showinfosproducteur');
             Route::get('showproducteur/{id}', [ProducteurController::class,'showproducteur'])->name('showproducteur');
             Route::get('create', [ProducteurController::class,'create'])->name('create');

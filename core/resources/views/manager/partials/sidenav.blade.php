@@ -60,7 +60,7 @@
                         </div>
                     </li>
                 @endif
-                {{-- @if (Auth::user()->can('manager.suivi.parcelles.index') ||
+                @if (Auth::user()->can('manager.suivi.parcelles.index') ||
                         Auth::user()->can('manager.suivi.formation.index') ||
                         Auth::user()->can('manager.suivi.inspection.index') ||
                         Auth::user()->can('manager.suivi.application.index'))
@@ -79,7 +79,7 @@
                                         </a>
                                     </li>
                                 @endcan
-                                @can('manager.suivi.formation.index')
+                                {{-- @can('manager.suivi.formation.index')
                                     <li class="sidebar-menu-item {{ menuActive('manager.suivi.formation.index') }}">
                                         <a href="{{ route('manager.suivi.formation.index') }}" class="nav-link">
                                             <i class="menu-icon las la-dot-circle"></i>
@@ -102,11 +102,11 @@
                                             <span class="menu-title">@lang('Applications Phytos')</span>
                                         </a>
                                     </li>
-                                @endcan
+                                @endcan --}}
                             </ul>
                         </div>
                     </li>
-                @endif --}}
+                @endif
                 {{-- @if (Auth::user()->can('manager.livraison.stock.section') ||
                         Auth::user()->can('manager.livraison.magcentral.stock') ||
                         Auth::user()->can('manager.livraison.usine.connaissement') ||

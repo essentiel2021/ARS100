@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Traits\GlobalStatus;
+use Carbon\Carbon;
 use App\Traits\Searchable;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\GlobalStatus;
 use Kirschbaum\PowerJoins\PowerJoins;
+use Illuminate\Database\Eloquent\Model;
 
 class Menage extends Model
 {
@@ -15,15 +16,8 @@ class Menage extends Model
     {
         return $this->belongsTo(Producteur::class,);
     }
-
-    public function menage_sourceEnergie()
+    public function getAgeAttribute()
     {
-        return $this->hasMany(Menage_sourceEnergie::class, 'menage_id');
+        return Carbon::parse($this->dateNaiss)->age;
     }
-
-    public function menage_ordure(){
-        return $this->hasMany(Menage_ordure::class, 'menage_id');
-    }
-     
-     
 }

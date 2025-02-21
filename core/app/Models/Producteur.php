@@ -45,4 +45,8 @@ class Producteur extends Model
     public function country(){
         return $this->belongsTo(Country::class, 'nationalite');
     }
+
+    public function equipements(){
+        return $this->hasMany(Equipement::class,'producteur_id');
+    }
 }

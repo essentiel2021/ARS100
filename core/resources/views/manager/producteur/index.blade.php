@@ -176,8 +176,8 @@
                                         </td>
                                         <td> @php echo $producteur->statusBadge; @endphp </td>
                                         <td>
-                                            <a href="{{ route('manager.traca.producteur.infos', encrypt($producteur->id)) }}"
-                                                class="icon-btn btn--info ml-1">@lang('Infos producteur')</a>
+                                            <a href="{{ route('manager.traca.producteur.economiques', encrypt($producteur->id)) }}"
+                                                class="icon-btn btn--info ml-1">@lang('Profile socio-économique')</a>
                                             <a href="{{ route('manager.traca.producteur.index', ['download' => encrypt($producteur->id)]) }}"
                                                 class="btn btn-sm btn--danger"><i
                                                     class="la la-file-pdf-o"></i>@lang('PDF')</a>
