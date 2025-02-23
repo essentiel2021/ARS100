@@ -216,67 +216,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="fieldset-like">
-                        <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Technique culturale</h5>
-                        </legend>
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Activité de Taille dans la Parcelle'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('activiteTaille', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => __('Elevé')], null, ['class' => 'form-control activiteTaille']); ?>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Activité d\'Egourmandage dans la Parcelle'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('activiteEgourmandage', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => __('Elevé')], null, ['class' => 'form-control activiteEgourmandage']); ?>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Activité de désherbage Manuel dans la Parcelle'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('activiteDesherbageManuel', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => __('Elevé')], null, ['class' => 'form-control activiteDesherbageManuel']); ?>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Activité de Récolte Sanitaire dans la Parcelle'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('activiteRecolteSanitaire', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => __('Elevé')], null, ['class' => 'form-control activiteRecolteSanitaire']); ?>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            {{ Form::label(__("Nombre de désherbage manuel dans l'année"), null, ['class' => 'col-sm-4 control-label']) }}
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::number('nombreDesherbage', null, ['class' => 'form-control', 'min' => '1', 'required']); ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="fieldset-like">
-                        <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Etat sanitaire de la parcelle</h5>
-                        </legend>
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Présence de Pourriture Brune'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('presencePourritureBrune', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé ' => __('Elevé'), 'inexistant' => __('Inexistant')], null, ['class' => 'form-control presencePourritureBrune']); ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Présence de Swollen Shoot '), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('presenceSwollenShoot', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé ' => __('Elevé'), 'inexistant' => __('Inexistant')], null, ['class' => 'form-control presenceSwollenShoot']); ?>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                     <div class="fieldset-like">
                         <legend class="legend-center">
                             <h5 class="font-weight-bold text-decoration-underline">Evaluation des insectes ravageurs ou
@@ -292,7 +232,7 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Insectes parasites ou ravageurs')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Statut Main d\'oeuvre')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6">
@@ -752,16 +692,29 @@
 
                 var html_table = '<tr>';
                 html_table +=
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Insectes parasites ou ravageurs ' +
+                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Main d\'oeuvre ' +
                     insectesParasitesCount +
-                    '</badge></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="insectesParasites" class="">Nom</label><select class="form-control" id="insectesParasites-' +
+                    '</badge></div><div class="col-xs-12 col-sm-2"><div class="form-group"><label for="insectesParasites" class="">Statut de Main d\'oeuvre</label><select class="form-control" id="insectesParasites-' +
                     insectesParasitesCount +
                     '" name="insectesParasites[' + insectesParasitesCount +
-                    '][nom]"><option value="">Selectionner une option</option><option value="Mirides">Mirides</option> <option value="Punaises">Punaises</option> <option value="Foreurs">Foreurs</option><option value="Chenilles">Chenilles</option></select></div></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="nombreinsectesParasites" class="">Quantite</label><select name="insectesParasites[' +
+                    '][nom]"><option value="">Selectionner une option</option><option value="Mo Permanent">Mo Permanent</option> <option value="Mo Occasionnel">Mo Occasionnel</option> <option value="Non rémunérée(famille)">Non rémunérée(famille)</option></select></div></div><div class="col-xs-12 col-sm-2"><div class="form-group"><label for="nombreinsectesParasites" class="">Type de Travailleur</label><select name="insectesParasites[' +
                     insectesParasitesCount +
                     '][nombreinsectesParasites]" class="form-control nombreinsectesParasites" id="nombreinsectesParasites-' +
                     insectesParasitesCount +
-                    '" ><option value="">Selectionner une option</option><option value="Faible">Faible</option><option value="Moyen">Moyen</option><option value="Elevé">Elevé</option></select></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
+                    '" ><option value="">Selectionner une option</option><option value="Particulier">Particulier</option><option value="Groupe de travail">Groupe de travail</option></select></div></div><div class="col-xs-12 col-sm-2"><div class="form-group"><label for="" class="">Nom/groupe de travaille</label><input type="text" placeholder="Nom du travailleur/Groupe de travaille" class="form-control" id="insectesParasites-' +
+                    insectesParasitesCount +
+                    '" name="insectesParasites[' + insectesParasitesCount +
+                    '][nomTravailleur]"></div></div> <div class="col-xs-12 col-sm-2"><div class="form-group"><label for="" class="">Sexe</label><select name="insectesParasites[' +
+                    insectesParasitesCount +
+                    '][sexe]" class="form-control nombreinsectesParasites" id="nombreinsectesParasites-' +
+                    insectesParasitesCount +
+                    '" ><option value="">Selectionner une option</option><option value="M">M</option><option value="F">F</option></select></div></div><div class="col-xs-12 col-sm-2"><div class="form-group"><label for="" class="">Coût Annuel</label><input type="number" placeholder="Coût Annuel" class="form-control" id="insectesParasites-' +
+                    insectesParasitesCount +
+                    '" name="insectesParasites[' + insectesParasitesCount +
+                    '][coutAnnuel]"></div></div><div class="col-xs-12 col-sm-2"><div class="form-group"><label for="" class="">Temps de travaille</label><input type="number" placeholder="Temps de travaille sur la cacaoyère" class="form-control" id="insectesParasites-' +
+                    insectesParasitesCount +
+                    '" name="insectesParasites[' + insectesParasitesCount +
+                    '][temps]"></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
                     insectesParasitesCount +
                     '" class="removeRowinsectesParasites btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></div></td>';
 
