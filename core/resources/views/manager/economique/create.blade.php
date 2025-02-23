@@ -282,12 +282,6 @@
                             <h5 class="font-weight-bold text-decoration-underline">Evaluation des insectes ravageurs ou
                                 parasites du cacaoyer dans la parcelle</h5>
                         </legend>
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Présence d\'insectes parasites ou ravageurs ?'), null, ['class' => 'col-sm-6 control-label']); ?>
-                            <div class="col-xs-12 col-sm-6">
-                                <?php echo Form::select('presenceInsectesParasites', ['' => 'Selectionner une option', 'non' => __('non'), 'oui' => __('oui')], null, ['class' => 'form-control presenceInsectesParasites']); ?>
-                            </div>
-                        </div>
                         {{-- presence d'insecte  --}}
                         <div class="form-group row" id="presenceInsectesParasitesRavageurs">
 
@@ -346,13 +340,6 @@
                             </div>
                         </div>
                         {{-- fin presence d'insecte --}}
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Avez-vous observé d\'autres insectes ou ravageur qui n\'apparaissent pas dans la liste précédente ?'), null, ['class' => 'col-sm-6 control-label']); ?>
-                            <div class="col-xs-12 col-sm-6">
-                                <?php echo Form::select('autreInsecte', ['' => 'Selectionner une option', 'non' => __('non'), 'oui' => __('oui')], null, ['class' => 'form-control autreInsecte', 'id' => 'autreInsecte', 'required']); ?>
-                            </div>
-                        </div>
 
                         {{-- autre insecte --}}
                         <div class="form-group row" id="presenceAutreInsecte">
@@ -984,7 +971,7 @@
                 }
             });
 
-            $('#courseaux,#agroforestiersobtenus,#presenceInsectesParasitesRavageurs,#recu,#autrePesticides,#autreInsectesAmis,#autrePresenceInsectesParasitesRavageurs,#traite,#presenceAutreInsecte')
+            $('#courseaux,#agroforestiersobtenus,#recu,#autrePesticides,#autreInsectesAmis,#autrePresenceInsectesParasitesRavageurs,#traite')
                 .hide();
 
             $('.arbresagroforestiers').change(function() {
