@@ -737,16 +737,23 @@
                 var html_table = '<tr>';
                 html_table +=
 
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Autres insectes parasites ou ravageurs ' +
+                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Production de cacao ' +
                     presenceAutreInsecteCount +
-                    '</badge></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="autreInsecteNom" class="">Nom</label><input type="text" placeholder="Nom de l\'insecte ou ravageur" class="form-control" id="autreInsecteNom-' +
+                    '</badge></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="autreInsecteNom" class="">Année</label><input type="number" placeholder="Année" class="form-control" id="autreInsecteNom-' +
                     presenceAutreInsecteCount +
                     '" name="presenceAutreInsecte[' + presenceAutreInsecteCount +
-                    '][autreInsecteNom]"></div></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="nombreAutreInsectesParasites" class="">Quantite</label><select name="presenceAutreInsecte[' +
+                    '][autreInsecteNom]"></div></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="nombreAutreInsectesParasites" class="">Production(KG)</label><input type="number" placeholder="Production (KG)" name="presenceAutreInsecte[' +
                     presenceAutreInsecteCount +
                     '][nombreAutreInsectesParasites]" class="form-control nombreAutreInsectesParasites" id="nombreAutreInsectesParasites-' +
                     presenceAutreInsecteCount +
-                    '" ><option value="">Selectionner une option</option><option value="Faible">Faible</option><option value="Moyen">Moyen</option><option value="Elevé">Elevé</option></select></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
+                    '" ></div></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="autreInsecteNom" class="">Revenu Brute</label><input type="number" placeholder="Revenu Brute" class="form-control" id="autreInsecteNom-' +
+                    presenceAutreInsecteCount +
+                    '" name="presenceAutreInsecte[' + presenceAutreInsecteCount +
+                    '][revenuBrute]"></div></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="nombreAutreInsectesParasites" class="">Commentaire</label><input type="number" placeholder="Commentaire" name="presenceAutreInsecte[' +
+                    presenceAutreInsecteCount +
+                    '][commentaire]" class="form-control nombreAutreInsectesParasites" id="nombreAutreInsectesParasites-' +
+                    presenceAutreInsecteCount +
+                    '" ></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
                     presenceAutreInsecteCount +
                     '" class="removeRowPresenceAutreInsecte btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></div></td>';
 
