@@ -265,8 +265,8 @@
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Nom/groupe de travail'), null, ['class' => 'control-label']) }}
                                                         <input type="text"
-                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
-                                                            id="autreInsecteNom-1" class="form-control autreInsecteNom"
+                                                            name="presenceAutreInsecte[0][nomTravailleur]"
+                                                            id="nombreinsectesParasites-1" class="form-control nombreinsectesParasites"
                                                             placeholder="Nom/groupe de travail">
                                                     </div>
                                                 </div>
@@ -281,6 +281,16 @@
                                                             <option value="M">M</option>
                                                             <option value="F">F</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Coût Annuel'), null, ['class' => 'control-label']) }}
+                                                        <input type="number"
+                                                            name="presenceAutreInsecte[0][coutAnnuel]"
+                                                            id="nombreinsectesParasites-1" class="form-control autreInsecteNom"
+                                                            placeholder="Coût Annuel">
                                                     </div>
                                                 </div>
 
