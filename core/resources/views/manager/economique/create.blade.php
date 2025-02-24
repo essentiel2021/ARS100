@@ -433,12 +433,12 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Autres insectes parasites ou ravageurs')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Production de cacao ')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
+                                                        {{ Form::label(__('Année'), null, ['class' => 'control-label']) }}
                                                         <input type="text"
                                                             name="presenceAutreInsecte[0][autreInsecteNom]"
                                                             id="autreInsecteNom-1" class="form-control autreInsecteNom"
@@ -448,34 +448,28 @@
 
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        <label>Type de travailleur</label>
-                                                        <select class="form-control nombreAutreInsectesParasites"
-                                                            name="presenceAutreInsecte[0][nombreAutreInsectesParasites]"
-                                                            id="nombreAutreInsectesParasites-0">
-                                                            <option value="">Selectionne une option</option>
-                                                            <option value="Particulier">Particulier</option>
-                                                            <option value="Groupe de travail">Groupe de travail</option>
-                                                        </select>
+                                                        <label>Production Brute (KG)</label>
+                                                        <input type="number" name="presenceAutreInsecte[0][nombreAutreInsectesParasites]" id="nombreAutreInsectesParasites-0" placeholder="Production Brute (KG)">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
-                                                        <input type="text"
-                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
+                                                        {{ Form::label(__('Revenu Brute'), null, ['class' => 'control-label']) }}
+                                                        <input type="number"
+                                                            name="presenceAutreInsecte[0][revenuBrute]"
                                                             id="autreInsecteNom-1" class="form-control autreInsecteNom"
-                                                            placeholder="Nom de l'insecte ou ravageur">
+                                                            placeholder="Revenu Brute">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
+                                                        {{ Form::label(__('Commentaire'), null, ['class' => 'control-label']) }}
                                                         <input type="text"
-                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
+                                                            name="presenceAutreInsecte[0][commentaire]"
                                                             id="autreInsecteNom-1" class="form-control autreInsecteNom"
-                                                            placeholder="Nom de l'insecte ou ravageur">
+                                                            placeholder="Commentaire">
                                                     </div>
                                                 </div>
 
