@@ -436,7 +436,7 @@
                                                     <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Autres insectes parasites ou ravageurs')
                                                     </badge>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
                                                         <input type="text"
@@ -446,7 +446,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label>Type de travailleur</label>
                                                         <select class="form-control nombreAutreInsectesParasites"
@@ -456,6 +456,26 @@
                                                             <option value="Particulier">Particulier</option>
                                                             <option value="Groupe de travail">Groupe de travail</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-3">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
+                                                        <input type="text"
+                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
+                                                            id="autreInsecteNom-1" class="form-control autreInsecteNom"
+                                                            placeholder="Nom de l'insecte ou ravageur">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-3">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
+                                                        <input type="text"
+                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
+                                                            id="autreInsecteNom-1" class="form-control autreInsecteNom"
+                                                            placeholder="Nom de l'insecte ou ravageur">
                                                     </div>
                                                 </div>
 
