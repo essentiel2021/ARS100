@@ -232,10 +232,10 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Statut Main d\'oeuvre')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Main d\'oeuvre')
                                                     </badge>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-6">
+                                                <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Statut de Main d\'oeuvre'), null, ['class' => 'control-label']) }}
                                                         <select name="insectesParasites[0][nom]" id="insectesParasites-1"
@@ -248,7 +248,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-6">
+                                                <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         <label>Type de travailleur</label>
                                                         <select class="form-control nombreinsectesParasites"
@@ -257,6 +257,29 @@
                                                             <option value="">Selectionne une option</option>
                                                             <option value="Particulier">Particulier</option>
                                                             <option value="Groupe de travail">Groupe de travail</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Nom/groupe de travail'), null, ['class' => 'control-label']) }}
+                                                        <input type="text"
+                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
+                                                            id="autreInsecteNom-1" class="form-control autreInsecteNom"
+                                                            placeholder="Nom/groupe de travail">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        <label>Sexe</label>
+                                                        <select class="form-control nombreinsectesParasites"
+                                                            name="insectesParasites[0][sexe]"
+                                                            id="nombreinsectesParasites-1">
+                                                            <option value="">Selectionne une option</option>
+                                                            <option value="M">M</option>
+                                                            <option value="F">F</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -290,7 +313,7 @@
                                                     <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Autres insectes parasites ou ravageurs')
                                                     </badge>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-6">
+                                                <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
                                                         <input type="text"
@@ -300,7 +323,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-6">
+                                                <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         <label>Type de travailleur</label>
                                                         <select class="form-control nombreAutreInsectesParasites"
