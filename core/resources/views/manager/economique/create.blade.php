@@ -237,28 +237,26 @@
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
+                                                        {{ Form::label(__('Statut de Main d\'oeuvre'), null, ['class' => 'control-label']) }}
                                                         <select name="insectesParasites[0][nom]" id="insectesParasites-1"
                                                             class="form-control">
                                                             <option value="">Selectionner une option</option>
-                                                            <option value="Mirides">Mirides</option>
-                                                            <option value="Punaises">Punaises</option>
-                                                            <option value="Foreurs">Foreurs</option>
-                                                            <option value="Chenilles">Chenilles</option>
+                                                            <option value="Mo Permanent">Mo Permanent</option>
+                                                            <option value="Mo Occasionnel">Mo Occasionnel</option>
+                                                            <option value="Non Rémunérée">Non Rémunérée</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xs-12 col-sm-6">
                                                     <div class="form-group row">
-                                                        <label>Quantité</label>
+                                                        <label>Type de travailleur</label>
                                                         <select class="form-control nombreinsectesParasites"
                                                             name="insectesParasites[0][nombreinsectesParasites]"
                                                             id="nombreinsectesParasites-1">
                                                             <option value="">Selectionne une option</option>
-                                                            <option value="Faible">Faible</option>
-                                                            <option value="Moyen">Moyen</option>
-                                                            <option value="Elevé">Elevé</option>
+                                                            <option value="Particulier">Particulier</option>
+                                                            <option value="Groupe de travail">Groupe de travail</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -304,14 +302,13 @@
 
                                                 <div class="col-xs-12 col-sm-6">
                                                     <div class="form-group row">
-                                                        <label>Quantite</label>
+                                                        <label>Type de travailleur</label>
                                                         <select class="form-control nombreAutreInsectesParasites"
                                                             name="presenceAutreInsecte[0][nombreAutreInsectesParasites]"
                                                             id="nombreAutreInsectesParasites-0">
                                                             <option value="">Selectionne une option</option>
-                                                            <option value="Faible">Faible</option>
-                                                            <option value="Moyen">Moyen</option>
-                                                            <option value="Elevé">Elevé</option>
+                                                            <option value="Particulier">Particulier</option>
+                                                            <option value="Groupe de travail">Groupe de travail</option>
                                                         </select>
                                                     </div>
                                                 </div>
