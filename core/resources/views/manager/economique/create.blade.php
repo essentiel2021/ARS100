@@ -219,8 +219,7 @@
                     
                     <div class="fieldset-like">
                         <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Evaluation des insectes ravageurs ou
-                                parasites du cacaoyer dans la parcelle</h5>
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur le coût de main</h5>
                         </legend>
                         {{-- presence d'insecte  --}}
                         <div class="form-group row" id="presenceInsectesParasitesRavageurs">
@@ -288,9 +287,19 @@
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Coût Annuel'), null, ['class' => 'control-label']) }}
                                                         <input type="number"
-                                                            name="presenceAutreInsecte[0][coutAnnuel]"
+                                                            name="insectesParasites[0][coutAnnuel]"
                                                             id="nombreinsectesParasites-1" class="form-control autreInsecteNom"
                                                             placeholder="Coût Annuel">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Temps de travail'), null, ['class' => 'control-label']) }}
+                                                        <input type="number"
+                                                            name="insectesParasites[0][temps]"
+                                                            id="nombreinsectesParasites-1" class="form-control"
+                                                            placeholder="Temps de travail">
                                                     </div>
                                                 </div>
 
@@ -311,66 +320,7 @@
                             </div>
                         </div>
                         {{-- fin presence d'insecte --}}
-
-                        {{-- autre insecte --}}
-                        <div class="form-group row" id="presenceAutreInsecte">
-                            <div class="col-xs-12 col-sm-12">
-                                <table class="table table-striped table-bordered">
-                                    <tbody id="presenceAutreInsecte_area">
-                                        <tr>
-                                            <td class="row">
-                                                <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Autres insectes parasites ou ravageurs')
-                                                    </badge>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-2">
-                                                    <div class="form-group row">
-                                                        {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
-                                                        <input type="text"
-                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
-                                                            id="autreInsecteNom-1" class="form-control autreInsecteNom"
-                                                            placeholder="Nom de l'insecte ou ravageur">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xs-12 col-sm-2">
-                                                    <div class="form-group row">
-                                                        <label>Type de travailleur</label>
-                                                        <select class="form-control nombreAutreInsectesParasites"
-                                                            name="presenceAutreInsecte[0][nombreAutreInsectesParasites]"
-                                                            id="nombreAutreInsectesParasites-0">
-                                                            <option value="">Selectionne une option</option>
-                                                            <option value="Particulier">Particulier</option>
-                                                            <option value="Groupe de travail">Groupe de travail</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                    <tfoot style="background: #e3e3e3;">
-                                        <tr>
-
-                                            <td colspan="3">
-                                                <button id="addRowPresenceAutreInsecte" type="button"
-                                                    class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button>
-                                            </td>
-                                        <tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                        {{-- fin autre insecte --}}
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Avez-vous traitez votre parcelle ?'), null, ['class' => 'col-sm-6 control-label']); ?>
-                            <div class="col-xs-12 col-sm-6">
-                                <?php echo Form::select('traiterParcelle', ['' => 'Selctionner une option', 'non' => __('non'), 'oui' => __('oui')], null, ['class' => 'form-control traiterParcelle', 'required']); ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row" id="traite">
+                        {{-- <div class="form-group row" id="traite">
 
                             <div class="col-xs-12 col-sm-12">
                                 <table class="table table-striped table-bordered">
@@ -468,47 +418,70 @@
                                     </tfoot>
                                 </table>
                             </div>
+                        </div> --}}
+                    </div>
+
+                    <div class="fieldset-like">
+                        <legend class="legend-center">
+                            <h5>Informations sur la Production de cacao des trois (3) dernières années </h5>
+                        </legend>
+                        {{-- autre insecte --}}
+                        <div class="form-group row" id="presenceAutreInsecte">
+                            <div class="col-xs-12 col-sm-12">
+                                <table class="table table-striped table-bordered">
+                                    <tbody id="presenceAutreInsecte_area">
+                                        <tr>
+                                            <td class="row">
+                                                <div class="col-xs-12 col-sm-12 bg-success">
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Autres insectes parasites ou ravageurs')
+                                                    </badge>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Nom'), null, ['class' => 'control-label']) }}
+                                                        <input type="text"
+                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
+                                                            id="autreInsecteNom-1" class="form-control autreInsecteNom"
+                                                            placeholder="Nom de l'insecte ou ravageur">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        <label>Type de travailleur</label>
+                                                        <select class="form-control nombreAutreInsectesParasites"
+                                                            name="presenceAutreInsecte[0][nombreAutreInsectesParasites]"
+                                                            id="nombreAutreInsectesParasites-0">
+                                                            <option value="">Selectionne une option</option>
+                                                            <option value="Particulier">Particulier</option>
+                                                            <option value="Groupe de travail">Groupe de travail</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                    <tfoot style="background: #e3e3e3;">
+                                        <tr>
+
+                                            <td colspan="3">
+                                                <button id="addRowPresenceAutreInsecte" type="button"
+                                                    class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button>
+                                            </td>
+                                        <tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
+                        {{-- fin autre insecte --}}
                     </div>
                     <div class="fieldset-like">
                         <legend class="legend-center">
                             <h5 class="font-weight-bold text-decoration-underline"> Evaluation des Insectes amis du
                                 Cacaoyer dans la parcelle</h5>
                         </legend>
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Présence de Fourmis Rouge'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('presenceFourmisRouge', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => __('Elevé')], null, ['class' => 'form-control presenceFourmisRouge']); ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Présence d\'Araignée'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('presenceAraignee', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => __('Elevé')], null, ['class' => 'form-control presenceAraignee']); ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Présence de Ver de Terre'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('presenceVerTerre', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => __('Elevé')], null, ['class' => 'form-control presenceVerTerre']); ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Présence de Mente Religieuse'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('presenceMenteReligieuse', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => __('Elevé')], null, ['class' => 'form-control presenceMenteReligieuse']); ?>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <?php echo Form::label(__('Présence d\'autres types d\'insecte amis ?'), null, ['class' => 'col-sm-4 control-label']); ?>
-                            <div class="col-xs-12 col-sm-8">
-                                <?php echo Form::select('presenceAutreTypeInsecteAmi', ['' => 'Selectionner une option', 'non' => __('non'), 'oui' => __('oui')], null, ['class' => 'form-control presenceAutreTypeInsecteAmi', 'required']); ?>
-                            </div>
-                        </div>
                         {{-- presenceAutreTypeInsecteAmi --}}
                         <div class="form-group row" id="autreInsectesAmis">
 
@@ -556,7 +529,7 @@
                         </div>
                     </div>
 
-                    <div class="fieldset-like">
+                    {{-- <div class="fieldset-like">
                         <legend class="legend-center">
                             <h5 class="font-weight-bold text-decoration-underline">Evaluation de la faune sauvage dans la
                                 parcelle</h5>
@@ -597,17 +570,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-
-                    <hr class="panel-wide">
-
-                    <div class="form-group row">
-                        {{ Form::label(__('Date de la visite'), null, ['class' => 'col-sm-4 control-label required']) }}
-                        <div class="col-xs-12 col-sm-8">
-                            <?php echo Form::date('dateVisite', null, ['class' => 'form-control dateactivite required', 'required' => 'required']); ?>
-                        </div>
-                    </div>
-
+                    </div> --}}
                     <hr class="panel-wide">
 
                     <div class="form-group row">
@@ -797,7 +760,7 @@
 
             $(document).on('click', '.removeRowPresenceAutreInsecte', function() {
                 var row_id = $(this).attr('id');
-                if (row_id == $("#presenceAutreInsecte_area tr").length) {
+                if (row_id == $("#presenceAutreInsecte_area tr").length - 1) {
                     $(this).parents('tr').remove();
                     presenceAutreInsecteCount = parseInt(presenceAutreInsecteCount) - 1;
                 }
