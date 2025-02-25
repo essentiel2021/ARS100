@@ -438,11 +438,12 @@
                                                 </div>
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Année'), null, ['class' => 'control-label']) }}
-                                                        <input type="text"
-                                                            name="presenceAutreInsecte[0][autreInsecteNom]"
-                                                            id="autreInsecteNom-1" class="form-control autreInsecteNom"
-                                                            placeholder="Année">
+                                                        <label>Année</label>
+                                                        <select class="form-control" id="autreInsecteAnnée-1" name="presenceAutreInsecte[0][autreInsecteAnnée]" required>
+                                                            @foreach($campagnes as $campagne)
+                                                                <option value="{{ $campagne->id }}">{{ $campagne->nom }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
 

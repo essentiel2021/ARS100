@@ -33,8 +33,10 @@ class SociauxEconomiqueController extends Controller
             return $localite->active();
         });
         $arbres = Agroespecesarbre::all();
-        $camapgnes = Campagne::all();
-        return view('manager.economique.create', compact('pageTitle', 'id','producteurs','sections','localites','cooperative','campagnes','arbres','campagnes'));
+        $campagnes = Campagne::all();
+        // dd($campagnes);
+        //dd(view('manager.economique.create', compact('pageTitle', 'id','producteurs','sections','localites','cooperative','campagnes','arbres'))->render());
+        return view('manager.economique.create', compact('pageTitle', 'id','producteurs','sections','localites','cooperative','campagnes','arbres'));
     }
     public function store(){
 
