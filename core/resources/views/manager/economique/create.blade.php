@@ -219,7 +219,7 @@
                     
                     <div class="fieldset-like">
                         <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Informations sur le coût de main</h5>
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur le coût de main d'oeuvre</h5>
                         </legend>
                         {{-- presence d'insecte  --}}
                         <div class="form-group row" id="presenceInsectesParasitesRavageurs">
@@ -422,8 +422,8 @@
                     </div>
 
                     <div class="fieldset-like">
-                        <legend class="legend-center">
-                            <h5>Informations sur la Production de cacao des trois (3) dernières années </h5>
+                        <legend class="legend-center">                                                        
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur la Production de cacao des trois (3) dernières années </h5>
                         </legend>
                         {{-- autre insecte --}}
                         <div class="form-group row" id="presenceAutreInsecte">
@@ -442,7 +442,7 @@
                                                         <input type="text"
                                                             name="presenceAutreInsecte[0][autreInsecteNom]"
                                                             id="autreInsecteNom-1" class="form-control autreInsecteNom"
-                                                            placeholder="Nom de l'insecte ou ravageur">
+                                                            placeholder="Année">
                                                     </div>
                                                 </div>
 
@@ -493,8 +493,7 @@
                     </div>
                     <div class="fieldset-like">
                         <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline"> Evaluation des Insectes amis du
-                                Cacaoyer dans la parcelle</h5>
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur Sources de Revenus autre que le cacao</h5>
                         </legend>
                         {{-- presenceAutreTypeInsecteAmi --}}
                         <div class="form-group row" id="autreInsectesAmis">
@@ -667,9 +666,9 @@
                 //---> Start create table tr
                 var html_table = '<tr>';
                 html_table +=
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Insectes amis ' +
+                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Autre Revenu ' +
                     insectesAmisCount +
-                    '</badge></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="insectesAmis" class="">Nom</label><input placeholder="Insecte amis..." class="form-control" id="insectesAmis-' +
+                    '</badge></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="insectesAmis" class="">Nom</label><input placeholder="Saisissez le nom du revenu" class="form-control" id="insectesAmis-' +
                     insectesAmisCount +
                     '" name="insectesAmis[]" type="text"></div></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="nombreinsectesAmis" class="">Quantite</label><select name="nombreinsectesAmis[]" class="form-control nombreinsectesParasites" id="nombreinsectesAmis-' +
                     insectesAmisCount +
@@ -938,7 +937,7 @@
                 }
             });
 
-            $('#courseaux,#agroforestiersobtenus,#recu,#autrePesticides,#autreInsectesAmis,#autrePresenceInsectesParasitesRavageurs,#traite')
+            $('#courseaux,#agroforestiersobtenus,#recu,#autrePesticides,#autrePresenceInsectesParasitesRavageurs,#traite')
                 .hide();
 
             $('.arbresagroforestiers').change(function() {
