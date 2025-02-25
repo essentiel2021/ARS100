@@ -670,7 +670,7 @@
                     insectesAmisCount +
                     '</badge></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="insectesAmis" class="">Nom</label><input placeholder="Saisissez le nom du revenu" class="form-control" id="insectesAmis-' +
                     insectesAmisCount +
-                    '" name="insectesAmis[]" type="text"></div></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="nombreinsectesAmis" class="">Quantite</label><select name="nombreinsectesAmis[]" class="form-control nombreinsectesParasites" id="nombreinsectesAmis-' +
+                    '" name="insectesAmis[]" type="text"></div></div> <div class="col-xs-12 col-sm-6"><div class="form-group"><label for="insectesAmis" class="">Année</label><input class="form-control" placeholder="Saisissez l\'année" type="number" name="annee[]" id="annee-' + insectesAmisCount + '"></div></div> <div class="col-xs-12 col-sm-6"><div class="form-group"><label for="nombreinsectesAmis" class="">Quantite</label><select name="nombreinsectesAmis[]" class="form-control nombreinsectesParasites" id="nombreinsectesAmis-' +
                     insectesAmisCount +
                     '" ><option value="Faible">Faible</option><option value="Moyen">Moyen</option><option value="Elevé">Elevé</option></select></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
                     insectesAmisCount +
