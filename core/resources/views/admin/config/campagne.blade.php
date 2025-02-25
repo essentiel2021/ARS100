@@ -8,7 +8,7 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>@lang('Cooperative')</th>
+                                    {{-- <th>@lang('Cooperative')</th> --}}
                                     <th>@lang('Campagne')</th>
                                     <th>@lang('Prix annuel(FCFA/Kg)')</th>
                                     <th>@lang('Date début')</th>
@@ -21,9 +21,9 @@
                             <tbody>
                                 @forelse($campagnes as $campagne)
                                     <tr>
-                                        <td>
+                                        {{-- <td>
                                             <span class="fw-bold">{{ __($campagne->cooperative->name) }}</span>
-                                        </td>
+                                        </td> --}}
 
                                         <td>
                                             <span>{{ __($campagne->nom) }}</span>
@@ -108,7 +108,7 @@
                 <form action="{{ route('admin.config.campagne.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <label>@lang('Coopérative')</label>
                                 <select class="form-control" name="cooperative" required>
@@ -120,7 +120,7 @@
 
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 {{ Form::label(__('Nom de la campagne'), null, ['class' => 'control-label required']) }}

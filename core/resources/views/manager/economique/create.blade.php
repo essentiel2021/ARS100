@@ -508,22 +508,48 @@
                                                     <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Insectes amis')
                                                     </badge>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-6">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Nom'), null, ['class' => '']) }}
                                                         <input type="text" name="insectesAmis[]"
-                                                            placeholder="Autre Insecte ami" id="insectesAmis-1"
+                                                            placeholder="Saisissez le nom du revenu" id="insectesAmis-1"
                                                             class="form-control">
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-6">
+                                                <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Quantite'), null, ['class' => '']) }}
-                                                        <?php echo Form::select('nombreinsectesAmis[]', ['Faible' => __('Faible'), 'Moyen' => __('Moyen'), 'Elevé' => _('Elevé')], null, ['class' => 'form-control nombreinsectesAmis', 'id' => 'nombreinsectesAmis-1']); ?>
+                                                        {{ Form::label(__('Année'), null, ['class' => '']) }}
+                                                        <input type="number" name="annee[]"
+                                                            placeholder="Année" id="annee-1"
+                                                            class="form-control">
                                                     </div>
                                                 </div>
 
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        <label>Production moyenne <br> annuelle</label>
+                                                        <input type="number" name="production[]"
+                                                            placeholder="Production moyenne annuelle" id="production-1"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Revenu Brute'), null, ['class' => '']) }}
+                                                        <input type="number" name="revenu[]"
+                                                            placeholder="Revenu Brute" id="revenu-1"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-2">
+                                                    <div class="form-group row">
+                                                        {{ Form::label(__('Commentaire'), null, ['class' => '']) }}
+                                                        <input type="number" name="commentaire[]"
+                                                            placeholder="Commentaire" id="commentaire-1"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
 

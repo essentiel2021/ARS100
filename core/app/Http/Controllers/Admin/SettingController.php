@@ -65,7 +65,7 @@ class SettingController extends Controller
     public function campagneStore(Request $request)
     {
         $request->validate([
-            'cooperative'  => 'required',
+            // 'cooperative'  => 'required',
             'nom'  => 'required',
             'periode_debut'  => 'required',
             'periode_fin'  => 'required',
@@ -78,7 +78,7 @@ class SettingController extends Controller
         } else {
             $campagne = new Campagne();
         }
-        $campagne->cooperative_id    = $request->cooperative ;
+        // $campagne->cooperative_id    = $request->cooperative ;
         $campagne->produit = 'Cacao';
         $campagne->nom = $request->nom;
         $campagne->periode_debut = $request->periode_debut;
