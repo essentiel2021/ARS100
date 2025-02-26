@@ -441,7 +441,7 @@
                                                         <label>Année</label>
                                                         <select class="form-control" id="autreInsecteAnnée-1" name="presenceAutreInsecte[0][autreInsecteAnnée]" required>
                                                             @foreach($campagnes as $campagne)
-                                                                <option value="{{ $campagne->id }}">{{ $campagne->nom }}</option>
+                                                                <option value="{{ $campagne->id }}" data-price="{{$campagne->prix_achat}}">{{ $campagne->nom }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -459,7 +459,7 @@
                                                         {{ Form::label(__('Revenu Brute'), null, ['class' => 'control-label']) }}
                                                         <input type="number"
                                                             name="presenceAutreInsecte[0][revenuBrute]"
-                                                            id="autreInsecteNom-1" class="form-control autreInsecteNom"
+                                                            id="revenuBrute-0" class="form-control revenuBrute"
                                                             placeholder="Revenu Brute">
                                                     </div>
                                                 </div>
@@ -784,7 +784,7 @@
                                 <select class="form-control selected_type" name="presenceAutreInsecte[${presenceAutreInsecteCount}][autreInsecteAnnée]" id='presenceAutreInsecte[${presenceAutreInsecteCount}][autreInsecteAnnée]')>
                                     
                                     @foreach ($campagnes as $campagne)
-                                        <option value="{{ $campagne->id }}"  >{{ __($campagne->nom) }} </option>
+                                        <option value="{{ $campagne->id }}" data-price="{{$campagne->prix_achat}}">{{ __($campagne->nom) }} </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -1213,5 +1213,23 @@
             });
 
         })(jQuery);
+
+        $(document).on('blur', '[id^="nombreAutreInsectesParasites-"]', function() {
+            // Récupération de l'index à partir de l'ID du champ de production
+            let index = $(this).attr('id').split('-')[1];
+
+            // Récupérer la valeur de production saisie par l'utilisateur
+            let productionKg = parseFloat($(this).val()) || 0;
+
+            // Sélectionner l'option active et récupérer le data-price
+            let selectedOption = $(`select[name="presenceAutreInsecte[${index}][autreInsecteAnnée]"] option:selected`);
+            let prixAchat = parseFloat(selectedOption.data('price')) || 0;
+
+            // Calcul du revenu brut
+            let revenuBrut = productionKg * prixAchat;
+
+            // Mise à jour du champ revenu brut
+            $(`#revenuBrute-${index}`).val(revenuBrut.toFixed(2));
+        });
     </script>
 @endpush
