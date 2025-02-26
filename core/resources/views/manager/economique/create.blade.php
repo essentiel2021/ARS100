@@ -766,38 +766,57 @@
             });
 
             //presenceAutreInsecte
-            var presenceAutreInsecteCount = $("#presenceAutreInsecte_area tr").length;
+
+             var presenceAutreInsecteCount = $("#presenceAutreInsecte_area tr").length;
 
             $(document).on('click', '#addRowPresenceAutreInsecte', function() {
 
                 //---> Start create table tr'
 
-                var html_table = '<tr>';
-                html_table +=
+                var html_table = `
+                    <tr>
+                        <td class="row">
+                            <div class="col-xs-12 col-sm-12 bg-success">
+                                <badge class="btn btn-outline--warning h-45 btn-sm text-white">Production de cacao ${presenceAutreInsecteCount}</badge>
+                            </div>
 
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Production de cacao ' +
-                    presenceAutreInsecteCount +
-                    '</badge></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="autreInsecteNom" class="">Année</label><input type="number" placeholder="Année" class="form-control" id="autreInsecteNom-' +
-                    presenceAutreInsecteCount +
-                    '" name="presenceAutreInsecte[' + presenceAutreInsecteCount +
-                    '][autreInsecteNom]"></div></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="nombreAutreInsectesParasites" class="">Production(KG)</label><input type="number" placeholder="Production (KG)" name="presenceAutreInsecte[' +
-                    presenceAutreInsecteCount +
-                    '][nombreAutreInsectesParasites]" class="form-control nombreAutreInsectesParasites" id="nombreAutreInsectesParasites-' +
-                    presenceAutreInsecteCount +
-                    '" ></div></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="autreInsecteNom" class="">Revenu Brute</label><input type="number" placeholder="Revenu Brute" class="form-control" id="autreInsecteNom-' +
-                    presenceAutreInsecteCount +
-                    '" name="presenceAutreInsecte[' + presenceAutreInsecteCount +
-                    '][revenuBrute]"></div></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="nombreAutreInsectesParasites" class="">Commentaire</label><input type="number" placeholder="Commentaire" name="presenceAutreInsecte[' +
-                    presenceAutreInsecteCount +
-                    '][commentaire]" class="form-control nombreAutreInsectesParasites" id="nombreAutreInsectesParasites-' +
-                    presenceAutreInsecteCount +
-                    '" ></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
-                    presenceAutreInsecteCount +
-                    '" class="removeRowPresenceAutreInsecte btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></div></td>';
+                            <!-- Production brute (KG) -->
+                            <div class="col-xs-12 col-sm-3">
+                                <div class="form-group">
+                                    <label for="nombreAutreInsectesParasites" class="">Production (KG)</label>
+                                    <input type="number" placeholder="Production (KG)" name="presenceAutreInsecte[${presenceAutreInsecteCount}][nombreAutreInsectesParasites]" 
+                                        class="form-control" id="nombreAutreInsectesParasites-${presenceAutreInsecteCount}">
+                                </div>
+                            </div>
 
-                html_table += '</tr>';
-                //---> End create table tr
+                            <!-- Revenu Brut -->
+                            <div class="col-xs-12 col-sm-3">
+                                <div class="form-group">
+                                    <label for="revenuBrute" class="">Revenu Brut</label>
+                                    <input type="number" placeholder="Revenu Brut" name="presenceAutreInsecte[${presenceAutreInsecteCount}][revenuBrute]" 
+                                        class="form-control" id="revenuBrute-${presenceAutreInsecteCount}">
+                                </div>
+                            </div>
 
+                            <!-- Commentaire -->
+                            <div class="col-xs-12 col-sm-3">
+                                <div class="form-group">
+                                    <label for="commentaire" class="">Commentaire</label>
+                                    <input type="text" placeholder="Commentaire" name="presenceAutreInsecte[${presenceAutreInsecteCount}][commentaire]" 
+                                        class="form-control" id="commentaire-${presenceAutreInsecteCount}">
+                                </div>
+                            </div>
+
+                            <!-- Bouton de suppression -->
+                            <div class="col-xs-12 col-sm-8">
+                                <button type="button" id="${presenceAutreInsecteCount}" 
+                                    class="removeRowPresenceAutreInsecte btn btn-danger btn-sm">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    `;
                 presenceAutreInsecteCount = parseInt(presenceAutreInsecteCount) + 1;
                 $('#presenceAutreInsecte_area').append(html_table);
 
@@ -809,7 +828,7 @@
                     $(this).parents('tr').remove();
                     presenceAutreInsecteCount = parseInt(presenceAutreInsecteCount) - 1;
                 }
-            });
+            });	
             //fin presenceAutreInsecte
 
             var traitementCount = $("#traitement_area tr").length;
