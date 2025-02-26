@@ -767,7 +767,7 @@
 
             //presenceAutreInsecte
 
-             var presenceAutreInsecteCount = $("#presenceAutreInsecte_area tr").length;
+            var presenceAutreInsecteCount = $("#presenceAutreInsecte_area tr").length;
 
             $(document).on('click', '#addRowPresenceAutreInsecte', function() {
 
@@ -778,6 +778,15 @@
                         <td class="row">
                             <div class="col-xs-12 col-sm-12 bg-success">
                                 <badge class="btn btn-outline--warning h-45 btn-sm text-white">Production de cacao ${presenceAutreInsecteCount}</badge>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="autreInsecteAnnée"  >Année</label>
+                                <select class="form-control selected_type" name="presenceAutreInsecte[${presenceAutreInsecteCount}][autreInsecteAnnée]" id='presenceAutreInsecte[${presenceAutreInsecteCount}][autreInsecteAnnée]')>
+                                    
+                                    @foreach ($campagnes as $campagne)
+                                        <option value="{{ $campagne->id }}"  >{{ __($campagne->nom) }} </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <!-- Production brute (KG) -->
