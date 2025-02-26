@@ -39,6 +39,7 @@ class SociauxEconomiqueController extends Controller
         return view('manager.economique.create', compact('pageTitle', 'id','producteurs','sections','localites','cooperative','campagnes','arbres'));
     }
     public function store(){
+        dd(request()->all());
 
     }
 }

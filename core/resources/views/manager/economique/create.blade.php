@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     {!! Form::open([
-                        'route' => ['manager.suivi.parcelles.store'],
+                        'route' => ['manager.traca.producteur.economiquestore'],
                         'method' => 'POST',
                         'class' => 'form-horizontal',
                         'id' => 'flocal',
@@ -58,7 +58,8 @@
                                     @foreach ($producteurs as $producteur)
                                         <option value="{{ $producteur->id }}"
                                             data-chained="{{ $producteur->localite->id }}"@selected(old('producteur'))>
-                                            {{ stripslashes($producteur->nom) }} {{ stripslashes($producteur->prenoms) }}</option>
+                                            {{ stripslashes($producteur->nom) }} {{ stripslashes($producteur->prenoms) }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -67,7 +68,8 @@
 
                     <div class="fieldset-like">
                         <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Informations sur les dépenses courantes du foyer</h5>
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur les dépenses courantes
+                                du foyer</h5>
                         </legend>
                         <div class="form-group row">
                             <?php echo Form::label(__('Quels sont les dépenses courantes du foyer ? '), null, ['class' => 'col-sm-12 control-label pt-3']); ?>
@@ -77,7 +79,8 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Dépenses')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
+                                                        @lang('Dépenses')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-3">
@@ -123,7 +126,7 @@
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Observation'), null, ['class' => '']) }}
-                                                        <input type="number" name="pesticidesAnneDerniere[0][frequence]"
+                                                        <input type="texte" name="pesticidesAnneDerniere[0][frequence]"
                                                             id="frequence-1" class="form-control frequence"
                                                             placeholder="Observation">
                                                     </div>
@@ -162,10 +165,9 @@
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label class="control-label">Nom</label>
-                                                        
+
                                                         <input type="text" name="intrantsAnneDerniere[0][nom]"
-                                                            id="nom-1" class="form-control nom"
-                                                            placeholder="Nom">
+                                                            id="nom-1" class="form-control nom" placeholder="Nom">
                                                     </div>
                                                 </div>
 
@@ -216,10 +218,11 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="fieldset-like">
                         <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Informations sur le coût de main d'oeuvre</h5>
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur le coût de main
+                                d'oeuvre</h5>
                         </legend>
                         {{-- presence d'insecte  --}}
                         <div class="form-group row" id="presenceInsectesParasitesRavageurs">
@@ -231,7 +234,8 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Main d\'oeuvre')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
+                                                        @lang('Main d\'oeuvre')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-2">
@@ -265,7 +269,8 @@
                                                         {{ Form::label(__('Nom/groupe de travail'), null, ['class' => 'control-label']) }}
                                                         <input type="text"
                                                             name="presenceAutreInsecte[0][nomTravailleur]"
-                                                            id="nombreinsectesParasites-1" class="form-control nombreinsectesParasites"
+                                                            id="nombreinsectesParasites-1"
+                                                            class="form-control nombreinsectesParasites"
                                                             placeholder="Nom/groupe de travail">
                                                     </div>
                                                 </div>
@@ -286,9 +291,9 @@
                                                 <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Coût Annuel'), null, ['class' => 'control-label']) }}
-                                                        <input type="number"
-                                                            name="insectesParasites[0][coutAnnuel]"
-                                                            id="nombreinsectesParasites-1" class="form-control autreInsecteNom"
+                                                        <input type="number" name="insectesParasites[0][coutAnnuel]"
+                                                            id="nombreinsectesParasites-1"
+                                                            class="form-control autreInsecteNom"
                                                             placeholder="Coût Annuel">
                                                     </div>
                                                 </div>
@@ -296,8 +301,7 @@
                                                 <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Temps de travail'), null, ['class' => 'control-label']) }}
-                                                        <input type="number"
-                                                            name="insectesParasites[0][temps]"
+                                                        <input type="number" name="insectesParasites[0][temps]"
                                                             id="nombreinsectesParasites-1" class="form-control"
                                                             placeholder="Temps de travail">
                                                     </div>
@@ -422,8 +426,9 @@
                     </div>
 
                     <div class="fieldset-like">
-                        <legend class="legend-center">                                                        
-                            <h5 class="font-weight-bold text-decoration-underline">Informations sur la Production de cacao des trois (3) dernières années </h5>
+                        <legend class="legend-center">
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur la Production de cacao
+                                des trois (3) dernières années </h5>
                         </legend>
                         {{-- autre insecte --}}
                         <div class="form-group row" id="presenceAutreInsecte">
@@ -433,15 +438,19 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Production de cacao ')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
+                                                        @lang('Production de cacao ')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label>Année</label>
-                                                        <select class="form-control" id="autreInsecteAnnée-1" name="presenceAutreInsecte[0][autreInsecteAnnée]" required>
-                                                            @foreach($campagnes as $campagne)
-                                                                <option value="{{ $campagne->id }}" data-price="{{$campagne->prix_achat}}">{{ $campagne->nom }}</option>
+                                                        <select class="form-control" id="autreInsecteAnnée-1"
+                                                            name="presenceAutreInsecte[0][autreInsecteAnnée]" required>
+                                                            @foreach ($campagnes as $campagne)
+                                                                <option value="{{ $campagne->id }}"
+                                                                    data-price="{{ $campagne->prix_achat }}">
+                                                                    {{ $campagne->nom }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -450,15 +459,17 @@
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label>Production Brute (KG)</label>
-                                                        <input type="number" name="presenceAutreInsecte[0][nombreAutreInsectesParasites]" id="nombreAutreInsectesParasites-0" placeholder="Production Brute (KG)">
+                                                        <input type="number"
+                                                            name="presenceAutreInsecte[0][nombreAutreInsectesParasites]"
+                                                            id="nombreAutreInsectesParasites-0"
+                                                            placeholder="Production Brute (KG)">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Revenu Brute'), null, ['class' => 'control-label']) }}
-                                                        <input type="number"
-                                                            name="presenceAutreInsecte[0][revenuBrute]"
+                                                        <input type="number" name="presenceAutreInsecte[0][revenuBrute]"
                                                             id="revenuBrute-0" class="form-control revenuBrute"
                                                             placeholder="Revenu Brute">
                                                     </div>
@@ -467,8 +478,7 @@
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Commentaire'), null, ['class' => 'control-label']) }}
-                                                        <input type="text"
-                                                            name="presenceAutreInsecte[0][commentaire]"
+                                                        <input type="text" name="presenceAutreInsecte[0][commentaire]"
                                                             id="autreInsecteNom-1" class="form-control autreInsecteNom"
                                                             placeholder="Commentaire">
                                                     </div>
@@ -494,7 +504,8 @@
                     </div>
                     <div class="fieldset-like">
                         <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Informations sur Sources de Revenus autre que le cacao</h5>
+                            <h5 class="font-weight-bold text-decoration-underline">Informations sur Sources de Revenus
+                                autre que le cacao</h5>
                         </legend>
                         {{-- presenceAutreTypeInsecteAmi --}}
                         <div class="form-group row" id="autreInsectesAmis">
@@ -506,7 +517,8 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Insectes amis')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
+                                                        @lang('Insectes amis')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-3">
@@ -521,9 +533,8 @@
                                                 <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Année'), null, ['class' => '']) }}
-                                                        <input type="number" name="annee[]"
-                                                            placeholder="Année" id="annee-1"
-                                                            class="form-control">
+                                                        <input type="number" name="annee[]" placeholder="Année"
+                                                            id="annee-1" class="form-control">
                                                     </div>
                                                 </div>
 
@@ -538,15 +549,14 @@
                                                 <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Revenu Brute'), null, ['class' => '']) }}
-                                                        <input type="number" name="revenu[]"
-                                                            placeholder="Revenu Brute" id="revenu-1"
-                                                            class="form-control">
+                                                        <input type="number" name="revenu[]" placeholder="Revenu Brute"
+                                                            id="revenu-1" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-2">
                                                     <div class="form-group row">
                                                         {{ Form::label(__('Commentaire'), null, ['class' => '']) }}
-                                                        <input type="number" name="commentaire[]"
+                                                        <input type="texte" name="commentaire[]"
                                                             placeholder="Commentaire" id="commentaire-1"
                                                             class="form-control">
                                                     </div>
@@ -691,17 +701,59 @@
             $(document).on('click', '#addRowinsectesAmis', function() {
 
                 //---> Start create table tr
-                var html_table = '<tr>';
-                html_table +=
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Autre Revenu ' +
-                    insectesAmisCount +
-                    '</badge></div><div class="col-xs-12 col-sm-3"><div class="form-group"><label for="insectesAmis" class="">Nom</label><input placeholder="Saisissez le nom du revenu" class="form-control" id="insectesAmis-' +
-                    insectesAmisCount +
-                    '" name="insectesAmis[]" type="text"></div></div> <div class="col-xs-12 col-sm-2"><div class="form-group"><label for="insectesAmis" class="">Année</label><input class="form-control" placeholder="Saisissez l\'année" type="number" name="annee[]" id="annee-' + insectesAmisCount + '"></div></div><div class="col-xs-12 col-sm-2"><div class="form-group"><label for="insectesAmis" class="">Production moyenne <br> annuelle</label><input class="form-control" placeholder="Production annuelle moyenne" type="number" name="production[]" id="production-' + insectesAmisCount + '"></div></div><div class="col-xs-12 col-sm-2"><div class="form-group"><label for="insectesAmis" class="">Revenu Brute</label><input class="form-control" placeholder="Revenu Brute" type="number" name="revenu[]" id="revenu-' + insectesAmisCount + '"></div></div><div class="col-xs-12 col-sm-2"><div class="form-group"><label for="insectesAmis" class="">Commentaire</label><input class="form-control" placeholder="Commentaire" type="texte" name="commentaire[]" id="commentaire-' + insectesAmisCount + '"></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
-                    insectesAmisCount +
-                    '" class="removeRowinsectesAmis btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></div></td>';
+                var html_table = `
+                        <tr>
+                            <td class="row">
+                                <div class="col-xs-12 col-sm-12 bg-success">
+                                    <badge class="btn btn-outline--warning h-45 btn-sm text-white">
+                                        Autre Revenu ${insectesAmisCount}
+                                    </badge>
+                                </div>
 
-                html_table += '</tr>';
+                                <div class="col-xs-12 col-sm-3">
+                                    <div class="form-group">
+                                        <label for="insectesAmis" class="">Nom</label>
+                                        <input placeholder="Saisissez le nom du revenu" class="form-control" id="insectesAmis-${insectesAmisCount}" name="insectesAmis[]" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-2">
+                                    <div class="form-group">
+                                        <label for="annee" class="">Année</label>
+                                        <input class="form-control" placeholder="Saisissez l'année" type="number" name="annee[]" id="annee-${insectesAmisCount}">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-2">
+                                    <div class="form-group">
+                                        <label for="production" class="">Production moyenne <br> annuelle</label>
+                                        <input class="form-control" placeholder="Production annuelle moyenne" type="number" name="production[]" id="production-${insectesAmisCount}">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-2">
+                                    <div class="form-group">
+                                        <label for="revenu" class="">Revenu Brut</label>
+                                        <input class="form-control" placeholder="Revenu Brut" type="number" name="revenu[]" id="revenu-${insectesAmisCount}">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-2">
+                                    <div class="form-group">
+                                        <label for="commentaire" class="">Commentaire</label>
+                                        <input class="form-control" placeholder="Commentaire" type="text" name="commentaire[]" id="commentaire-${insectesAmisCount}">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-8">
+                                    <button type="button" id="${insectesAmisCount}" class="removeRowinsectesAmis btn btn-danger btn-sm">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        `;
+
                 //---> End create table tr
 
                 insectesAmisCount = parseInt(insectesAmisCount) + 1;
@@ -784,7 +836,7 @@
                                 <select class="form-control selected_type" name="presenceAutreInsecte[${presenceAutreInsecteCount}][autreInsecteAnnée]" id='presenceAutreInsecte[${presenceAutreInsecteCount}][autreInsecteAnnée]')>
                                     
                                     @foreach ($campagnes as $campagne)
-                                        <option value="{{ $campagne->id }}" data-price="{{$campagne->prix_achat}}">{{ __($campagne->nom) }} </option>
+                                        <option value="{{ $campagne->id }}" data-price="{{ $campagne->prix_achat }}">{{ __($campagne->nom) }} </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -837,7 +889,7 @@
                     $(this).parents('tr').remove();
                     presenceAutreInsecteCount = parseInt(presenceAutreInsecteCount) - 1;
                 }
-            });	
+            });
             //fin presenceAutreInsecte
 
             var traitementCount = $("#traitement_area tr").length;
@@ -1106,114 +1158,6 @@
 
     <script>
         "use strict";
-
-        (function($) {
-
-            $('.addUserData').on('click', function() {
-
-                let count = $("#addedField select").length;
-                let length = $("#addedField").find('.single-item').length;
-
-                let html = `
-            <div class="row single-item gy-2">
-                <div class="col-md-3">
-                    <select class="form-control selected_type" name="items[${length}][arbre]" required id='arbre-${length}')>
-                        <option disabled selected value="">@lang('Arbres agro-forestiers')</option>
-                        @foreach ($arbres as $arbre)
-                            <option value="{{ $arbre->id }}"  >{{ __($arbre->nom) }} </option>
-                        @endforeach
-                    </select>
-                </div>
-                
-                <div class="col-md-3">
-                    <div class="input-group mb-3">
-                        <input type="number" class="form-control quantity" placeholder="@lang('Nombre')"  name="items[${length}][nombre]"  required>
-                        <span class="input-group-text unit"><i class="las la-balance-scale"></i></span>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn--danger w-100 removeBtn w-100 h-45" type="button">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>
-                <br><hr class="panel-wide">
-            </div>`;
-                $('#addedField').append(html)
-            });
-
-            $('#addedField').on('change', '.selected_type', function(e) {
-                let unit = $(this).find('option:selected').data('unit');
-                let parent = $(this).closest('.single-item');
-                $(parent).find('.quantity').attr('disabled', false);
-                $(parent).find('.unit').html(`${unit || '<i class="las la-balance-scale"></i>'}`);
-            });
-
-            $('#addedField').on('click', '.removeBtn', function(e) {
-                let length = $("#addedField").find('.single-item').length;
-                if (length <= 1) {
-                    notify('warning', "@lang('Au moins un élément est requis')");
-                } else {
-                    $(this).closest('.single-item').remove();
-                }
-            });
-
-        })(jQuery);
-    </script>
-    <script>
-        "use strict";
-
-        (function($) {
-
-            $('.addUserDataPesticide').on('click', function() {
-
-                let count = $("#addedFieldPesticide select").length;
-                let length = $("#addedFieldPesticide").find('.single-itemPesticide').length;
-
-                let html = `
-            <div class="row single-itemPesticide gy-2">
-                <div class="col-md-3">
-                    <select class="form-control selected_type" name="items[${length}][arbre]" required id='arbre-${length}')>
-                        <option disabled selected value="">@lang('Arbres agro-forestiers')</option>
-                        @foreach ($arbres as $arbre)
-                            <option value="{{ $arbre->id }}"  >{{ __($arbre->nom) }} </option>
-                        @endforeach
-                    </select>
-                </div>
-                
-                <div class="col-md-3">
-                    <div class="input-group mb-3">
-                        <input type="number" class="form-control quantity" placeholder="@lang('Nombre')"  name="items[${length}][nombre]"  required>
-                        <span class="input-group-text unit"><i class="las la-balance-scale"></i></span>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn--danger w-100 removeBtn w-100 h-45" type="button">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>
-                <br><hr class="panel-wide">
-            </div>`;
-                $('#addedField').append(html)
-            });
-
-            $('#addedField').on('change', '.selected_type', function(e) {
-                let unit = $(this).find('option:selected').data('unit');
-                let parent = $(this).closest('.single-item');
-                $(parent).find('.quantity').attr('disabled', false);
-                $(parent).find('.unit').html(`${unit || '<i class="las la-balance-scale"></i>'}`);
-            });
-
-            $('#addedField').on('click', '.removeBtn', function(e) {
-                let length = $("#addedField").find('.single-item').length;
-                if (length <= 1) {
-                    notify('warning', "@lang('Au moins un élément est requis')");
-                } else {
-                    $(this).closest('.single-item').remove();
-                }
-            });
-
-        })(jQuery);
-
         $(document).on('blur', '[id^="nombreAutreInsectesParasites-"]', function() {
             // Récupération de l'index à partir de l'ID du champ de production
             let index = $(this).attr('id').split('-')[1];
@@ -1222,7 +1166,8 @@
             let productionKg = parseFloat($(this).val()) || 0;
 
             // Sélectionner l'option active et récupérer le data-price
-            let selectedOption = $(`select[name="presenceAutreInsecte[${index}][autreInsecteAnnée]"] option:selected`);
+            let selectedOption = $(
+                `select[name="presenceAutreInsecte[${index}][autreInsecteAnnée]"] option:selected`);
             let prixAchat = parseFloat(selectedOption.data('price')) || 0;
 
             // Calcul du revenu brut
