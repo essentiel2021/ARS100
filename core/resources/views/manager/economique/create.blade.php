@@ -419,7 +419,7 @@
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label class="control-label">Type de compte</label>
-                                                        <select name="traitement[0][nom]" id="traitement-1"
+                                                        <select name="autreCompte[0][nom]" id="traitement-1"
                                                             class="form-control">
                                                             <option value="">Selectionner une option</option>
                                                             <option value="Mobile money">Mobile money</option>
@@ -433,7 +433,7 @@
                                                     <div class="form-group row">
                                                         <label class="control-label text-center">Avez vous de l'argent sur
                                                             ce compte ?</label>
-                                                        <select class="form-control unite" name="traitement[0][unite]"
+                                                        <select class="form-control unite" name="autreCompte[0][unite]"
                                                             id="unite-1">
                                                             <option value="">Selectionner une option</option>
                                                             <option value="Oui">Oui</option>
@@ -446,7 +446,7 @@
                                                         <label class="text-center">Avez-vous bénéficiez dun financement
                                                             ?</label>
                                                         <select class="form-control contenant"
-                                                            name="traitement[0][contenant]" id="contenant-1">
+                                                            name="autreCompte[0][contenant]" id="contenant-1">
                                                             <option value="">Selectionner une option</option>
                                                             <option value="Oui">Oui</option>
                                                             <option value="Non">Non</option>
@@ -456,7 +456,7 @@
                                                 <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
                                                         <label class="text-center">Montant du financement</label>
-                                                        <input type="number" name="traitement[0][frequence]"
+                                                        <input type="number" name="autreCompte[0][frequence]"
                                                             id="frequence-1" class="form-control frequence"
                                                             placeholder="Montant du financement">
                                                     </div>
@@ -872,8 +872,81 @@
             //fin presenceAutreInsecte
 
             var traitementCount = $("#traitement_area tr").length;
-            //Pesticide lannee derniere 
 
+            $(document).on('click', '#addRowTraitement', function() {
+
+                var html_table = `
+                <tr>
+                    <td class="row">
+                        <div class="col-xs-12 col-sm-12 bg-success">
+                            <badge class="btn btn-outline--warning h-45 btn-sm text-white">
+                                Compte ${traitementCount}
+                            </badge>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3">
+                            <div class="form-group row">
+                                <label class="control-label">Type de compte</label>
+                                <select name="traitement[${traitementCount}][nom]" id="traitement-${traitementCount}" class="form-control">
+                                    <option value="">Selectionner une option</option>
+                                    <option value="Mobile money">Mobile money</option>
+                                    <option value="Microfinance">Microfinance</option>
+                                    <option value="Banque">Banque</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3">
+                            <div class="form-group row">
+                                <label class="control-label text-center">Avez-vous de l'argent sur ce compte ?</label>
+                                <select class="form-control unite" name="traitement[${traitementCount}][unite]" id="unite-${traitementCount}">
+                                    <option value="">Selectionner une option</option>
+                                    <option value="Oui">Oui</option>
+                                    <option value="Non">Non</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3">
+                            <div class="form-group row">
+                                <label class="text-center">Avez-vous bénéficié d'un financement ?</label>
+                                <select class="form-control contenant" name="traitement[${traitementCount}][contenant]" id="contenant-${traitementCount}">
+                                    <option value="">Selectionner une option</option>
+                                    <option value="Oui">Oui</option>
+                                    <option value="Non">Non</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3">
+                            <div class="form-group row">
+                                <label class="text-center">Montant du financement</label>
+                                <input type="number" name="traitement[${traitementCount}][frequence]" id="frequence-${traitementCount}"
+                                    class="form-control frequence" placeholder="Montant du financement">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-8">
+                            <button type="button" id="${traitementCount}" class="removeRowTraitement btn btn-danger btn-sm">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                `;
+                //---> End create table tr
+                traitementCount = parseInt(traitementCount) + 1;
+                $('#traitement_area').append(html_table);
+            });
+            $(document).on('click', '.removeRowTraitement', function() {
+                var row_id = $(this).attr('id');
+                if (row_id == $("#traitement_area tr").length - 1) {
+                    $(this).parents('tr').remove();
+                    traitementCount = parseInt(traitementCount) - 1;
+                }
+            });
+            //Pesticide lannee derniere 
+            
             var pesticidesCount = $("#pesticidesAnneDerniere_area tr").length;
             $(document).on('click', '#addRowPesticidesAnneDerniere', function() {
 
