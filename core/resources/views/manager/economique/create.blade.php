@@ -324,8 +324,13 @@
                             </div>
                         </div>
                         {{-- fin presence d'insecte --}}
-                        {{-- <div class="form-group row" id="traite">
-
+                    </div>
+                    <div class="fieldset-like">
+                        <legend class="legend-center">
+                            <h5 class="font-weight-bold text-decoration-underline">Compte d'épagne et financement</h5>
+                        </legend>
+                        <div class="form-group row">
+                            <label>Les comptes d'épagnes et financement</label>
                             <div class="col-xs-12 col-sm-12">
                                 <table class="table table-striped table-bordered">
                                     <tbody id="traitement_area">
@@ -333,78 +338,53 @@
                                         <tr>
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Traitement')
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
+                                                        @lang('Compte')
                                                     </badge>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-4">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        <label class="control-label">Nom</label>
+                                                        <label class="control-label">Type de compte</label>
                                                         <select name="traitement[0][nom]" id="traitement-1"
                                                             class="form-control">
                                                             <option value="">Selectionner une option</option>
-                                                            <option value="Herbicides">Herbicides</option>
-                                                            <option value="Fongicides">Fongicides</option>
-                                                            <option value="Compost">Compost</option>
-                                                            <option value="Déchets animaux">Déchets animaux</option>
-                                                            <option value="Fiente">Fiente</option>
-                                                            <option value="Nematicide">Nematicide</option>
-                                                            <option value="Insecticide">Insecticide</option>
-                                                            <option value="Biofertilisant">Biofertilisant</option>
-                                                            <option value="Engrais chimique">Engrais chimique</option>
-                                                            <option value="Engrais foliaire">Engrais foliaire</option>
-                                                            <option value="Bouse de vache">Bouse de vache</option>
-                                                            <option value="NPK>">NPK</option>
-                                                            <option value="Insecticide organique">Insecticide organique
-                                                            </option>
-                                                            <option value="Insecticide chimique">Insecticide chimique
-                                                            </option>
-                                                            <option value="Pesticides">Pesticides</option>
+                                                            <option value="Mobile money">Mobile money</option>
+                                                            <option value="Microfinance">Microfinance</option>
+                                                            <option value="Banque">Banque</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        <label class="control-label">Unité</label>
+                                                        <label class="control-label text-center">Avez vous de l'argent sur
+                                                            ce compte ?</label>
                                                         <select class="form-control unite" name="traitement[0][unite]"
                                                             id="unite-1">
                                                             <option value="">Selectionner une option</option>
-                                                            <option value="Kg">Kg</option>
-                                                            <option value="L">L</option>
-                                                            <option value="g">g</option>
-                                                            <option value="mL">mL</option>
+                                                            <option value="Oui">Oui</option>
+                                                            <option value="Non">Non</option>
                                                         </select>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        <label class="control-label">Quantité</label>
-
-                                                        <input type="number" name="traitement[0][quantite]"
-                                                            id="quantite-1" class="form-control quantite"
-                                                            placeholder="Fréquence">
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-2">
-                                                    <div class="form-group row">
-                                                        {{ Form::label(__('Type de contenant'), null, ['class' => '']) }}
+                                                        <label class="text-center">Avez-vous bénéficiez dun financement
+                                                            ?</label>
                                                         <select class="form-control contenant"
                                                             name="traitement[0][contenant]" id="contenant-1">
                                                             <option value="">Selectionner une option</option>
-                                                            <option value="Sac">Sac</option>
-                                                            <option value="Sachet">Sachet</option>
-                                                            <option value="Boîte">Boîte</option>
-                                                            <option value="Pot">Pot</option>
+                                                            <option value="Oui">Oui</option>
+                                                            <option value="Non">Non</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-2">
+                                                <div class="col-xs-12 col-sm-3">
                                                     <div class="form-group row">
-                                                        {{ Form::label(__('Fréquence'), null, ['class' => '']) }}
+                                                        <label class="text-center">Montant du financement</label>
                                                         <input type="number" name="traitement[0][frequence]"
                                                             id="frequence-1" class="form-control frequence"
-                                                            placeholder="Fréquence">
+                                                            placeholder="Montant du financement">
                                                     </div>
                                                 </div>
 
@@ -422,9 +402,82 @@
                                     </tfoot>
                                 </table>
                             </div>
-                        </div> --}}
-                    </div>
+                        </div>
+                        <div class="form-group row">
+                            <label>Les autres comptes d'épagnes et financement</label>
+                            <div class="col-xs-12 col-sm-12">
+                                <table class="table table-striped table-bordered">
+                                    <tbody id="autreCompte_area">
 
+                                        <tr>
+                                            <td class="row">
+                                                <div class="col-xs-12 col-sm-12 bg-success">
+                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
+                                                        @lang('Compte')
+                                                    </badge>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-3">
+                                                    <div class="form-group row">
+                                                        <label class="control-label">Type de compte</label>
+                                                        <select name="traitement[0][nom]" id="traitement-1"
+                                                            class="form-control">
+                                                            <option value="">Selectionner une option</option>
+                                                            <option value="Mobile money">Mobile money</option>
+                                                            <option value="Microfinance">Microfinance</option>
+                                                            <option value="Banque">Banque</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-3">
+                                                    <div class="form-group row">
+                                                        <label class="control-label text-center">Avez vous de l'argent sur
+                                                            ce compte ?</label>
+                                                        <select class="form-control unite" name="traitement[0][unite]"
+                                                            id="unite-1">
+                                                            <option value="">Selectionner une option</option>
+                                                            <option value="Oui">Oui</option>
+                                                            <option value="Non">Non</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-3">
+                                                    <div class="form-group row">
+                                                        <label class="text-center">Avez-vous bénéficiez dun financement
+                                                            ?</label>
+                                                        <select class="form-control contenant"
+                                                            name="traitement[0][contenant]" id="contenant-1">
+                                                            <option value="">Selectionner une option</option>
+                                                            <option value="Oui">Oui</option>
+                                                            <option value="Non">Non</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-3">
+                                                    <div class="form-group row">
+                                                        <label class="text-center">Montant du financement</label>
+                                                        <input type="number" name="traitement[0][frequence]"
+                                                            id="frequence-1" class="form-control frequence"
+                                                            placeholder="Montant du financement">
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot style="background: #e3e3e3;">
+                                        <tr>
+
+                                            <td colspan="3">
+                                                <button id="addRowAutreCompte" type="button"
+                                                    class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button>
+                                            </td>
+                                        <tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <div class="fieldset-like">
                         <legend class="legend-center">
                             <h5 class="font-weight-bold text-decoration-underline">Informations sur la Production de cacao
@@ -518,7 +571,7 @@
                                             <td class="row">
                                                 <div class="col-xs-12 col-sm-12 bg-success">
                                                     <badge class="btn  btn-outline--warning h-45 btn-sm text-white">
-                                                        @lang('Insectes amis')
+                                                        @lang('Autre revenu')
                                                     </badge>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-3">
@@ -578,49 +631,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- <div class="fieldset-like">
-                        <legend class="legend-center">
-                            <h5 class="font-weight-bold text-decoration-underline">Evaluation de la faune sauvage dans la
-                                parcelle</h5>
-                        </legend>
-                        <div class="form-group row">
-                            <div class="col-xs-12 col-sm-12">
-                                <table class="table table-striped table-bordered">
-                                    <tbody id="animauxRencontres_area">
-
-                                        <tr>
-                                            <td class="row">
-                                                <div class="col-xs-12 col-sm-12 bg-success">
-                                                    <badge class="btn  btn-outline--warning h-45 btn-sm text-white">@lang('Animal')
-                                                    </badge>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-12">
-                                                    <div class="form-group row">
-                                                        {{ Form::label(__('Nom'), null, ['class' => '']) }}
-                                                        <input type="text" name="animauxRencontres[]"
-                                                            placeholder="..." id="animauxRencontres-1"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                    <tfoot style="background: #e3e3e3;">
-                                        <tr>
-
-                                            <td colspan="3">
-                                                <button id="addRowanimauxRencontres" type="button"
-                                                    class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button>
-                                            </td>
-                                        <tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div> --}}
                     <hr class="panel-wide">
 
                     <div class="form-group row">
@@ -663,38 +673,6 @@
 @push('script')
     <script type="text/javascript">
         $(document).ready(function() {
-
-            var agroforestiersCount = $("#agroforestiers_area tr").length + 1;
-            $(document).on('click', '#addRowagroforestiers', function() {
-
-                //---> Start create table tr
-                var html_table = '<tr>';
-                html_table +=
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Arbre agro-forestier ' +
-                    agroforestiersCount +
-                    '</badge></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="agroforestiers" class="">Type</label><input placeholder="Type arbre..." class="form-control" id="agroforestiers-' +
-                    agroforestiersCount +
-                    '" name="agroforestiers[]" type="text"></div></div><div class="col-xs-12 col-sm-6"><div class="form-group"><label for="nombreagroforestiers" class="">Nombre</label><input type="number" name="nombreagroforestiers[]" placeholder="Nombre d\'arbre" id="nombreagroforestiers-' +
-                    agroforestiersCount +
-                    '" class="form-control " min="1" value=""></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
-                    agroforestiersCount +
-                    '" class="removeRowagroforestiers btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></div></td>';
-
-                html_table += '</tr>';
-                //---> End create table tr
-
-                agroforestiersCount = parseInt(agroforestiersCount) + 1;
-                $('#agroforestiers_area').append(html_table);
-
-            });
-
-            $(document).on('click', '.removeRowagroforestiers', function() {
-                var row_id = $(this).attr('id');
-                if (row_id == $("#agroforestiers_area tr").length) {
-                    $(this).parents('tr').remove();
-                    agroforestiersCount = parseInt(agroforestiersCount) - 1;
-                }
-            });
 
             //insectes amis
             var insectesAmisCount = $("#insectesAmis_area tr").length + 1;
@@ -817,6 +795,7 @@
                 }
             });
 
+
             //presenceAutreInsecte
 
             var presenceAutreInsecteCount = $("#presenceAutreInsecte_area tr").length;
@@ -893,46 +872,6 @@
             //fin presenceAutreInsecte
 
             var traitementCount = $("#traitement_area tr").length;
-            $(document).on('click', '#addRowTraitement', function() {
-
-                var html_table = '<tr>';
-                html_table +=
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">traitement ' +
-                    traitementCount +
-                    '</badge></div><div class="col-xs-12 col-sm-4 pr-0"><div class="form-group"><label for="" class="">Nom</label><select class="form-control" id="traitement-' +
-                    traitementCount +
-                    '" name="traitement[' + traitementCount +
-                    '][nom]"><option value="">Selectionner une option</option><option value="Herbicides">Herbicides</option><option value="Fongicides">Fongicides</option><option value="Compost">Compost</option><option value="Déchets animaux">Déchets animaux</option><option value="Fiente">Fiente</option><option value="Nematicide">Nematicide</option><option value="Insecticide">Insecticide</option><option value="Biofertilisant">Biofertilisant</option><option value="Engrais chimique">Engrais chimique</option><option value="Engrais foliaire">Engrais foliaire</option><option value="Bouse de vache">Bouse de vache</option><option>NPK</option><option value="Insecticide organique">Insecticide organique</option><option value="Insecticide chimique">Insecticide chimique</option><option value="Pesticides">Pesticides</option></select></div></div><div class="col-xs-12 col-sm-2"><div class="form-group row"><label>Unité</label><select class="form-control unite" name="traitement[' +
-                    traitementCount + '][unite]" id="unite-' +
-                    traitementCount +
-                    '"><option value="">Selectionner une option</option><option value="Kg">Kg</option><option value="L">L</option><option value="g">g</option><option value="mL">mL</option></select></div></div> <div class="col-xs-12 col-sm-2"><div class="form-group row"><label for="" class="">Quantité</label><input type="number" name ="traitement[' +
-                    traitementCount + '][quantite]" id="quantite-' +
-                    traitementCount +
-                    '" class="form-control quantite" placeholder="Quantité"></div></div><div class="col-xs-12 col-sm-2"><div class="form-group row"><label>Type contenant</label><select class="form-control contenant" name="traitement[' +
-                    traitementCount + '][contenant]" id="contenant-' +
-                    traitementCount +
-                    '"><option value="">Selectionner une option</option><option value="Sac">Sac</option><option value="Sachet">Sachet</option><option value="Boîte">Boîte</option><option value="Pot">Pot</option></select></div></div> <div class="col-xs-12 col-sm-2"><div class="form-group row"><label for="" class="">Fréquence</label><input type="number" name="traitement[' +
-                    traitementCount + '][frequence]" id="frequence-' +
-                    traitementCount +
-                    '" class="form-control frequence" placeholder="Fréquence"></div></div><div class="col-xs-12 col-sm-8"><button type="button" id="' +
-                    traitementCount +
-                    '" class="removeRowTraitement btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></div></td>';
-                html_table += '</tr>';
-                //---> End create table tr
-
-                traitementCount = parseInt(traitementCount) + 1;
-                $('#traitement_area').append(html_table);
-
-            });
-
-            $(document).on('click', '.removeRowTraitement', function() {
-                var row_id = $(this).attr('id');
-                if (row_id == $("#traitement_area tr").length - 1) {
-                    $(this).parents('tr').remove();
-                    traitementCount = parseInt(traitementCount) - 1;
-                }
-            });
-
             //Pesticide lannee derniere 
 
             var pesticidesCount = $("#pesticidesAnneDerniere_area tr").length;
@@ -1012,142 +951,6 @@
                 }
             });
             //fin intrants lanne derniere
-            var animauxRencontresCount = $("#animauxRencontres_area tr").length + 1;
-            $(document).on('click', '#addRowanimauxRencontres', function() {
-
-                //---> Start create table tr
-                var html_table = '<tr>';
-                html_table +=
-                    '<td class="row"><div class="col-xs-12 col-sm-12 bg-success"><badge class="btn  btn-outline--warning h-45 btn-sm text-white">Animal ' +
-                    animauxRencontresCount +
-                    '</badge></div><div class="col-xs-12 col-sm-12"><div class="form-group"><label for="animauxRencontres" class="">Animal</label><input placeholder="Nom animal..." class="form-control" id="animauxRencontres-' +
-                    animauxRencontresCount +
-                    '" name="animauxRencontres[]" type="text"></div></div><div class="col-xs-12 col-sm-12"><button type="button" id="' +
-                    animauxRencontresCount +
-                    '" class="removeRowanimauxRencontres btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></div></td>';
-
-                html_table += '</tr>';
-                //---> End create table tr
-
-                animauxRencontresCount = parseInt(animauxRencontresCount) + 1;
-                $('#animauxRencontres_area').append(html_table);
-
-            });
-
-            $(document).on('click', '.removeRowanimauxRencontres', function() {
-                var row_id = $(this).attr('id');
-                if (row_id == $("#animauxRencontres_area tr").length) {
-                    $(this).parents('tr').remove();
-                    animauxRencontresCount = parseInt(animauxRencontresCount) - 1;
-                }
-            });
-
-            $('#courseaux,#agroforestiersobtenus,#recu,#autrePesticides,#autrePresenceInsectesParasitesRavageurs,#traite')
-                .hide();
-
-            $('.arbresagroforestiers').change(function() {
-                var arbresagroforestiers = $('.arbresagroforestiers').val();
-                if (arbresagroforestiers == 'oui') {
-                    $('#agroforestiersobtenus').show('slow');
-                    $('#recu').show('slow');
-                    $('.recuArbreAgroForestier').show('slow');
-                    $('.recuArbreAgroForestier').attr('required', true);
-                } else {
-                    $('#agroforestiersobtenus').hide('slow');
-                    $('#recu').hide('slow');
-                    $('.recuArbreAgroForestier').hide('slow');
-                    $('.recuArbreAgroForestier').attr('required', false);
-                    $('.recuArbreAgroForestier').val('');
-                }
-            });
-
-            $('.pesticideUtiliseAnne').change(function() {
-                var pesticideUtiliseAnne = $('.pesticideUtiliseAnne').find(":selected").map((key, item) => {
-                    return item.textContent.trim();
-                }).get();
-                if (pesticideUtiliseAnne.includes("Autre")) {
-                    $('#autrePesticides').show('slow');
-                    $('#autrePesticide').prop('required', true);
-                    $('.autrePesticide').show('slow');
-
-                } else {
-
-                    $('#autrePesticides').hide('slow');
-                    $('#autrePesticide').prop('required', false);
-                    $('.autrePesticide').hide('slow');
-                    $('.autrePesticide').val('');
-
-                }
-            });
-            $('.presenceInsectesParasites').change(function() {
-                var presenceInsectesParasites = $('.presenceInsectesParasites').val();
-                if (presenceInsectesParasites == 'oui') {
-                    $('#presenceInsectesParasitesRavageurs').show('slow');
-                    $('.presenceInsectesParasitesRavageur').show('slow');
-                } else {
-                    $('#presenceInsectesParasitesRavageurs').hide('slow');
-                    $('.presenceInsectesParasitesRavageur').val('');
-                    $('#autrePresenceInsectesParasitesRavageurs').hide('slow');
-
-                    var selectElements = $('select[name^="insectesParasites["]');
-
-                    // Faire quelque chose avec chaque élément sélectionné
-                    selectElements.each(function() {
-                        // Vous pouvez accéder à chaque élément individuellement avec $(this)
-                        $(this).val($(this).find('option:eq(0)').val());
-                        console.log($(this))
-                    });
-                }
-            });
-            $('.autreInsecte').change(function() {
-                var autreInsecte = $('.autreInsecte').val();
-                if (autreInsecte == 'oui') {
-                    $('#presenceAutreInsecte').show('slow');
-                } else {
-                    $('#presenceAutreInsecte').hide('slow');
-                    $('#presenceAutreInsecte input').val('');
-                    var selectElements = $('select[name^="presenceAutreInsecte["]');
-
-                    // Faire quelque chose avec chaque élément sélectionné
-                    selectElements.each(function() {
-                        // Vous pouvez accéder à chaque élément individuellement avec $(this)
-                        $(this).val($(this).find('option:eq(0)').val());
-                        console.log($(this))
-                    });
-
-                }
-            });
-
-
-            $('.presenceAutreTypeInsecteAmi').change(function() {
-                var presenceAutreTypeInsecteAmi = $('.presenceAutreTypeInsecteAmi').val();
-                if (presenceAutreTypeInsecteAmi == 'oui') {
-
-                    $('#autreInsectesAmis').show('slow');
-
-                } else {
-                    $('#autreInsectesAmis').hide('slow');
-                    $('#autreInsectesAmis input').val('');
-                }
-            });
-            $('#traiterParcelle').change(function() {
-                var traiterParcelle = $('#traiterParcelle').val();
-                if (traiterParcelle == 'oui') {
-                    $('#traite').show('slow');
-                } else {
-                    $('#traite').hide('slow');
-                    $('#traite input').val('');
-                    var selectElements = $('select[name^="traitement["]');
-
-                    // Faire quelque chose avec chaque élément sélectionné
-                    selectElements.each(function() {
-                        // Vous pouvez accéder à chaque élément individuellement avec $(this)
-                        $(this).val($(this).find('option:eq(0)').val());
-                        console.log($(this))
-                    });
-                    //traitement[0][nom]
-                }
-            });
 
             $('#localite').chained("#section")
             $("#producteur").chained("#localite");
