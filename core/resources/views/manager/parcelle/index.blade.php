@@ -13,7 +13,7 @@
                                 <input type="text" name="search" value="{{ request()->search }}" class="form-control">
                             </div>
                             <div class="flex-grow-1">
-                                <label>@lang('Section')</label>
+                                <label>Village</label>
                                 <select name="section" class="form-control select2-basic" data-live-search="true" id="section">
                                     <option value="">@lang('Toutes')</option>
                                     @foreach ($sections as $local)
@@ -24,7 +24,7 @@
                                 </select>
                             </div>
                             <div class="flex-grow-1">
-                                <label>@lang('Localité')</label>
+                                <label>Campement</label>
                                 <select name="localite" class="form-control select2-basic" id="localite">
                                     <option value="">@lang('Toutes')</option>
                                     @foreach ($localites as $local)
@@ -100,8 +100,8 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>@lang('Section')</th>
-                                    <th>@lang('Localite')</th>
+                                    <th>Village</th>
+                                    <th>Campement</th>
                                     <th>@lang('Code Parcelle')</th>
                                     <th>@lang('Producteur')</th>
                                     <th>@lang('Statut declaration')</th>
