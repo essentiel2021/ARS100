@@ -13,7 +13,7 @@
                     ]) !!}
 
                     <div class="form-group row">
-                        <label class="col-sm-4 control-label">@lang('Selectionner une section')</label>
+                        <label class="col-sm-4 control-label">Selectionner un village</label>
                         <div class="col-xs-12 col-sm-8">
                             <select class="form-control" name="section" id="section" required>
                                 <option value="">@lang('Selectionner une option')</option>
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-4 control-label">@lang('Selectionner une localite')</label>
+                        <label class="col-sm-4 control-label">Selectionner un campement</label>
                         <div class="col-xs-12 col-sm-8">
                             <select class="form-control" name="localite" id="localite" required>
                                 <option value="">@lang('Selectionner une option')</option>
@@ -177,7 +177,7 @@
                         </div>
                     </div>
 
-                    <div class="row mb-30">
+                    {{-- <div class="row mb-30">
                         <div class="col-lg-12">
                             <div class="card border--primary mt-3">
                                 <h5 class="card-header bg--primary text-white">@lang('Quels sont les arbres à Ombrages observés ?')
@@ -187,15 +187,15 @@
                                 </h5>
                                 <div class="card-body">
                                     <div class="row" id="addedField">
-                                        <?php $i = 0; ?>
+                                        <?php //$i = 0; ?>
                                         @if (old('items'))
                                             @foreach (old('items') as $item)
                                                 <div class="row single-item gy-2">
                                                     <div class="col-md-8">
                                                         <select class="form-control select2-basic"
                                                             name="items[{{ $loop->index }}][arbre]"
-                                                            id='producteur-<?php echo $i; ?>'
-                                                            onchange=getParcelle(<?php echo $i; ?>) required>
+                                                            id='producteur-<?php //echo $i; ?>'
+                                                            onchange=getParcelle(<?php //echo $i; ?>) required>
                                                             <option disabled selected value="">@lang('Abres d\'ombrages')
                                                             </option>
                                                             @foreach ($arbres as $arbre)
@@ -231,7 +231,109 @@
                                 </div>
                             </div>
                         </div>
+                    </div> --}}
+
+                    <div class="col-xs-12 col-sm-12">
+                        <table class="table table-striped table-bordered">
+                            <tbody id="champsDB_area">
+                                <tr>
+                                    <td class="row">
+                                        <div class="col-xs-12 col-sm-12 bg-success">
+                                            <badge class="btn btn-outline--warning h-45 btn-sm text-white">
+                                                Informations sur la culture
+                                            </badge>
+                                        </div>
+                                        
+                                        <!-- Libellé -->
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group row">
+                                                <label>Libellé</label>
+                                                <select class="form-control" name="culture[0][libelle]">
+                                                    <option value="cacao">Cacao</option>
+                                                    <option value="autre">Autres cultures</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Liste des terres -->
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group row">
+                                                <label>Liste des terres</label>
+                                                <input type="text" class="form-control" name="culture[0][terres]" placeholder="Autre à préciser">
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Année de création -->
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group row">
+                                                <label>Année de création</label>
+                                                <input type="number" class="form-control" name="culture[0][annee]" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Précédent cultural -->
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group row">
+                                                <label>Précédent cultural</label>
+                                                <input type="text" class="form-control" name="culture[0][precedent]" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Superficie -->
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group row">
+                                                <label>Superficie (ha)</label>
+                                                <input type="number" step="0.01" class="form-control" name="culture[0][superficie]" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Origine matériel végétal -->
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group row">
+                                                <label>Origine matériel végétal</label>
+                                                <select class="form-control" name="culture[0][origine]">
+                                                    <option value="tout_venant">Tout venant</option>
+                                                    <option value="ameliore">Semence améliorée</option>
+                                                    <option value="autre">Autre (Préciser)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Autre précision sur origine -->
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group row">
+                                                <label>Autre (Préciser)</label>
+                                                <input type="text" class="form-control" name="culture[0][autre_origine]">
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Le champ est-il en production -->
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group row">
+                                                <label>Le champ est-il en production</label>
+                                                <select class="form-control" name="culture[0][production]">
+                                                    <option value="oui">Oui</option>
+                                                    <option value="non">Non</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot style="background: #e3e3e3;">
+                                <tr>
+                                    <td colspan="3">
+                                        <button id="addRowCultureDB" type="button" class="btn btn-success btn-sm">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
+                    
+                    <hr class="panel-wide">
+
                     <div class="col-xs-12 col-sm-12">
                         <table class="table table-striped table-bordered">
                             <tbody id="insectesParasites_area">
@@ -286,6 +388,7 @@
                     </div>
 
                     <hr class="panel-wide">
+                    
                     <div class="form-group row">
                         {{ Form::label(__('Information GPS de la parcelle'), null, ['class' => 'col-sm-4 control-label']) }}
                         <div class="col-xs-12 col-sm-12">
@@ -513,6 +616,137 @@
                 insectesParasitesCount = parseInt(insectesParasitesCount) - 1;
             }
         });
+
+
+        $(document).ready(function () {
+            // Initially hide the Liste des terres field
+            $('input[name="culture[0][terres]"]').closest('.form-group.row').parent().hide();
+    
+            // Detect change in the Libellé select
+            $('select[name="culture[0][libelle]"]').change(function () {
+                if ($(this).val() === 'autre') {
+                    $('input[name="culture[0][terres]"]').closest('.form-group.row').parent().show();
+                } else {
+                    $('input[name="culture[0][terres]"]').closest('.form-group.row').parent().hide();
+                }
+            });
+
+            // Initially hide the "Autre (Préciser)" input field
+            $('input[name="culture[0][autre_origine]"]').closest('.form-group.row').parent().hide();
+
+            // Detect change in the "Origine matériel végétal" select
+            $('select[name="culture[0][origine]"]').change(function () {
+                if ($(this).val() === 'autre') {
+                    $('input[name="culture[0][autre_origine]"]').closest('.form-group.row').parent().show();
+                } else {
+                    $('input[name="culture[0][autre_origine]"]').closest('.form-group.row').parent().hide();
+                }
+            });
+
+            var cultureCount = $("#champsDB_area tr").length;
+            cultureCount++;
+            $(document).on("click", "#addRowCultureDB", function () {
+                
+                var html_table = `
+                    <tr>
+                        <td class="row">
+                            <div class="col-xs-12 col-sm-12 bg-success">
+                                <badge class="btn btn-outline--warning h-45 btn-sm text-white">
+                                    Informations sur la culture ${cultureCount}
+                                </badge>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group row">
+                                    <label>Libellé</label>
+                                    <select class="form-control" name="culture[${cultureCount}][libelle]">
+                                        <option value="cacao">Cacao</option>
+                                        <option value="autre">Autres cultures</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group row">
+                                    <label>Liste des terres</label>
+                                    <input type="text" class="form-control" name="culture[${cultureCount}][terres]" placeholder="Autre à préciser">
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group row">
+                                    <label>Année de création</label>
+                                    <input type="number" class="form-control" name="culture[${cultureCount}][annee]" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group row">
+                                    <label>Précédent cultural</label>
+                                    <input type="text" class="form-control" name="culture[${cultureCount}][precedent]" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group row">
+                                    <label>Superficie (ha)</label>
+                                    <input type="number" step="0.01" class="form-control" name="culture[${cultureCount}][superficie]" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group row">
+                                    <label>Origine matériel végétal</label>
+                                    <select class="form-control" name="culture[${cultureCount}][origine]">
+                                        <option value="tout_venant">Tout venant</option>
+                                        <option value="ameliore">Semence améliorée</option>
+                                        <option value="autre">Autre (Préciser)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group row">
+                                    <label>Autre (Préciser)</label>
+                                    <input type="text" class="form-control" name="culture[${cultureCount}][autre_origine]">
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group row">
+                                    <label>Le champ est-il en production</label>
+                                    <select class="form-control" name="culture[${cultureCount}][production]">
+                                        <option value="oui">Oui</option>
+                                        <option value="non">Non</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-8">
+                                <button type="button" class="removeRowCultureDB btn btn-danger btn-sm">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+
+                cultureCount = parseInt(cultureCount) + 1;
+                $("#champsDB_area").append(html_table);
+            });
+
+            $(document).on('click', '.removeRowCultureDB', function() {
+                var row_id = $(this).attr('id');
+                if (row_id == $("#champsDB_area tr").length) {
+                    $(this).parents('tr').remove();
+                    cultureDBCount = parseInt(cultureDBCount) - 1;
+                }
+            });
+
+
+        });
+
+
     </script>
     <script>
         "use strict";
@@ -526,29 +760,29 @@
                 let length = $("#addedField").find('.single-item').length;
 
                 let html = `
-            <div class="row single-item gy-2">
-                <div class="col-md-8">
-                    <select class="form-control select2-basic" name="items[${length}][arbre]" required id='arbre-${length}')>
-                        <option disabled selected value="">@lang('Arbres d\'ombrages')</option>
-                        @foreach ($arbres as $arbre)
-                            <option value="{{ $arbre->id }}"  >{{ __($arbre->nom) }} </option>
-                        @endforeach
-                    </select>
-                </div>
-                
-                <div class="col-md-3">
-                    <div class="input-group mb-3">
-                        <input type="number" class="form-control quantity" placeholder="@lang('Nombre')"  name="items[${length}][nombre]"  required>
-                        <span class="input-group-text unit"><i class="las la-balance-scale"></i></span>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn--danger w-100 removeBtn w-100 h-45" type="button">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>
-                <br><hr class="panel-wide">
-            </div>`;
+                    <div class="row single-item gy-2">
+                        <div class="col-md-8">
+                            <select class="form-control select2-basic" name="items[${length}][arbre]" required id='arbre-${length}')>
+                                <option disabled selected value="">@lang('Arbres d\'ombrages')</option>
+                                @foreach ($arbres as $arbre)
+                                    <option value="{{ $arbre->id }}"  >{{ __($arbre->nom) }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <div class="input-group mb-3">
+                                <input type="number" class="form-control quantity" placeholder="@lang('Nombre')"  name="items[${length}][nombre]"  required>
+                                <span class="input-group-text unit"><i class="las la-balance-scale"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn--danger w-100 removeBtn w-100 h-45" type="button">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                        <br><hr class="panel-wide">
+                    </div>`;
                 $('#addedField').append(html)
             });
 

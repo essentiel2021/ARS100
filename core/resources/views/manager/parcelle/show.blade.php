@@ -7,14 +7,14 @@
                     <table class="table table-striped table-bordered">
 
                         <tr>
-                            <td>Section</td>
+                            <td>Village</td>
                             <td>
                                 {{ @$section->libelle }}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Localité</td>
+                            <td>Campement</td>
                             <td>
                                 {{ @$localite->nom }}
 
