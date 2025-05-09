@@ -119,38 +119,25 @@ class ApiproducteurController extends Controller
         $producteur->esignature = $esignature;
       }
       $producteur->proprietaires = $request->proprietaires;
-      $producteur->statutMatrimonial = $request->statutMatrimonial;
       $producteur->programme_id = $request->programme_id;
       $producteur->localite_id = $request->localite_id;
       $producteur->habitationProducteur = $request->habitationProducteur;
-      $producteur->autreMembre = $request->autreMembre;
-      $producteur->autrePhone = $request->autrePhone;
       $producteur->numPiece = $request->numPiece;
       $producteur->num_ccc = $request->num_ccc;
-      $producteur->carteCMU = $request->carteCMU;
-      $producteur->carteCMUDispo = $request->carteCMUDispo;
-      $producteur->typeCarteSecuriteSociale = $request->typeCarteSecuriteSociale;
-      $producteur->numSecuriteSociale = $request->numSecuriteSociale;
-      $producteur->numCMU = $request->numCMU;
-      $producteur->anneeDemarrage = $request->anneeDemarrage;
-      $producteur->anneeFin = $request->anneeFin;
       $producteur->autreCertificats = $request->autreCertificats;
       $producteur->consentement  = $request->consentement;
-      $producteur->statut  = $request->statut;
       $producteur->certificat     = $request->certificat;
       $producteur->nom = $request->nom;
       $producteur->prenoms    = $request->prenoms;
       $producteur->sexe    = $request->sexe;
-      $producteur->nationalite    = $request->nationalite;
       $producteur->dateNaiss    = $request->dateNaiss;
       $producteur->phone1    = $request->phone1;
-      $producteur->phone2    = $request->phone2;
       $producteur->niveau_etude    = $request->niveau_etude;
-      $producteur->type_piece    = $request->type_piece;
       $producteur->numPiece    = $request->numPiece;
       $producteur->codeProd = $request->codeProd;
-      $producteur->plantePartage = $request->plantePartage;
-      $producteur->numeroAssocie = $request->numeroAssocie;
+      $producteur->categorie_ethnique = $request->categorie_ethnique;
+      $producteur->autre_instruction = $request->autre_instruction;
+      $producteur->statut_scolaire = $request->statut_scolaire;
       $producteur->userid = $request->userid;
       if ($producteur->codeProdapp == null) {
         $coop = DB::table('localites as l')->join('cooperatives as c', 'l.cooperative_id', '=', 'c.id')->where('l.id', $request->localite)->select('c.codeApp')->first();
@@ -160,78 +147,78 @@ class ApiproducteurController extends Controller
           $producteur->codeProdapp = null;
         }
       }
-      $data = $request->all();
-      unset($data['certificats']);
-      $producteur->update($data);
-      if ($producteur != null) {
-        $id = $producteur->id;
-        $datas  = $data2 = [];
-        if (($request->certificats != null)) {
-          Producteur_certification::where('producteur_id', $id)->delete();
-          $i = 0;
-          foreach ($request->certificats as $certificat) {
-            if (!empty($certificat)) {
-              $datas[] = [
-                'producteur_id' => $id,
-                'certification' => $certificat,
-              ];
-            }
+      // $data = $request->all();
+      // unset($data['certificats']);
+      // $producteur->update($data);
+      // if ($producteur != null) {
+      //   $id = $producteur->id;
+      //   $datas  = $data2 = [];
+      //   if (($request->certificats != null)) {
+      //     Producteur_certification::where('producteur_id', $id)->delete();
+      //     $i = 0;
+      //     foreach ($request->certificats as $certificat) {
+      //       if (!empty($certificat)) {
+      //         $datas[] = [
+      //           'producteur_id' => $id,
+      //           'certification' => $certificat,
+      //         ];
+      //       }
 
-            $i++;
-          }
-        }
+      //       $i++;
+      //     }
+      //   }
 
-        Producteur_certification::insert($datas);
-      }
+      //   Producteur_certification::insert($datas);
+      // }
 
       $message = "Le producteur a été mis à jour avec succès";
     } else {
       $producteur = new Producteur();
       $producteur->proprietaires = $request->proprietaires;
-      $producteur->statutMatrimonial = $request->statutMatrimonial;
       $producteur->programme_id = $request->programme_id;
       $producteur->localite_id = $request->localite_id;
       $producteur->habitationProducteur = $request->habitationProducteur;
-      $producteur->autreMembre = $request->autreMembre;
-      $producteur->autrePhone = $request->autrePhone;
       $producteur->numPiece = $request->numPiece;
       $producteur->num_ccc = $request->num_ccc;
-      $producteur->carteCMU = $request->carteCMU;
-      $producteur->carteCMUDispo = $request->carteCMUDispo;
-      $producteur->typeCarteSecuriteSociale = $request->typeCarteSecuriteSociale;
-      $producteur->numSecuriteSociale = $request->numSecuriteSociale;
-      $producteur->numCMU = $request->numCMU;
-      $producteur->anneeDemarrage = $request->anneeDemarrage;
-      $producteur->anneeFin = $request->anneeFin;
       $producteur->autreCertificats = $request->autreCertificats;
       $producteur->consentement  = $request->consentement;
-      $producteur->statut  = $request->statut;
       $producteur->certificat     = $request->certificat;
       $producteur->nom = $request->nom;
       $producteur->prenoms    = $request->prenoms;
       $producteur->sexe    = $request->sexe;
-      $producteur->nationalite    = $request->nationalite;
       $producteur->dateNaiss    = $request->dateNaiss;
       $producteur->phone1    = $request->phone1;
-      $producteur->phone2    = $request->phone2;
       $producteur->niveau_etude    = $request->niveau_etude;
-      $producteur->type_piece    = $request->type_piece;
       $producteur->numPiece    = $request->numPiece;
-      $producteur->userid = $request->userid;
+      $producteur->userid = auth()->user()->id;
       $producteur->codeProd = $request->codeProd;
-      $producteur->plantePartage = $request->plantePartage;
+      $producteur->categorie_ethnique = $request->categorie_ethnique;
+      $producteur->autre_instruction = $request->autre_instruction;
+      $producteur->statut_scolaire = $request->statut_scolaire;
       $producteur->userid = $request->userid;
-      if (!file_exists(storage_path() . "/app/public/producteurs/pieces")) {
-        File::makeDirectory(storage_path() . "/app/public/producteurs/pieces", 0777, true);
+      // if (!file_exists(storage_path() . "/app/public/producteurs/pieces")) {
+      //   File::makeDirectory(storage_path() . "/app/public/producteurs/pieces", 0777, true);
+      // }
+      if (!file_exists(storage_path() . "/app/public/producteurs/photos")) {
+        File::makeDirectory(storage_path() . "/app/public/producteurs/photos", 0777, true);
       }
-      if ($request->picture) {
-        $image = $request->picture;
+      // if ($request->picture) {
+      //   $image = $request->copiecarterecto;
+      //   $image = Str::after($image, 'base64,');
+      //   $image = str_replace(' ', '+', $image);
+      //   $imageName = (string) Str::uuid() . '.' . 'jpg';
+      //   File::put(storage_path() . "/app/public/producteurs/photos/" . $imageName, base64_decode($image));
+      //   $picture = "public/producteurs/photos/$imageName";
+      //   $producteur->picture = $picture;
+      // }
+      if ($request->copiecarterecto) {
+        $image = $request->copiecarterecto;
         $image = Str::after($image, 'base64,');
         $image = str_replace(' ', '+', $image);
         $imageName = (string) Str::uuid() . '.' . 'jpg';
         File::put(storage_path() . "/app/public/producteurs/pieces/" . $imageName, base64_decode($image));
-        $picture = "public/producteurs/pieces/$imageName";
-        $producteur->picture = $picture;
+        $copiecarterecto = "public/producteurs/pieces/$imageName";
+        $producteur->copiecarterecto = $copiecarterecto;
       }
       if ($request->esignature) {
 
@@ -252,32 +239,32 @@ class ApiproducteurController extends Controller
       }
       $producteur->save();
 
-      if ($producteur != null) {
-        $id = $producteur->id;
-        if ($producteur != null) {
-          $id = $producteur->id;
-          $datas  = [];
-          if ($request->certificats != null) {
-            $certificats = array_filter($request->certificats);
-            if (!empty($certificats)) {
-              Producteur_certification::where('producteur_id', $id)->delete();
-              foreach ($certificats as $certificat) {
-                if ($certificat == 'Autre') {
-                  $autre = new Certification();
-                  $autre->nom = $request->autreCertificats;
-                  $autre->save();
-                  $certificat = $request->autreCertificats;
-                }
-                $datas[] = [
-                  'producteur_id' => $id,
-                  'certification' => $certificat,
-                ];
-              }
-              Producteur_certification::insert($datas);
-            }
-          }
-        }
-      }
+      // if ($producteur != null) {
+      //   $id = $producteur->id;
+      //   if ($producteur != null) {
+      //     $id = $producteur->id;
+      //     $datas  = [];
+      //     if ($request->certificats != null) {
+      //       $certificats = array_filter($request->certificats);
+      //       if (!empty($certificats)) {
+      //         Producteur_certification::where('producteur_id', $id)->delete();
+      //         foreach ($certificats as $certificat) {
+      //           if ($certificat == 'Autre') {
+      //             $autre = new Certification();
+      //             $autre->nom = $request->autreCertificats;
+      //             $autre->save();
+      //             $certificat = $request->autreCertificats;
+      //           }
+      //           $datas[] = [
+      //             'producteur_id' => $id,
+      //             'certification' => $certificat,
+      //           ];
+      //         }
+      //         Producteur_certification::insert($datas);
+      //       }
+      //     }
+      //   }
+      // }
       $message = "Le producteur a été créé avec succès";
     }
     return response()->json($producteur, 201);
@@ -476,7 +463,8 @@ class ApiproducteurController extends Controller
     $action = 'non';
 
     $data = Producteur::select('codeProdapp')->join('localites as l', 'producteurs.localite_id', '=', 'l.id')->join('sections as s', 'l.section_id', '=', 's.id')->join('cooperatives as c', 's.cooperative_id', '=', 'c.id')->where([
-      ['codeProdapp', '!=', null], ['codeApp', $codeApp]
+      ['codeProdapp', '!=', null],
+      ['codeApp', $codeApp]
     ])->orderby('producteurs.id', 'desc')->first();
 
     if ($data != null) {

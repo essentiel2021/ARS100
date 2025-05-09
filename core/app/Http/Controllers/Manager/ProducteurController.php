@@ -50,7 +50,7 @@ class ProducteurController extends Controller
         $programmes = Programme::all();
 
         $producteurs = Producteur::dateFilter()
-            ->searchable(["nationalite", "type_piece", "codeProd", "codeProdapp", "producteurs.nom", "prenoms", "sexe", "dateNaiss", "phone1", "niveau_etude", "numPiece", "consentement", "statut", "certificat"])
+            ->searchable(["codeProd", "codeProdapp", "producteurs.nom", "prenoms", "sexe", "dateNaiss", "phone1", "niveau_etude", "numPiece", "consentement"])
             ->latest('id')
             ->joinRelationship('localite.section')
             ->when(request()->localite, function ($query, $localite) {
@@ -73,8 +73,8 @@ class ProducteurController extends Controller
         $total_prod = $producteursFiltre->count();
         $total_prod_h = $producteursFiltre->where('sexe', 'H')->count();
         $total_prod_f = $producteursFiltre->where('sexe', 'F')->count();
-        $total_prod_cert = $producteursFiltre->where('statut', 'Certifie')->count();
-        $total_prod_cand = $producteursFiltre->where('statut', 'Candidat')->count();
+        // $total_prod_cert = $producteursFiltre->where('statut', 'Certifie')->count();
+        // $total_prod_cand = $producteursFiltre->where('statut', 'Candidat')->count();
 
         if (request()->download) {
             $producteur = Producteur::find(decrypt(request()->download));
@@ -263,47 +263,43 @@ class ProducteurController extends Controller
         }
         $producteur = new Producteur();
         $producteur->proprietaires = $request->proprietaires;
-        // $producteur->statutMatrimonial = $request->statutMatrimonial;
         $producteur->programme_id = $request->programme_id;
         $producteur->localite_id = $request->localite_id;
         $producteur->habitationProducteur = $request->habitationProducteur;
-        $producteur->autreMembre = $request->autreMembre;
-        $producteur->autrePhone = $request->autrePhone;
         $producteur->numPiece = $request->numPiece;
         $producteur->num_ccc = $request->num_ccc;
-        $producteur->carteCMU = $request->carteCMU;
-        $producteur->carteCMUDispo = $request->carteCMUDispo;
-        $producteur->typeCarteSecuriteSociale = $request->typeCarteSecuriteSociale;
-        $producteur->numSecuriteSociale = $request->numSecuriteSociale;
-        $producteur->numCMU = $request->numCMU;
-        $producteur->anneeDemarrage = $request->anneeDemarrage;
-        $producteur->anneeFin = $request->anneeFin;
         $producteur->autreCertificats = $request->autreCertificats;
         $producteur->consentement  = $request->consentement;
-        $producteur->statut  = $request->statut;
         $producteur->certificat     = $request->certificat;
         $producteur->nom = $request->nom;
         $producteur->prenoms    = $request->prenoms;
         $producteur->sexe    = $request->sexe;
-        $producteur->nationalite    = $request->nationalite;
         $producteur->dateNaiss    = $request->dateNaiss;
         $producteur->phone1    = $request->phone1;
-        $producteur->phone2    = $request->phone2;
         $producteur->niveau_etude    = $request->niveau_etude;
-        $producteur->type_piece    = $request->type_piece;
         $producteur->numPiece    = $request->numPiece;
         $producteur->userid = auth()->user()->id;
         $producteur->codeProd = $request->codeProd;
-        $producteur->plantePartage = $request->plantePartage;
-        $producteur->numeroAssocie = $request->numeroAssocie;
         $producteur->categorie_ethnique = $request->categorie_ethnique;
         $producteur->autre_instruction = $request->autre_instruction;
         $producteur->statut_scolaire = $request->statut_scolaire;
-        $producteur->autre_lien_parente = $request->autre_lien_parente;
 
-        if ($request->hasFile('picture')) {
+        // if ($request->hasFile('picture')) {
+        //     try {
+        //         $producteur->picture = $request->file('picture')->store('public/producteurs/photos');
+        //     } catch (\Exception $exp) {
+        //         $notify[] = ['error', 'Impossible de télécharger votre image'];
+        //         return back()->withNotify($notify);
+        //     }
+        // }
+
+        if ($request->hasFile('copiecarterecto')) {
             try {
-                $producteur->picture = $request->file('picture')->store('public/producteurs/photos');
+                $directory = 'public/producteurs/photos';
+                if (!Storage::exists($directory)) {
+                    Storage::makeDirectory($directory);
+                }
+                $producteur->copiecarterecto = $request->file('copiecarterecto')->store('public/producteurs/photos');
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Impossible de télécharger votre image'];
                 return back()->withNotify($notify);
@@ -421,39 +417,23 @@ class ProducteurController extends Controller
         $request->validate($validationRule, $messages);
 
         $producteur->proprietaires = $request->proprietaires;
-        $producteur->statutMatrimonial = $request->statutMatrimonial;
         $producteur->programme_id = $request->programme_id;
         $producteur->localite_id = $request->localite_id;
         $producteur->habitationProducteur = $request->habitationProducteur;
-        $producteur->autreMembre = $request->autreMembre;
-        $producteur->autrePhone = $request->autrePhone;
         $producteur->numPiece = $request->numPiece;
         $producteur->num_ccc = $request->num_ccc;
-        $producteur->carteCMU = $request->carteCMU;
-        $producteur->typeCarteSecuriteSociale = $request->typeCarteSecuriteSociale;
-        $producteur->numSecuriteSociale = $request->numSecuriteSociale;
-        $producteur->numCMU = $request->numCMU;
-        $producteur->carteCMUDispo = $request->carteCMUDispo;
-        $producteur->anneeDemarrage = $request->anneeDemarrage;
-        $producteur->anneeFin = $request->anneeFin;
         $producteur->autreCertificats = $request->autreCertificats;
         $producteur->consentement  = $request->consentement;
-        $producteur->statut  = $request->statut;
         $producteur->certificat     = $request->certificat;
         $producteur->nom = $request->nom;
         $producteur->prenoms    = $request->prenoms;
         $producteur->sexe    = $request->sexe;
-        $producteur->nationalite    = $request->nationalite;
         $producteur->dateNaiss    = $request->dateNaiss;
         $producteur->phone1    = $request->phone1;
-        $producteur->phone2    = $request->phone2;
         $producteur->niveau_etude    = $request->niveau_etude;
-        $producteur->type_piece    = $request->type_piece;
         $producteur->numPiece    = $request->numPiece;
         $producteur->userid = auth()->user()->id;
         $producteur->codeProd = $request->codeProd;
-        $producteur->plantePartage = $request->plantePartage;
-        $producteur->numeroAssocie = $request->numeroAssocie;
         $producteur->statut_scolaire = $request->statut_scolaire;
         $producteur->autre_lien_parente = $request->autre_lien_parente;
 
