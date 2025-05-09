@@ -425,29 +425,7 @@
         });
         niveauEtude();
                 
-        //afficher le champ de saisie du numero de la piece de sécurité sociale
-        $('.typeCarteSecuriteSociale').change(function() {
-            var typeCarteSecuriteSociale = $('.typeCarteSecuriteSociale').val();
-            if (typeCarteSecuriteSociale == 'AUCUN') {
-
-                $('#typeCarteSecuriteSociales').hide('slow');
-                $('.numSecuriteSociale').val('');
-                $("#numSecuriteSociale").prop("required", false);
-            } else {
-                $('#typeCarteSecuriteSociales').show('slow');
-                $('.numSecuriteSociale').show('slow');
-                $("#numSecuriteSociale").prop("required", true);
-            }
-        });
-        if ($('.typeCarteSecuriteSociale').val() == 'AUCUN') {
-            $('#typeCarteSecuriteSociales').hide('slow');
-            $('.numSecuriteSociale').val('');
-            $("#numSecuriteSociale").prop("required", false);
-        } else {
-            $('#typeCarteSecuriteSociales').show('slow');
-            $('.numSecuriteSociale').show('slow');
-            $("#numSecuriteSociale").prop("required", true);
-        }
+       
 
         //afficher le champ autre certificat
 

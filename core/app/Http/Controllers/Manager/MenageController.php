@@ -17,7 +17,7 @@ use App\Http\Controllers\Controller;
 class MenageController extends Controller
 {
 
-    public function index()
+    public function index($id)
     {
         $pageTitle = "Gestion des ménages";
         $manager = auth()->user();
@@ -31,49 +31,52 @@ class MenageController extends Controller
         //     "menages.sources_eaux", "type_machines", "garde_machines", "equipements",
         //     "traitementChamps", "activiteFemme", "nomActiviteFemme", "champFemme", "nombreHectareFemme"
         // ])
-        $cooperative = Cooperative::with('sections.localites')->find($manager->cooperative_id);
-        $sections = Section::where('cooperative_id', $manager->cooperative_id)->get();
-        $localites = Localite::joinRelationship('section')
+        $producteurId = decrypt($id);
+        $producteur = Producteur::where('id', $producteurId)->firstOrFail();
+        // $cooperative = Cooperative::with('sections.localites')->find($manager->cooperative_id);
+        // $sections = Section::where('cooperative_id', $manager->cooperative_id)->get();
+        // $localites = Localite::joinRelationship('section')
+        //     ->where('cooperative_id', $manager->cooperative_id)
+        //     ->when(request()->section, function ($query, $section) {
+        //         $query->where('section_id', $section);
+        //     })
+        //     ->get();
+        // $producteurs = Producteur::joinRelationship('localite.section')->where([['cooperative_id', $manager->cooperative_id], ['producteurs.status', 1]])
+        //     ->where('cooperative_id', $manager->cooperative_id)
+        //     ->when(request()->localite, function ($query, $localite) {
+        //         $query->where('localite_id', $localite);
+        //     })
+        //     ->get();
+
+        // $menages = Menage::dateFilter()->latest('id')
+        //     ->joinRelationship('producteur.localite.section')
+        //     ->where('cooperative_id', $manager->cooperative_id)
+           
+        //     ->when(request()->section, function ($query, $section) {
+        //         $query->where('localites.section_id', $section);
+        //     })
+        //     ->when(request()->localite, function ($query, $localite) {
+        //         $query->where('producteurs.localite_id', $localite);
+        //     })
+        //     ->when(request()->producteur, function ($query, $producteur) {
+        //         $query->where('producteur_id', $producteur);
+        //     })
+        //     ->with(['producteur.localite', 'producteur.localite.section']); 
+
+        //     $menagesFiltre = $menages->get();
+       // Charger les relations nécessaires pour éviter les requêtes N+1
+        $menages = Menage::with('producteur')->where('producteur_id', $producteurId)->paginate(getPaginate());
+        $producteurs = Producteur::with('localite')->joinRelationship('localite.section')
+            ->where([['cooperative_id', $manager->cooperative_id], ['producteurs.status', 1]])
+            ->get();
+        $localites = Localite::with('section')->joinRelationship('section')
             ->where('cooperative_id', $manager->cooperative_id)
             ->when(request()->section, function ($query, $section) {
                 $query->where('section_id', $section);
             })
             ->get();
-        $producteurs = Producteur::joinRelationship('localite.section')->where([['cooperative_id', $manager->cooperative_id], ['producteurs.status', 1]])
-            ->where('cooperative_id', $manager->cooperative_id)
-            ->when(request()->localite, function ($query, $localite) {
-                $query->where('localite_id', $localite);
-            })
-            ->get();
 
-        $localites = $cooperative->sections->flatMap->localites->filter(function ($localite) {
-            return $localite->active();
-        });
-        $producteurs = Producteur::joinRelationship('localite.section')->where([['cooperative_id', $manager->cooperative_id], ['producteurs.status', 1]])->get();
-
-        $menages = Menage::dateFilter()->latest('id')
-            ->joinRelationship('producteur.localite.section')
-            ->where('cooperative_id', $manager->cooperative_id)
-            // ->where(function ($q) {
-            //     if (request()->localite != null) {
-            //         $q->where('localite_id', request()->localite);
-            //     }
-            // })
-            ->when(request()->section, function ($query, $section) {
-                $query->where('localites.section_id', $section);
-            })
-            ->when(request()->localite, function ($query, $localite) {
-                $query->where('producteurs.localite_id', $localite);
-            })
-            ->when(request()->producteur, function ($query, $producteur) {
-                $query->where('producteur_id', $producteur);
-            })
-            ->with(['producteur.localite', 'producteur.localite.section']); // Charger les relations "localite" et "section" des producteurs
-            $menagesFiltre = $menages->get();
-
-            $menages = $menages->paginate(getPaginate());
-
-        return view('manager.menage.index', compact('pageTitle', 'menages', 'localites', 'sections', 'producteurs'));
+        return view('manager.menage.index', compact('pageTitle', 'menages', 'producteurs', 'localites'));
     }
 
     public function create()
@@ -129,13 +132,7 @@ class MenageController extends Controller
 
             $message = "Le menage a été crée avec succès";
         }
-        // if ($menage->producteur_id != $request->producteur_id) {
-        //     $hasMenage = Menage::where('producteur_id', $request->producteur_id)->exists();
-        //     if ($hasMenage) {
-        //         $notify[] = ['error', 'Ce producteur a déjà un menage enregistré'];
-        //         return back()->withNotify($notify)->withInput();
-        //     }
-        // }
+    
         $menage->producteur_id  = $request->producteur_id;
         $menage->nom = $request->nom;
         $menage->prenoms = $request->prenoms;
@@ -148,12 +145,12 @@ class MenageController extends Controller
         $menage->autre_instruction = $request->autre_instruction;
         $menage->autre_instruction = $request->statut_scolaire;
         $menage->categorie_ethnique    = $request->categorie_ethnique;
-        // dd(json_encode($request->all()));
-        //dd($request->all());
         $menage->save();
 
         $notify[] = ['success', isset($message) ? $message : 'Le menage a été crée avec succès.'];
-        return back()->withNotify($notify);
+        //return back()->withNotify($notify);
+
+        return redirect()->route('suivi.menage.index', ['id' =>encrypt($request->producteur_id)])->withNotify($notify);
     }
 
 

@@ -318,32 +318,32 @@ class ProducteurController extends Controller
         // dd(json_encode($request->all()));
         $producteur->save();
 
-        if ($producteur != null) {
-            $id = $producteur->id;
-            if ($producteur != null) {
-                $id = $producteur->id;
-                $datas  = [];
-                if ($request->certificats != null) {
-                    $certificats = array_filter($request->certificats);
-                    if (!empty($certificats)) {
-                        Producteur_certification::where('producteur_id', $id)->delete();
-                        foreach ($certificats as $certificat) {
-                            if ($certificat == 'Autre') {
-                                $autre = new Certification();
-                                $autre->nom = $request->autreCertificats;
-                                $autre->save();
-                                $certificat = $request->autreCertificats;
-                            }
-                            $datas[] = [
-                                'producteur_id' => $id,
-                                'certification' => $certificat,
-                            ];
-                        }
-                        Producteur_certification::insert($datas);
-                    }
-                }
-            }
-        }
+        // if ($producteur != null) {
+        //     $id = $producteur->id;
+        //     if ($producteur != null) {
+        //         $id = $producteur->id;
+        //         $datas  = [];
+        //         if ($request->certificats != null) {
+        //             $certificats = array_filter($request->certificats);
+        //             if (!empty($certificats)) {
+        //                 Producteur_certification::where('producteur_id', $id)->delete();
+        //                 foreach ($certificats as $certificat) {
+        //                     if ($certificat == 'Autre') {
+        //                         $autre = new Certification();
+        //                         $autre->nom = $request->autreCertificats;
+        //                         $autre->save();
+        //                         $certificat = $request->autreCertificats;
+        //                     }
+        //                     $datas[] = [
+        //                         'producteur_id' => $id,
+        //                         'certification' => $certificat,
+        //                     ];
+        //                 }
+        //                 Producteur_certification::insert($datas);
+        //             }
+        //         }
+        //     }
+        // }
 
         $notify[] = ['success', isset($message) ? $message : 'Le producteur a été crée avec succès.'];
         return back()->withNotify($notify);
@@ -357,7 +357,7 @@ class ProducteurController extends Controller
             // 'habitationProducteur' => 'required',
             // 'statut' => 'required',
             'proprietaires' => 'required',
-            'statutMatrimonial' => 'required',
+            // 'statutMatrimonial' => 'required',
             'localite_id'    => 'required|exists:localites,id',
             'nom' => 'required|max:255',
             'prenoms'  => 'required|max:255',
@@ -480,29 +480,29 @@ class ProducteurController extends Controller
         }
         // dd(json_encode($request->all()));
         $producteur->save();
-        if ($producteur != null) {
-            $id = $producteur->id;
-            $datas  = [];
-            if ($request->certificats != null) {
-                $certificats = array_filter($request->certificats);
-                if (!empty($certificats)) {
-                    Producteur_certification::where('producteur_id', $id)->delete();
-                    foreach ($certificats as $certificat) {
-                        if ($certificat == 'Autre') {
-                            $autre = new Certification();
-                            $autre->nom = $request->autreCertificats;
-                            $autre->save();
-                            $certificat = $request->autreCertificats;
-                        }
-                        $datas[] = [
-                            'producteur_id' => $id,
-                            'certification' => $certificat,
-                        ];
-                    }
-                    Producteur_certification::insert($datas);
-                }
-            }
-        }
+        // if ($producteur != null) {
+        //     $id = $producteur->id;
+        //     $datas  = [];
+        //     if ($request->certificats != null) {
+        //         $certificats = array_filter($request->certificats);
+        //         if (!empty($certificats)) {
+        //             Producteur_certification::where('producteur_id', $id)->delete();
+        //             foreach ($certificats as $certificat) {
+        //                 if ($certificat == 'Autre') {
+        //                     $autre = new Certification();
+        //                     $autre->nom = $request->autreCertificats;
+        //                     $autre->save();
+        //                     $certificat = $request->autreCertificats;
+        //                 }
+        //                 $datas[] = [
+        //                     'producteur_id' => $id,
+        //                     'certification' => $certificat,
+        //                 ];
+        //             }
+        //             Producteur_certification::insert($datas);
+        //         }
+        //     }
+        // };
         $notify[] = ['success', isset($message) ? $message : 'Le producteur a été mise à jour avec succès.'];
         return back()->withNotify($notify);
     }

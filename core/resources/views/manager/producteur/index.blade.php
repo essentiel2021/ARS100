@@ -43,7 +43,7 @@
                                         @lang('Certifie')</option>
                                 </select>
                             </div> --}}
-                            <div class="flex-grow-1">
+                            {{-- <div class="flex-grow-1">
                                 <label>@lang('Statut')</label>
                                 <select name="status" class="form-control">
                                     <option value="">@lang('Tous')</option>
@@ -52,7 +52,7 @@
                                     <option value="1" {{ request()->status == '1' ? 'selected' : '' }}>
                                         @lang('Active')</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="flex-grow-1">
                                 <label>@lang('Date')</label>
                                 <input name="date" type="text" class="form-control dates"
@@ -110,8 +110,8 @@
                             <thead>
                                 <tr>
                                     {{-- <th>@lang('Photo')</th> --}}
-                                    <th>@lang('Section')</th>
-                                    <th>@lang('Localite')</th> 
+                                    <th>@lang('Village')</th>
+                                    <th>@lang('Campement')</th> 
                                     <th>@lang('Nom')</th>
                                     <th>@lang('Prenoms')</th>
                                     <th>@lang('Code CCC')</th> 
@@ -178,16 +178,19 @@
                                         <td>
                                             <a href="{{ route('manager.traca.producteur.economiques', encrypt($producteur->id)) }}"
                                                 class="icon-btn btn--info ml-1">@lang('Profile socio-économique')</a>
-                                            <a href="{{ route('manager.traca.producteur.index', ['download' => encrypt($producteur->id)]) }}"
+                                            
+                                            <a href="{{ route('manager.suivi.menage.index', encrypt($producteur->id)) }}"
+                                                class="icon-btn btn--info ml-1">@lang('Enregistrement du ménage producteur')</a>
+                                            {{-- <a href="{{ route('manager.traca.producteur.index', ['download' => encrypt($producteur->id)]) }}"
                                                 class="btn btn-sm btn--danger"><i
-                                                    class="la la-file-pdf-o"></i>@lang('PDF')</a>
+                                                    class="la la-file-pdf-o"></i>@lang('PDF')</a> --}}
                                             <a href="{{ route('manager.traca.producteur.edit', $producteur->id) }}"
                                                 class="btn btn-sm btn-outline--warning"><i
                                                     class="la la-pen"></i>@lang('Editer')</a>
                                             <a href="{{ route('manager.traca.producteur.showproducteur', $producteur->id) }}"
                                                     class="btn btn-sm btn-outline--primary"><i
                                                         class="las la-file-invoice"></i>@lang('Détails')</a>
-                                        @if($producteur->status == Status::DISABLE)
+                                        {{-- @if($producteur->status == Status::DISABLE)
                                                     <button type="button" class="confirmationBtn  btn btn-sm btn-outline--danger"
                                                         data-action="{{ route('manager.traca.producteur.status', $producteur->id) }}"
                                                         data-question="@lang('Etes-vous sûr de vouloir activer ce producteur?')">
@@ -199,8 +202,7 @@
                                                         data-question="@lang('Etes-vous sûr de vouloir désactiver ce producteur?')">
                                                         <i class="la la-eye-slash"></i> @lang('Désactive')
                                                     </button>
-                                                @endif
-                                            
+                                                @endif --}}
                                         </td>
                                     </tr>
                                 @empty

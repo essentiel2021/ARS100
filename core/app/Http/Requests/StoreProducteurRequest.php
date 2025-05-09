@@ -30,7 +30,7 @@ class StoreProducteurRequest extends FormRequest
             // 'certificats' => 'required',
             // 'habitationProducteur' => 'required',
             // 'statut' => 'required',
-            'statutMatrimonial' => 'required',
+            // 'statutMatrimonial' => 'required',
             'localite_id'    => 'required|exists:localites,id',
             'nom' => 'required|max:255',
             'prenoms'  => 'required|max:255',

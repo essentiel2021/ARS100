@@ -11,7 +11,7 @@
                                 <label>@lang('Recherche par Mot(s) cle(s)')</label>
                                 <input type="text" name="search" value="{{ request()->search }}" class="form-control">
                             </div>
-                            <div class="flex-grow-1">
+                            {{-- <div class="flex-grow-1">
                                 <label>@lang('Section')</label>
                                 <select name="section" class="form-control select2-basic" data-live-search="true"
                                     id="section">
@@ -45,7 +45,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
                             {{-- <div class="flex-grow-1">
                                 <label>@lang('Statut declaration')</label>
                                 <select name="typedeclaration" class="form-control">
@@ -76,8 +76,8 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>@lang('Section')</th>
-                                    <th>@lang('Localite')</th>
+                                    <th>@lang('Village')</th>
+                                    <th>@lang('Campement')</th>
                                     <th>@lang('Parent')</th>
                                     <th>@lang('Nom')</th>
                                     <th>@lang('Genre')</th>
@@ -151,9 +151,12 @@
     <a href="{{ route('manager.suivi.menage.create') }}" class="btn  btn-outline--primary h-45 addNewCooperative">
         <i class="las la-plus"></i>@lang('Ajouter nouveau')
     </a>
-    <a href="{{ route('manager.suivi.menage.exportExcel.menageAll') }}" class="btn  btn-outline--warning h-45"><i
-            class="las la-cloud-download-alt"></i> @lang('Exporter en Excel')</a>
+    {{-- <a href="{{ route('manager.suivi.menage.exportExcel.menageAll') }}" class="btn  btn-outline--warning h-45"><i
+            class="las la-cloud-download-alt"></i> @lang('Exporter en Excel')</a> --}}
+
+    <x-back route="{{ route('manager.traca.producteur.index') }}" />
 @endpush
+
 @push('style')
     <style>
         .table-responsive {

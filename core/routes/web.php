@@ -417,7 +417,7 @@ Route::middleware('auth')->group(function () {
 
         //Manage Suivi Menage
         Route::name('suivi.menage.')->prefix('menage')->group(function () {
-            Route::get('list', [MenageController::class,'index'])->name('index');
+            Route::get('list/{id}', [MenageController::class,'index'])->name('index');
             Route::get('create', [MenageController::class,'create'])->name('create');
             Route::post('store', [MenageController::class,'store'])->name('store');
             Route::get('edit/{id}', [MenageController::class,'edit'])->name('edit');

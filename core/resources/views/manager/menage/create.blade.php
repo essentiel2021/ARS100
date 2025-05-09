@@ -140,7 +140,7 @@
 @endsection
 
 @push('breadcrumb-plugins')
-    <x-back route="{{ route('manager.suivi.menage.index') }}" />
+    {{-- <x-back route="{{ route('manager.suivi.menage.index') }}" /> --}}
 @endpush
 
 @push('script')

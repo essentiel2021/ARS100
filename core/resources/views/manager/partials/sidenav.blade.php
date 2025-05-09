@@ -173,7 +173,7 @@
                         </div>
                     </li>
                 @endif --}}
-                @if (Auth::user()->can('manager.suivi.ssrteclmrs.index') || Auth::user()->can('manager.suivi.menage.index'))
+                {{-- @if (Auth::user()->can('manager.suivi.ssrteclmrs.index') || Auth::user()->can('manager.suivi.menage.index'))
                     <li class="sidebar-menu-item sidebar-dropdown">
                         <a href="javascript:void(0)"
                             class="{{ menuActive(['manager.suivi.menage.*', 'manager.suivi.ssrteclmrs.*'], 3) }}">
@@ -182,14 +182,14 @@
                         </a>
                         <div class="sidebar-submenu {{ menuActive(['manager.suivi.menage.*'], 2) }} ">
                             <ul>
-                                {{-- @can('manager.suivi.ssrteclmrs.index')
+                                @can('manager.suivi.ssrteclmrs.index')
                                     <li class="sidebar-menu-item {{ menuActive('manager.suivi.ssrteclmrs.index') }}">
                                         <a href="{{ route('manager.suivi.ssrteclmrs.index') }}" class="nav-link">
                                             <i class="menu-icon las la-dot-circle"></i>
                                             <span class="menu-title">@lang('SSRTE-CLMRS')</span>
                                         </a>
                                     </li>
-                                @endcan --}}
+                                @endcan
                                 @can('manager.suivi.menage.index')
                                     <li class="sidebar-menu-item {{ menuActive('manager.suivi.menage.index') }}">
                                         <a href="{{ route('manager.suivi.menage.index') }}" class="nav-link">
@@ -201,7 +201,7 @@
                             </ul>
                         </div>
                     </li>
-                @endif
+                @endif --}}
                 {{-- @if (Auth::user()->can('manager.agro.evaluation.index') ||
                         Auth::user()->can('manager.agro.approvisionnement.index') ||
                         Auth::user()->can('manager.agro.distribution.index') ||
