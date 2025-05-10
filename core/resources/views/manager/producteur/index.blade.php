@@ -75,31 +75,31 @@
                                     @lang('TOTAL PRODUCTEURS')
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="alert alert-info text-center">
                                 <div class="fw-bold">{{ $total_prod_h }}</div>
                                     @lang('HOMMES')
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="alert alert-info text-center">
                                 <div class="fw-bold">{{ $total_prod - $total_prod_h }}</div>
                                     @lang('FEMMES')
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            {{-- <div class="col-md-2">
                                 <div class="alert alert-warning text-center">
                                 <div class="fw-bold">{{ $total_prod_cert }}</div>
                                     @lang('CERTIFIES')
                                 </div>
-                            </div>
-                            <div class="col-md-2">
+                            </div> --}}
+                            {{-- <div class="col-md-2">
                                 <div class="alert alert-warning text-center">
                                 <div class="fw-bold">{{ $total_prod_cand }}</div>
                                     @lang('CANDIDATS')
                                 </div>
-                            </div>
+                            </div> --}}
                     </div>
                 </div>
             </div>

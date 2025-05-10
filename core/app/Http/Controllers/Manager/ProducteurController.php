@@ -89,7 +89,7 @@ class ProducteurController extends Controller
                 ->download($producteurNameFile);
             // ->save(storage_path(). "/app/public/producteurs-pdf/".$producteurNameFile);
         }
-        return view('manager.producteur.index', compact('pageTitle', 'producteurs', 'localites', 'programmes', 'total_prod', 'total_prod_h', 'total_prod_f', 'total_prod_cert', 'total_prod_cand'));
+        return view('manager.producteur.index', compact('pageTitle', 'producteurs', 'localites', 'programmes', 'total_prod', 'total_prod_h', 'total_prod_f'));
     }
 
     public function infos($id)
@@ -268,7 +268,6 @@ class ProducteurController extends Controller
         $producteur->habitationProducteur = $request->habitationProducteur;
         $producteur->numPiece = $request->numPiece;
         $producteur->num_ccc = $request->num_ccc;
-        $producteur->autreCertificats = $request->autreCertificats;
         $producteur->consentement  = $request->consentement;
         $producteur->certificat     = $request->certificat;
         $producteur->nom = $request->nom;
@@ -422,7 +421,6 @@ class ProducteurController extends Controller
         $producteur->habitationProducteur = $request->habitationProducteur;
         $producteur->numPiece = $request->numPiece;
         $producteur->num_ccc = $request->num_ccc;
-        $producteur->autreCertificats = $request->autreCertificats;
         $producteur->consentement  = $request->consentement;
         $producteur->certificat     = $request->certificat;
         $producteur->nom = $request->nom;
