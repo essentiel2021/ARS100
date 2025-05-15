@@ -63,9 +63,9 @@ class ProducteurController extends Controller
             ->when(request()->etat, function ($query, $etat) {
                 $query->where('producteurs.statut', $etat);
             })
-            ->when(request()->programme, function ($query, $programme) {
-                $query->where('producteurs.programme_id', $programme);
-            })
+            // ->when(request()->programme, function ($query, $programme) {
+            //     $query->where('producteurs.programme_id', $programme);
+            // })
             ->with('localite.section')
             ->where([['cooperative_id', $manager->cooperative_id]]);
         $producteursFiltre = $producteurs->get();
@@ -263,9 +263,7 @@ class ProducteurController extends Controller
         }
         $producteur = new Producteur();
         $producteur->proprietaires = $request->proprietaires;
-        $producteur->programme_id = $request->programme_id;
         $producteur->localite_id = $request->localite_id;
-        $producteur->habitationProducteur = $request->habitationProducteur;
         $producteur->numPiece = $request->numPiece;
         $producteur->num_ccc = $request->num_ccc;
         $producteur->consentement  = $request->consentement;
@@ -416,9 +414,7 @@ class ProducteurController extends Controller
         $request->validate($validationRule, $messages);
 
         $producteur->proprietaires = $request->proprietaires;
-        $producteur->programme_id = $request->programme_id;
         $producteur->localite_id = $request->localite_id;
-        $producteur->habitationProducteur = $request->habitationProducteur;
         $producteur->numPiece = $request->numPiece;
         $producteur->num_ccc = $request->num_ccc;
         $producteur->consentement  = $request->consentement;

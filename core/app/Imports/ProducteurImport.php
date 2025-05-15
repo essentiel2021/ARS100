@@ -62,24 +62,24 @@ class ProducteurImport implements ToCollection, WithHeadingRow, WithValidation
           if ($verification == null) {
 
             $producteur = new Producteur();
-            $nationalite = $programme = null;
-            if ($row['numpiece']) {
-              $nationalite = Str::limit($row['numpiece'], 2, "");
-              if ($nationalite == 'C0') {
-                $nationalite = "CI";
-              }
-              $nationalite = Country::where('iso', $nationalite)->first();
-              if ($nationalite != null) {
-                $nationalite = $nationalite->id;
-              } else {
-                $nationalite = null;
-              }
-            }
+            // $nationalite = $programme = null;
+            // if ($row['numpiece']) {
+            //   $nationalite = Str::limit($row['numpiece'], 2, "");
+            //   if ($nationalite == 'C0') {
+            //     $nationalite = "CI";
+            //   }
+            //   $nationalite = Country::where('iso', $nationalite)->first();
+            //   if ($nationalite != null) {
+            //     $nationalite = $nationalite->id;
+            //   } else {
+            //     $nationalite = null;
+            //   }
+            // }
 
-            if ($row['programme']) {
-              $programme = Programme::where('libelle', $row['programme'])->first();
-              $programme = $programme->id;
-            }
+            // if ($row['programme']) {
+            //   $programme = Programme::where('libelle', $row['programme'])->first();
+            //   $programme = $programme->id;
+            // }
 
             $agent = DB::table('user_localites')->select('user_id')->where('localite_id', $localites_id)->inRandomOrder()->first();
             if ($agent != null) {
@@ -90,21 +90,14 @@ class ProducteurImport implements ToCollection, WithHeadingRow, WithValidation
               $producteur->nom = $row['nom'];
               $producteur->prenoms = $row['prenoms'];
               $producteur->sexe = ucfirst($row['genre']);
-              //$producteur->dateNaiss = Date::excelToDateTimeObject($row['datenaissance'])->format('Y-m-d');
               $producteur->dateNaiss = date('Y-m-d', strtotime($row['datenaissance']));
               $producteur->phone1 = $row['phone1'];
-              // $producteur->phone2 = $row['phone2'];
-              $producteur->nationalite = $nationalite;
-              $producteur->consentement = $row['consentement'];
               $producteur->statut_scolaire = $row['statut_scolaire'];
               $producteur->proprietaires = $row['proprietaires'];
               $producteur->niveau_etude = $row['niveau_etude'];
-              // $producteur->statut = $row['statut'];
-              // $producteur->certificat = $row['anneecertification'];
-              // $producteur->numPiece = $row['numpiece'];
-              $producteur->programme_id = $programme;
+              $producteur->categorie_ethnique = $row['categorie_ethnique'];
+              $producteur->numpiece = $row['numpiece'];
               $producteur->save();
-
               // if ($producteur != null) {
               //   if ($row['statut'] != 'Candidat') {
               //     $certification = Certification::where('nom', $row['certification'])->first();
@@ -124,19 +117,12 @@ class ProducteurImport implements ToCollection, WithHeadingRow, WithValidation
               $producteur->nom = $row['nom'];
               $producteur->prenoms = $row['prenoms'];
               $producteur->sexe = ucfirst($row['genre']);
-              //$producteur->dateNaiss = Date::excelToDateTimeObject($row['datenaissance'])->format('Y-m-d');
               $producteur->dateNaiss = date('Y-m-d', strtotime($row['datenaissance']));
               $producteur->phone1 = $row['phone1'];
-              // $producteur->phone2 = $row['phone2'];
-              $producteur->consentement = $row['consentement'];
               $producteur->statut_scolaire = $row['statut_scolaire'];
               $producteur->proprietaires = $row['proprietaires'];
               $producteur->niveau_etude = $row['niveau_etude'];
-              // $producteur->statut = $row['statut'];
-              // $producteur->certificat = $row['anneecertification'];
-              // $producteur->numPiece = $row['numpiece'];
-              $producteur->nationalite = $nationalite;
-              $producteur->programme_id = $programme;
+              $producteur->categorie_ethnique = $row['categorie_ethnique'];
               $producteur->userid = auth()->user()->id;
               $producteur->save();
               // if ($producteur != null) {
