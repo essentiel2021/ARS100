@@ -17,18 +17,18 @@ use App\Models\TypeFormation;
 use App\Models\EmployeeDetail;
 use App\Models\FormationStaff;
 use App\Models\SuiviFormation;
-use App\Models\SupportMessage; 
+use App\Models\SupportMessage;
 use App\Rules\FileTypeValidate;
 use App\Models\Agrodistribution;
-use App\Models\LivraisonPayment; 
+use App\Models\LivraisonPayment;
 use App\Models\TypeFormationTheme;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Hash;   
+use Illuminate\Support\Facades\Hash;
 use App\Models\Producteur_certification;
-use App\Models\SuiviFormationProducteur; 
+use App\Models\SuiviFormationProducteur;
 
 class ManagerController extends Controller
 {
@@ -36,54 +36,54 @@ class ManagerController extends Controller
     public function dashboard()
     {
         $manager = auth()->user();
-        $pageTitle = "Tableau de bord";  
+        $pageTitle = "Tableau de bord";
         $nbcoop = Cooperative::count();
         $totalparcelle = Parcelle::joinRelationship('producteur.localite.section')
-                                ->where('cooperative_id', auth()->user()->cooperative_id)
-                                ->count();
+            ->where('cooperative_id', auth()->user()->cooperative_id)
+            ->count();
         $nbparcelle = Parcelle::joinRelationship('producteur.localite.section')
-                                ->where('cooperative_id', auth()->user()->cooperative_id)
-                                ->sum('superficie');  
+            ->where('cooperative_id', auth()->user()->cooperative_id)
+            ->sum('superficie');
         $nbproducteur = Producteur::joinRelationship('localite.section')
-                                ->where([['cooperative_id', $manager->cooperative_id],['producteurs.status', 1]])
-                                ->count(); 
+            ->where([['cooperative_id', $manager->cooperative_id], ['producteurs.status', 1]])
+            ->count();
         $nbinspection = Inspection::joinRelationship('producteur.localite.section')
-                                ->where([['cooperative_id', auth()->user()->cooperative_id],['producteurs.status', 1]])
-                                ->count(); 
+            ->where([['cooperative_id', auth()->user()->cooperative_id], ['producteurs.status', 1]])
+            ->count();
         $nbarbredistribue = Agrodistribution::where('cooperative_id', auth()->user()->cooperative_id)
-                                ->sum('quantite');
+            ->sum('quantite');
         //Producteurs par Genre
         $genre = Producteur::joinRelationship('localite.section')
-                            ->where([['cooperative_id', $manager->cooperative_id],['producteurs.status', 1]])
-                            ->select('sexe',DB::raw('count(producteurs.id) as nombre'))
-                            ->groupBy('sexe')
-                            ->get();
-        
-    
-//Mapping des parcelles
-    $parcelle = Parcelle::joinRelationship('producteur.localite.section')
-                            ->where([['cooperative_id', auth()->user()->cooperative_id],['producteurs.status', 1]])
-                            ->select('typedeclaration',DB::raw('count(parcelles.id) as nombre'))
-                            ->groupBy('typedeclaration')
-                            ->get(); 
+            ->where([['cooperative_id', $manager->cooperative_id], ['producteurs.status', 1]])
+            ->select('sexe', DB::raw('count(producteurs.id) as nombre'))
+            ->groupBy('sexe')
+            ->get();
 
-//Producteurs inscrits par Date
+
+        //Mapping des parcelles
+        $parcelle = Parcelle::joinRelationship('producteur.localite.section')
+            ->where([['cooperative_id', auth()->user()->cooperative_id], ['producteurs.status', 1]])
+            ->select('typedeclaration', DB::raw('count(parcelles.id) as nombre'))
+            ->groupBy('typedeclaration')
+            ->get();
+
+        //Producteurs inscrits par Date
         $producteurbydays = Producteur::joinRelationship('localite.section')
-                                        ->where([['cooperative_id', $manager->cooperative_id],['producteurs.status', 1]])
-                                        ->select(DB::raw('DATE_FORMAT(producteurs.created_at,"%Y-%m-%d") as date'),DB::raw('count(producteurs.id) as nombre'))
-                                        ->groupBy('date')
-                                        ->get();  
+            ->where([['cooperative_id', $manager->cooperative_id], ['producteurs.status', 1]])
+            ->select(DB::raw('DATE_FORMAT(producteurs.created_at,"%Y-%m-%d") as date'), DB::raw('count(producteurs.id) as nombre'))
+            ->groupBy('date')
+            ->get();
 
         // Formations par Modules
         $formation = TypeFormationTheme::joinRelationship('typeFormation')
-                                        ->joinRelationship('suiviFormation.localite.section')
-                                        ->where('cooperative_id', auth()->user()->cooperative_id)
-                                        ->select('type_formations.nom',DB::raw('count(type_formation_themes.id) as nombre'))
-                                        ->groupBy('type_formation_id')
-                                        ->get();
- 
- $coop_id = auth()->user()->cooperative_id;
-//Producteurs formés par Module
+            ->joinRelationship('suiviFormation.localite.section')
+            ->where('cooperative_id', auth()->user()->cooperative_id)
+            ->select('type_formations.nom', DB::raw('count(type_formation_themes.id) as nombre'))
+            ->groupBy('type_formation_id')
+            ->get();
+
+        $coop_id = auth()->user()->cooperative_id;
+        //Producteurs formés par Module
         $modules = DB::select('SELECT 
         tyf.nom AS module,
         p.sexe AS sexe_producteur,
@@ -108,52 +108,52 @@ class ManagerController extends Controller
     INNER JOIN 
     producteurs p
     ON sf.producteur_id = p.id
-    WHERE sec.cooperative_id = '.$coop_id.'
+    WHERE sec.cooperative_id = ' . $coop_id . '
     GROUP BY 
-        tf.type_formation_id, p.sexe'); 
+        tf.type_formation_id, p.sexe');
         // Nombre de parcelles
         $parcellespargenre = Parcelle::joinRelationship('producteur.localite.section')
-        ->where([['cooperative_id', auth()->user()->cooperative_id],['producteurs.status', 1]])->select('producteurs.sexe as genre',DB::raw('count(parcelles.id) as nombre'))->groupBy('producteurs.sexe')->get();
-       
-        $producteurparcertification = Producteur_certification::joinRelationship('producteur.programme')
-                                ->joinRelationship('producteur.localite.section')
-                                ->where([['cooperative_id', auth()->user()->cooperative_id],['producteurs.status', 1]]) 
-                                ->select('producteur_certifications.certification',DB::raw('count(producteur_certifications.id) as nombre')) 
-                                ->groupBy('producteur_certifications.certification')
-                                ->get();
-        
-$producteurparGenreCertification = Producteur_certification::joinRelationship('producteur.programme')
-                                ->joinRelationship('producteur.localite.section')
-                                ->where([['cooperative_id', auth()->user()->cooperative_id],['producteurs.status', 1]]) 
-                                ->select('producteur_certifications.certification','producteurs.sexe as genre',DB::raw('count(producteur_certifications.id) as nombre')) 
-                                ->groupBy('producteur_certifications.certification','producteurs.sexe')
-                                ->get();
- 
-    $staffs = User::where('cooperative_id', auth()->user()->cooperative_id)->get();
-    foreach($staffs as $staff){
-        if($staff->id) {
-              
-            $employee = EmployeeDetail::where('user_id',$staff->id)->first();
-            if($employee ==null){
-                $lastEmployeeID = EmployeeDetail::where('cooperative_id', auth()->user()->cooperative_id)->count();
-               
-                // if($lastEmployeeID){ 
-                //        $lastEmployeeID = $lastEmployeeID+1;
-                //    $employeeid = cooperative()->codeApp.'-'.$lastEmployeeID;
-                //    }else{
-                //        $employeeid =cooperative()->codeApp."-1";
-                //    }
-               $employee = new EmployeeDetail();
-               $employee->user_id = $staff->id; 
-               $employee->employee_id =  null;
-               $employee->cooperative_id = $staff->cooperative_id; 
-               $employee->save(); 
-            }
-            
-        }
-    }
+            ->where([['cooperative_id', auth()->user()->cooperative_id], ['producteurs.status', 1]])->select('producteurs.sexe as genre', DB::raw('count(parcelles.id) as nombre'))->groupBy('producteurs.sexe')->get();
 
-        return view('manager.dashboard', compact('pageTitle','nbproducteur','nbparcelle','nbinspection','nbarbredistribue', 'genre','parcelle','formation','modules','parcellespargenre','producteurparcertification','producteurparGenreCertification','totalparcelle'));
+        // $producteurparcertification = Producteur_certification::joinRelationship('producteur.programme')
+        //                         ->joinRelationship('producteur.localite.section')
+        //                         ->where([['cooperative_id', auth()->user()->cooperative_id],['producteurs.status', 1]]) 
+        //                         ->select('producteur_certifications.certification',DB::raw('count(producteur_certifications.id) as nombre')) 
+        //                         ->groupBy('producteur_certifications.certification')
+        //                         ->get();
+
+        // $producteurparGenreCertification = Producteur_certification::joinRelationship('producteur.programme')
+        //                                 ->joinRelationship('producteur.localite.section')
+        //                                 ->where([['cooperative_id', auth()->user()->cooperative_id],['producteurs.status', 1]]) 
+        //                                 ->select('producteur_certifications.certification','producteurs.sexe as genre',DB::raw('count(producteur_certifications.id) as nombre')) 
+        //                                 ->groupBy('producteur_certifications.certification','producteurs.sexe')
+        //                                 ->get();
+
+        $staffs = User::where('cooperative_id', auth()->user()->cooperative_id)->get();
+        foreach ($staffs as $staff) {
+            if ($staff->id) {
+
+                $employee = EmployeeDetail::where('user_id', $staff->id)->first();
+                if ($employee == null) {
+                    $lastEmployeeID = EmployeeDetail::where('cooperative_id', auth()->user()->cooperative_id)->count();
+
+                    // if($lastEmployeeID){ 
+                    //        $lastEmployeeID = $lastEmployeeID+1;
+                    //    $employeeid = cooperative()->codeApp.'-'.$lastEmployeeID;
+                    //    }else{
+                    //        $employeeid =cooperative()->codeApp."-1";
+                    //    }
+                    $employee = new EmployeeDetail();
+                    $employee->user_id = $staff->id;
+                    $employee->employee_id =  null;
+                    $employee->cooperative_id = $staff->cooperative_id;
+                    $employee->save();
+                }
+            }
+        }
+        // 'producteurparcertification', 'producteurparGenreCertification',
+
+        return view('manager.dashboard', compact('pageTitle', 'nbproducteur', 'nbparcelle', 'nbinspection', 'nbarbredistribue', 'genre', 'parcelle', 'formation', 'modules', 'parcellespargenre',  'totalparcelle'));
     }
 
     public function changeLanguage($lang = null)
@@ -161,10 +161,10 @@ $producteurparGenreCertification = Producteur_certification::joinRelationship('p
         $language = Language::where('code', $lang)->first();
         if (!$language) {
             $lang = 'fr';
-        } 
+        }
 
         session()->put('lang', $lang);
-     
+
         return back();
     }
     protected function livraisons($scope = null)
@@ -176,7 +176,7 @@ $producteurparGenreCertification = Producteur_certification::joinRelationship('p
         if ($scope) {
             $livraisons = $livraisons->$scope();
         }
-        $livraisons = $livraisons->dateFilter()->searchable(['code'])->with('cooperative','senderCooperative', 'receiverCooperative', 'senderStaff', 'receiverStaff', 'paymentInfo')->paginate(getPaginate());
+        $livraisons = $livraisons->dateFilter()->searchable(['code'])->with('cooperative', 'senderCooperative', 'receiverCooperative', 'senderStaff', 'receiverStaff', 'paymentInfo')->paginate(getPaginate());
         return $livraisons;
     }
 
@@ -184,7 +184,7 @@ $producteurparGenreCertification = Producteur_certification::joinRelationship('p
     {
         $pageTitle = "Liste des Cooperatives";
         $manager   = auth()->user();
-        $cooperatives  = Cooperative::active()->where('id',$manager->cooperative_id)->searchable(['name', 'email', 'address'])->orderBy('name')->paginate(getPaginate());
+        $cooperatives  = Cooperative::active()->where('id', $manager->cooperative_id)->searchable(['name', 'email', 'address'])->orderBy('name')->paginate(getPaginate());
         return view('manager.cooperative.index', compact('pageTitle', 'cooperatives'));
     }
 

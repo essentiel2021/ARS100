@@ -202,44 +202,44 @@ $total = $total2 = $total3 = $total4 = $total5 = $total6 = $total7 = $total9 = a
               $donnees4[] = "{ value: $value, name: '$name' }";
           }
 
-          foreach(@$producteurparcertification as $data){ 
-            $labels6[] = utf8_encode(Str::remove("\r\n",utf8_decode(Str::between($data->certification,"(",")"))));
-            $total6[] = $data->nombre; 
-        }
+        //   foreach(@$producteurparcertification as $data){ 
+        //     $labels6[] = utf8_encode(Str::remove("\r\n",utf8_decode(Str::between($data->certification,"(",")"))));
+        //     $total6[] = $data->nombre; 
+        // }
 
         $totalsexe7=$sexe7=$xAxisData7=array();
              
-            foreach(@$producteurparGenreCertification as $data){
+            // foreach(@$producteurparGenreCertification as $data){
 
-              if(!in_array(Str::between($data->certification,"(",")"),$xAxisData7))
-              {  
-                $xAxisData7[] = utf8_encode(Str::remove("\r\n",utf8_decode(Str::between($data->certification,"(",")"))));
-              }
-                foreach($producteurparGenreCertification as $data2){
-                  if($data->genre ==$data2->genre){
-                    $totalsexe7[] = $data2->nombre;
-                  } 
-                }
-                $totalsexe7 = implode(",",$totalsexe7);
-                if(!in_array($data->genre,$sexe7)){
+            //   if(!in_array(Str::between($data->certification,"(",")"),$xAxisData7))
+            //   {  
+            //     $xAxisData7[] = utf8_encode(Str::remove("\r\n",utf8_decode(Str::between($data->certification,"(",")"))));
+            //   }
+            //     foreach($producteurparGenreCertification as $data2){
+            //       if($data->genre ==$data2->genre){
+            //         $totalsexe7[] = $data2->nombre;
+            //       } 
+            //     }
+            //     $totalsexe7 = implode(",",$totalsexe7);
+            //     if(!in_array($data->genre,$sexe7)){
                   
-                  $sexe7[]=$data->genre;
-                  $donnees7[] = "
-                  { name:'$data->genre',
-                    nameTextStyle: {
-                      fontStyle: 'oblique'
-                    },
-                    type: 'bar', 
-                    stack: 'one',
-                    data: [$totalsexe7]
-                  }";
-                }
+            //       $sexe7[]=$data->genre;
+            //       $donnees7[] = "
+            //       { name:'$data->genre',
+            //         nameTextStyle: {
+            //           fontStyle: 'oblique'
+            //         },
+            //         type: 'bar', 
+            //         stack: 'one',
+            //         data: [$totalsexe7]
+            //       }";
+            //     }
                 
               
-              $totalsexe7=array();
+            //   $totalsexe7=array();
                 
-            }
-            ?>
+            // }
+            // ?>
 <script type="text/javascript">
       // Initialize the echarts instance based on the prepared dom
       var myChart = echarts.init(document.getElementById('producteur'));
