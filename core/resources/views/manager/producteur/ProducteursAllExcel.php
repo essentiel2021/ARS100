@@ -44,28 +44,6 @@
         <td>autre niveau d'instruction</td>
         <td>statut scolaire</td>
         <td>catégorie ethnique</td>
-        <!-- <td>phone1</td> -->
-        <!-- <td>phone2</td>
-        <td>nationalite</td>
-        <td>autre membre</td>
-        <td>autre phone</td>
-        <td>niveau etude</td>
-        <td>numero piece</td>
-        <td>consentement</td>
-        <td>statut matrimonial</td>
-        <td>proprietaires</td>
-        <td>plante partage</td>
-        <td>habitation producteur</td>
-        <td>annee fin</td>
-        <td>annee demarrage</td>
-        <td>numero ccc</td>
-        <td>numero CMU</td>
-        <td>carte CMU</td>
-        <td>numero securite sociale</td>
-        <td>type carte securite sociale</td>
-        <td>type piece</td>
-        <td>annee certification</td> -->
-        <td>statut</td>
         <td>Date enreg</td> 
     </tr>
     </thead> 
@@ -95,28 +73,6 @@
             <td><?php echo $c->autre_instruction; ?></td>
             <td><?php echo $c->statut_scolaire; ?></td>
             <td><?php echo $c->categorie_ethnique; ?></td>
-            <!-- <td><?php //echo $c->phone1; ?></td> -->
-            <!-- <td><?php //echo $c->phone2; ?></td>
-            <td><?php //echo $c->country->nationalite ?? null; ?></td>
-            <td><?php //echo $c->autreMembre; ?></td>
-            <td><?php //echo $c->autrePhone; ?></td>
-            <td><?php //echo $c->niveau_etude; ?></td>
-            <td><?php //echo $c->numPiece; ?></td> 
-            <td><?php //echo $c->consentement; ?></td>
-            <td><?php //echo $c->statutMatrimonial; ?></td>
-            <td><?php //echo $c->proprietaires; ?></td>
-            <td><?php //echo $c->plantePartage; ?></td>
-            <td><?php //echo $c->habitationProducteur; ?></td>
-            <td><?php //echo $c->anneeFin; ?></td>
-            <td><?php //echo $c->anneeDemarrage; ?></td>
-            <td><?php //echo $c->num_ccc; ?></td>
-            <td><?php //echo $c->numCMU; ?></td>
-            <td><?php //echo $c->carteCMU; ?></td>
-            <td><?php //echo $c->numSecuriteSociale; ?></td>
-            <td><?php //echo $c->typeCarteSecuriteSociale; ?></td>
-            <td><?php //echo $c->type_piece; ?></td>
-            <td><?php //echo $c->certificat; ?></td> -->
-            <td><?php echo $c->statut; ?></td>
             <td><?php echo date('d-m-Y', strtotime($c->created_at)); ?></td>
         </tr>
         </tbody>
